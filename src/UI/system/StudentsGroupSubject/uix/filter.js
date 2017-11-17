@@ -22,10 +22,10 @@ export default props => (
     <TextInput label="Subject" source="subject-imatch" allowEmpty />
     <SelectArrayInput label="Subject in" source="subject-in" allowEmpty />
     <SelectArrayInput label="Subject not in" source="subject-nin" allowEmpty />
-    <NullableBooleanInput label="StudentsGroup exists" source="studentsGroup-exists" />
+    <NullableBooleanInput label="Students group exists" source="studentsGroup-exists" />
 
-    <TextInput label="StudentsGroup" source="studentsGroup-imatch" allowEmpty />
-    <SelectArrayInput label="StudentsGroup in" source="studentsGroup-in" allowEmpty />
-    <SelectArrayInput label="StudentsGroup not in" source="studentsGroup-nin" allowEmpty />
+    <TextInput label="Students group" source="studentsGroup-imatch" allowEmpty />
+    <SelectArrayInput label="Students group in" source="studentsGroup-in" allowEmpty />
+    <SelectArrayInput label="Students group not in" source="studentsGroup-nin" allowEmpty />
   </Filter>
 );

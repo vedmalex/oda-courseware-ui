@@ -13,8 +13,8 @@ import {
 
 export default props => (
   <Datagrid {...props} >
-    <TextField source="subject" />
-    <TextField source="studentsGroup" />
+    <TextField sortable={true} source="subject" />
+    <TextField sortable={true} source="studentsGroup" />
 
     <ShowButton />
     <EditButton />

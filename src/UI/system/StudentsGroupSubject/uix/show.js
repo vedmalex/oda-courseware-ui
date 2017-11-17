@@ -40,10 +40,10 @@ export default (props) => {
     <Show title={<StudentsGroupSubjectTitle />} {...props} >
       <SimpleShowLayout {...props}>
         <DependentField resolve={showIfExists('subject')}>
-          <TextField source="subject" />
+          <TextField label="Subject" source="subject" />
         </DependentField>
         <DependentField resolve={showIfExists('studentsGroup')}>
-          <TextField source="studentsGroup" />
+          <TextField label="Students group" source="studentsGroup" />
         </DependentField>
 
       </SimpleShowLayout>

@@ -46,7 +46,7 @@ class Form extends Component {
 
     return (
       <SimpleForm {...props} >
-        <TextInput source="name" validate={required}  />
+        <TextInput label="Name" source="name" validate={required}  />
 
 
         <Label text="Groups" />
@@ -56,7 +56,7 @@ class Form extends Component {
 
         <Label text="Teacher" />
         <ReferenceInput sortable={false} label="" source="teacherId" reference="Teacher" allowEmpty  >
-          <AutocompleteInput optionText="id" />
+          <AutocompleteInput optionText="lastName" />
         </ReferenceInput>
 
       </SimpleForm>);

@@ -6,7 +6,9 @@ const resultFragment = gql`fragment StudentResult on Student{
   firstName
   middleName
   lastName
+  fullName
   uin
+  ages
   dateOfBirth
 
   profileId: profile @_(get:"id") {
@@ -29,6 +31,9 @@ const resultFragment = gql`fragment StudentResult on Student{
       }
     }
   }
+  userId: user @_(get:"id") {
+    id
+  }
 }
 `;
 
@@ -37,7 +42,9 @@ const fullFragment = gql`fragment StudentFull on Student{
     firstName
     middleName
     lastName
+    fullName
     uin
+    ages
     dateOfBirth
     profile{
       id
@@ -58,6 +65,9 @@ const fullFragment = gql`fragment StudentFull on Student{
           id
         }
       }
+    }
+    user{
+      id
     }
   }
 `;
@@ -268,6 +278,21 @@ export const getManyReferenceOfStudent = {
   }
   ${fullFragment}
 `,
+
+  user: gql`query User_Id($skip: Int, $limit: Int, $orderBy: [StudentSortOrder], $filter: StudentComplexFilter){
+    items: students(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
+      pageInfo{
+        count
+      }
+      edges {
+        node {
+          ...StudentFull
+        }
+      }
+    }
+  }
+  ${fullFragment}
+`,
 };
 
 export const getManyReferenceOfStudentResultOpposite = gql`{
@@ -309,4 +334,6 @@ export const getManyReferenceOfStudentResult = {
   group: getManyReferenceOfStudentResultRegular,
   followings: getManyReferenceOfStudentResultOpposite,
   followers: getManyReferenceOfStudentResultOpposite,
+
+  user: getManyReferenceOfStudentResultRegular,
 };

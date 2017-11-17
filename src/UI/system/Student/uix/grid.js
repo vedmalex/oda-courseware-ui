@@ -9,14 +9,14 @@ import {
   DeleteButton,
   ShowButton,
   ReferenceField,
+  BooleanInput,
 } from "admin-on-rest";
 
 export default props => (
   <Datagrid {...props} >
-    <TextField source="firstName" />
-    <TextField source="middleName" />
-    <TextField source="lastName" />
-    <TextField source="uin" />
+    <TextField sortable={false} source="fullName" allowEmpty />
+    <TextField sortable={true} source="uin" />
+    <NumberField sortable={false} source="ages" allowEmpty />
 
     <ShowButton />
     <EditButton />

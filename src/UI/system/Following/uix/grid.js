@@ -13,8 +13,8 @@ import {
 
 export default props => (
   <Datagrid {...props} >
-    <TextField source="followers" />
-    <TextField source="followings" />
+    <TextField sortable={true} source="followers" />
+    <TextField sortable={true} source="followings" />
 
     <ShowButton />
     <EditButton />

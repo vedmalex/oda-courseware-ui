@@ -46,19 +46,49 @@ class Form extends Component {
 
     return (
       <SimpleForm {...props} >
-        <TextInput source="name" validate={required}  />
+        <TextInput label="Name" source="name" validate={required}  />
 
 
-        <Label text="Subjects" />
-        <ReferenceArrayInput sortable={false} label="" source="subjectsIds" reference="Subject" allowEmpty >
-          <SelectArrayInput options={{ fullWidth: true }} optionText="name" optionValue="id" />
-        </ReferenceArrayInput>
+        <EmbeddedArrayInput sortable={false} label="Subjects" source="subjectsValues" allowEmpty >
+          <SelectInput
+            source="subjectsType"
+            label="Expected to"
+            choices={manyRelAction}
+            defaultValue={actionType.USE}
+          />
+          <DependentInput resolve={selectorFor('subjects')} scoped >
+            <ReferenceInput sortable={false} label="Subject" source="id" reference="Subject" allowEmpty >
+              <SelectInput optionText="name" />
+            </ReferenceInput>
+          </DependentInput>
+          <DependentInput resolve={detailsFor('subjects')} scoped >
+            <TextInput label="Name" source="name" source="name" validate={required} />
+          </DependentInput>
+        </EmbeddedArrayInput>
 
 
-        <Label text="Students" />
-        <ReferenceArrayInput sortable={false} label="" source="studentsIds" reference="Student" allowEmpty >
-          <SelectArrayInput options={{ fullWidth: true }} optionText="uin" optionValue="id" />
-        </ReferenceArrayInput>
+        <EmbeddedArrayInput sortable={false} label="Students" source="studentsValues" allowEmpty >
+          <SelectInput
+            source="studentsType"
+            label="Expected to"
+            choices={manyRelAction}
+            defaultValue={actionType.USE}
+          />
+          <DependentInput resolve={selectorFor('students')} scoped >
+            <ReferenceInput sortable={false} label="Student" source="id" reference="Student" allowEmpty >
+              <SelectInput optionText="fullName" />
+            </ReferenceInput>
+          </DependentInput>
+          <DependentInput resolve={detailsFor('students')} scoped >
+            <TextInput label="First name" source="firstName" source="firstName" validate={required} />
+            <TextInput label="Middle name" source="middleName" source="middleName" validate={required} />
+            <TextInput label="Last name" source="lastName" source="lastName" validate={required} />
+            <TextInput label="Full name" source="fullName" source="fullName" allowEmpty />
+            <TextInput label="Uin" source="uin" source="uin" validate={required} />
+            <NumberInput label="Ages" source="ages" source="ages" allowEmpty />
+            <DateInput label="Date of birth" source="dateOfBirth" source="dateOfBirth" allowEmpty />
+          </DependentInput>
+        </EmbeddedArrayInput>
 
       </SimpleForm>);
   }
@@ -74,6 +104,14 @@ export default compose(
     state => ({
     }), {
       initForm: initForm('record-form', {
+        subjects: {
+          resource: 'Subject',
+          single: false,
+        },
+        students: {
+          resource: 'Student',
+          single: false,
+        },
       }),
       finalizeForm,
     }),

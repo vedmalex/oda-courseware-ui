@@ -9,6 +9,20 @@ const resultFragment = gql`fragment UserResult on User{
   isSystem
   enabled
 
+  asTeacherValues: asTeacher @_(get:"edges") {
+    edges @_(map:"node") {
+      node {
+        id
+      }
+    }
+  }
+  asStudentValues: asStudent @_(get:"edges") {
+    edges @_(map:"node") {
+      node {
+        id
+      }
+    }
+  }
 }
 `;
 
@@ -19,6 +33,20 @@ const fullFragment = gql`fragment UserFull on User{
     isAdmin
     isSystem
     enabled
+    asTeacher{
+      edges {
+        node {
+          id
+        }
+      }
+    }
+    asStudent{
+      edges {
+        node {
+          id
+        }
+      }
+    }
   }
 `;
 
@@ -164,6 +192,36 @@ export const updateOfUser = gql`mutation updateUser($input: updateUserInput!){
 
 //getManyReference
 export const getManyReferenceOfUser = {
+
+  asTeacher: gql`query AsTeachers_User($skip: Int, $limit: Int, $orderBy: [UserSortOrder], $filter: UserComplexFilter){
+    items: users(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
+      pageInfo{
+        count
+      }
+      edges {
+        node {
+          ...UserFull
+        }
+      }
+    }
+  }
+  ${fullFragment}
+`,
+
+  asStudent: gql`query AsStudents_User($skip: Int, $limit: Int, $orderBy: [UserSortOrder], $filter: UserComplexFilter){
+    items: users(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
+      pageInfo{
+        count
+      }
+      edges {
+        node {
+          ...UserFull
+        }
+      }
+    }
+  }
+  ${fullFragment}
+`,
 };
 
 export const getManyReferenceOfUserResultOpposite = gql`{
@@ -199,4 +257,8 @@ export const getManyReferenceOfUserResultRegular = gql`{
 `;
 
 export const getManyReferenceOfUserResult = {
+
+  asTeacher: getManyReferenceOfUserResultRegular,
+
+  asStudent: getManyReferenceOfUserResultRegular,
 };

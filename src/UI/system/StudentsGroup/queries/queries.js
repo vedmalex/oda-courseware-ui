@@ -5,16 +5,16 @@ const resultFragment = gql`fragment StudentsGroupResult on StudentsGroup{
   id
   name
 
-  subjectsIds: subjects @_(get:"edges") {
+  subjectsValues: subjects @_(get:"edges") {
     edges @_(map:"node") {
-      node @_(get:"id") {
+      node {
         id
       }
     }
   }
-  studentsIds: students @_(get:"edges") {
+  studentsValues: students @_(get:"edges") {
     edges @_(map:"node") {
-      node @_(get:"id") {
+      node {
         id
       }
     }

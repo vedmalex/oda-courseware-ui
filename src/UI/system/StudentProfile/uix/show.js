@@ -40,18 +40,18 @@ export default (props) => {
     <Show title={<StudentProfileTitle />} {...props} >
       <SimpleShowLayout {...props}>
         <DependentField resolve={showIfExists('maths')}>
-          <TextField source="maths" allowEmpty />
+          <TextField label="Maths" source="maths" allowEmpty />
         </DependentField>
         <DependentField resolve={showIfExists('physics')}>
-          <TextField source="physics" allowEmpty />
+          <TextField label="Physics" source="physics" allowEmpty />
         </DependentField>
         <DependentField resolve={showIfExists('language')}>
-          <TextField source="language" allowEmpty />
+          <TextField label="Language" source="language" allowEmpty />
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('studentId')} source="studentId" >
           <ReferenceField sortable={false} label="Student" source="studentId" reference="Student" allowEmpty >
-            <TextField source="uin" allowEmpty />
+            <TextField source="fullName" allowEmpty />
           </ReferenceField>
         </DependentField>
 

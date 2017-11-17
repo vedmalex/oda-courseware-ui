@@ -26,6 +26,8 @@ export default ({ queries, resources }) => ({
         ...updateField(data, previousData, 'isAdmin'),
         ...updateField(data, previousData, 'isSystem'),
         ...updateField(data, previousData, 'enabled'),
+        ...updateMany(data, previousData, 'asTeacher', 'Teacher', res),
+        ...updateMany(data, previousData, 'asStudent', 'Student', res),
       },
     };
   },

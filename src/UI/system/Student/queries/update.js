@@ -30,6 +30,7 @@ export default ({ queries, resources }) => ({
         ...updateSingle(data, previousData, 'group', 'StudentsGroup', res),
         ...updateMany(data, previousData, 'followings', 'Student', res),
         ...updateMany(data, previousData, 'followers', 'Student', res),
+        ...updateSingle(data, previousData, 'user', 'User', res),
       },
     };
   },

@@ -5,11 +5,11 @@ import authClient from './authClient';
 import Dashboard from './Dashboard/'
 
 import apolloClient from './lib/apollo';
-import { Admin } from './UI/system';
-// import { Admin } from './UIoverride';
+// import { Admin } from './UI/system';
+import { Admin } from './UIoverride';
 import { ui } from 'oda-aor-rest';
 
-global.connection = apolloClient({ uri: '/graphql' });
+global.connection = apolloClient({ uri: 'http://localhost:3003/graphql' });
 
 class App extends Component {
   render() {

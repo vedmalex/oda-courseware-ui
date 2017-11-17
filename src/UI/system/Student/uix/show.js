@@ -43,25 +43,39 @@ export default (props) => {
     <Show title={<StudentTitle />} {...props} >
       <SimpleShowLayout {...props}>
         <DependentField resolve={showIfExists('firstName')}>
-          <TextField source="firstName" />
+          <TextField label="First name" source="firstName" />
         </DependentField>
         <DependentField resolve={showIfExists('middleName')}>
-          <TextField source="middleName" />
+          <TextField label="Middle name" source="middleName" />
         </DependentField>
         <DependentField resolve={showIfExists('lastName')}>
-          <TextField source="lastName" />
+          <TextField label="Last name" source="lastName" />
+        </DependentField>
+        <DependentField resolve={showIfExists('fullName')}>
+          <TextField label="Full name" source="fullName" allowEmpty />
         </DependentField>
         <DependentField resolve={showIfExists('uin')}>
-          <TextField source="uin" />
+          <TextField label="Uin" source="uin" />
+        </DependentField>
+        <DependentField resolve={showIfExists('ages')}>
+          <TextField label="Ages" source="ages" allowEmpty />
         </DependentField>
         <DependentField resolve={showIfExists('dateOfBirth')}>
-          <DateField source="dateOfBirth" allowEmpty />
+          <DateField label="Date of birth" source="dateOfBirth" allowEmpty />
         </DependentField>
 
-        <DependentField resolve={showIfNotEmptyRel('profileId')} source="profileId" >
-          <ReferenceField sortable={false} label="Profile" source="profileId" reference="StudentProfile" allowEmpty >
-            <TextField source="id" allowEmpty />
-          </ReferenceField>
+        <DependentField resolve={showIfNotEmptyRel('profileId')} source="profile" >
+          <EmbeddedRefField label="Profile" source="profileId" reference="StudentProfile" target="student">
+            <DependentField resolve={showIfExists('maths')} scoped >
+              <TextField source="maths" label="Maths" allowEmpty />
+            </DependentField>
+            <DependentField resolve={showIfExists('physics')} scoped >
+              <TextField source="physics" label="Physics" allowEmpty />
+            </DependentField>
+            <DependentField resolve={showIfExists('language')} scoped >
+              <TextField source="language" label="Language" allowEmpty />
+            </DependentField>
+          </EmbeddedRefField>
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('groupId')} source="groupId" >
@@ -70,16 +84,18 @@ export default (props) => {
           </ReferenceField>
         </DependentField>
 
-        <DependentField resolve={showIfNotEmptyRel('followings')} source="followings">
-          <ReferenceManyField sortable={false} label="Followings" reference="Student" target="followers" allowEmpty >
-            <Student.Grid />
-          </ReferenceManyField>
-        </DependentField>
+        <ReferenceManyField sortable={false} label="Followings" reference="Student" target="followers" allowEmpty >
+          <Student.Grid />
+        </ReferenceManyField>
 
-        <DependentField resolve={showIfNotEmptyRel('followers')} source="followers">
-          <ReferenceManyField sortable={false} label="Followers" reference="Student" target="followings" allowEmpty >
-            <Student.Grid />
-          </ReferenceManyField>
+        <ReferenceManyField sortable={false} label="Followers" reference="Student" target="followings" allowEmpty >
+          <Student.Grid />
+        </ReferenceManyField>
+
+        <DependentField resolve={showIfNotEmptyRel('userId')} source="userId" >
+          <ReferenceField sortable={false} label="User" source="userId" reference="User" allowEmpty >
+            <TextField source="userName" allowEmpty />
+          </ReferenceField>
         </DependentField>
 
       </SimpleShowLayout>

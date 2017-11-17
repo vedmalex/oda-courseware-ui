@@ -22,6 +22,7 @@ export default ({ queries, resources }) => ({
         ...createField(data, 'middleName'),
         ...createField(data, 'lastName'),
         ...createMany(data, 'subjects', 'Subject', res),
+        ...createSingle(data, 'user', 'User', res),
       },
     };
   },

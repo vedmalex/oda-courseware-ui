@@ -40,10 +40,10 @@ export default (props) => {
     <Show title={<FollowingTitle />} {...props} >
       <SimpleShowLayout {...props}>
         <DependentField resolve={showIfExists('followers')}>
-          <TextField source="followers" />
+          <TextField label="Followers" source="followers" />
         </DependentField>
         <DependentField resolve={showIfExists('followings')}>
-          <TextField source="followings" />
+          <TextField label="Followings" source="followings" />
         </DependentField>
 
       </SimpleShowLayout>

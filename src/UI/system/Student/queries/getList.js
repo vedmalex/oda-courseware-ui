@@ -20,7 +20,7 @@ export default ({ queries, resources }) => ({
         return { ...acc, id: { in: params.filter[key] } };
       }
       if (key === 'q') {
-        return { ...acc, uin: { imatch: params.filter[key] } };
+        return { ...acc, fullName: { imatch: params.filter[key] } };
       }
       return set(acc, key.replace('-', '.'), params.filter[key]);
     }, {});

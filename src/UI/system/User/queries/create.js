@@ -23,6 +23,8 @@ export default ({ queries, resources }) => ({
         ...createField(data, 'isAdmin'),
         ...createField(data, 'isSystem'),
         ...createField(data, 'enabled'),
+        ...createMany(data, 'asTeacher', 'Teacher', res),
+        ...createMany(data, 'asStudent', 'Student', res),
       },
     };
   },

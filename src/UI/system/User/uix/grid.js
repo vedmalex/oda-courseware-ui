@@ -13,7 +13,10 @@ import {
 
 export default props => (
   <Datagrid {...props} >
-    <TextField source="userName" />
+    <TextField sortable={true} source="userName" />
+    <BooleanField sortable={true} source="isAdmin" allowEmpty />
+    <BooleanField sortable={true} source="isSystem" allowEmpty />
+    <BooleanField sortable={true} source="enabled" allowEmpty />
 
     <ShowButton />
     <EditButton />

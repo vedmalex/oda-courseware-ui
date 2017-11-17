@@ -46,13 +46,13 @@ class Form extends Component {
 
     return (
       <SimpleForm {...props} >
-        <NumberInput source="maths" allowEmpty  />
-        <NumberInput source="physics" allowEmpty  />
-        <NumberInput source="language" allowEmpty  />
+        <NumberInput label="Maths" source="maths" allowEmpty  />
+        <NumberInput label="Physics" source="physics" allowEmpty  />
+        <NumberInput label="Language" source="language" allowEmpty  />
 
         <Label text="Student" />
         <ReferenceInput sortable={false} label="" source="studentId" reference="Student" allowEmpty  >
-          <AutocompleteInput optionText="uin" />
+          <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 
       </SimpleForm>);

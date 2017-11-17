@@ -25,6 +25,7 @@ export default ({ queries, resources }) => ({
         ...updateField(data, previousData, 'middleName'),
         ...updateField(data, previousData, 'lastName'),
         ...updateMany(data, previousData, 'subjects', 'Subject', res),
+        ...updateSingle(data, previousData, 'user', 'User', res),
       },
     };
   },

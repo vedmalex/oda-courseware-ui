@@ -14,6 +14,9 @@ const resultFragment = gql`fragment TeacherResult on Teacher{
       }
     }
   }
+  userId: user @_(get:"id") {
+    id
+  }
 }
 `;
 
@@ -28,6 +31,9 @@ const fullFragment = gql`fragment TeacherFull on Teacher{
           id
         }
       }
+    }
+    user{
+      id
     }
   }
 `;
@@ -189,6 +195,21 @@ export const getManyReferenceOfTeacher = {
   }
   ${fullFragment}
 `,
+
+  user: gql`query User_Id($skip: Int, $limit: Int, $orderBy: [TeacherSortOrder], $filter: TeacherComplexFilter){
+    items: teachers(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
+      pageInfo{
+        count
+      }
+      edges {
+        node {
+          ...TeacherFull
+        }
+      }
+    }
+  }
+  ${fullFragment}
+`,
 };
 
 export const getManyReferenceOfTeacherResultOpposite = gql`{
@@ -226,4 +247,6 @@ export const getManyReferenceOfTeacherResultRegular = gql`{
 export const getManyReferenceOfTeacherResult = {
 
   subjects: getManyReferenceOfTeacherResultRegular,
+
+  user: getManyReferenceOfTeacherResultRegular,
 };

@@ -13,9 +13,9 @@ import {
 
 export default props => (
   <Datagrid {...props} >
-    <TextField source="firstName" />
-    <TextField source="middleName" />
-    <TextField source="lastName" />
+    <TextField sortable={true} source="firstName" />
+    <TextField sortable={true} source="middleName" />
+    <TextField sortable={true} source="lastName" />
 
     <ShowButton />
     <EditButton />

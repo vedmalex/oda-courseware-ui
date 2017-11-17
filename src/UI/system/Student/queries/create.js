@@ -27,6 +27,7 @@ export default ({ queries, resources }) => ({
         ...createSingle(data, 'group', 'StudentsGroup', res),
         ...createMany(data, 'followings', 'Student', res),
         ...createMany(data, 'followers', 'Student', res),
+        ...createSingle(data, 'user', 'User', res),
       },
     };
   },

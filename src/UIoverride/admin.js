@@ -2,6 +2,19 @@ import React, { Component } from 'react';
 import { client } from 'oda-aor-rest';
 import Loading from 'react-loading-animation'
 import { Admin, Resource, Delete } from 'admin-on-rest';
+import { jsonServerRestClient, fetchUtils } from 'admin-on-rest';
+
+/* const httpClient = (url, options = {}) => {
+  if (!options.headers) {
+    options.headers = new Headers({ Accept: 'application/json' });
+  }
+  // add your own headers here
+  // Access-Control-Expose-Headers:X-Total-Count, Links
+  options.headers.set('Access-Control-Expose-Headers', 'X-Total-Count');
+  return fetchUtils.fetchJson(url, options);
+} */
+
+const simpleREST = jsonServerRestClient('http://localhost:3001'/* , httpClient */);
 
 export default class extends Component {
   constructor(props) {
@@ -43,12 +56,13 @@ export default class extends Component {
     }
     const {
       User,
-      Film,
-      Person,
-      Planet,
-      Species,
-      Starship,
-      Vehicle,
+      Student,
+      StudentsGroup,
+      StudentProfile,
+      Teacher,
+      Subject,
+      Following,
+      StudentsGroupSubject,
     } = uix;
 
     return (
@@ -65,51 +79,44 @@ export default class extends Component {
           remove={Delete}
         />
         <Resource
-          show={Film.Show}
-          name="Film"
-          edit={(props) => <Film.Edit {...props} />}
-          create={Film.Create}
-          list={Film.List}
+          show={Student.Show}
+          name="Student"
+          edit={Student.Edit}
+          create={Student.Create}
+          list={Student.List}
           remove={Delete}
         />
         <Resource
-          show={Person.Show}
-          name="Person"
-          edit={Person.Edit}
-          create={Person.Create}
-          list={Person.List}
+          show={StudentsGroup.Show}
+          name="StudentsGroup"
+          options={{ label: "Students Group" }}
+          edit={StudentsGroup.Edit}
+          create={StudentsGroup.Create}
+          list={StudentsGroup.List}
           remove={Delete}
         />
         <Resource
-          show={Planet.Show}
-          name="Planet"
-          edit={Planet.Edit}
-          create={Planet.Create}
-          list={Planet.List}
+          show={StudentProfile.Show}
+          name="StudentProfile"
+          edit={StudentProfile.Edit}
+          create={StudentProfile.Create}
+          // list={StudentProfile.List}
           remove={Delete}
         />
         <Resource
-          show={Species.Show}
-          name="Species"
-          edit={Species.Edit}
-          create={Species.Create}
-          list={Species.List}
+          show={Teacher.Show}
+          name="Teacher"
+          edit={Teacher.Edit}
+          create={Teacher.Create}
+          list={Teacher.List}
           remove={Delete}
         />
         <Resource
-          show={Starship.Show}
-          name="Starship"
-          edit={Starship.Edit}
-          create={Starship.Create}
-          list={Starship.List}
-          remove={Delete}
-        />
-        <Resource
-          show={Vehicle.Show}
-          name="Vehicle"
-          edit={Vehicle.Edit}
-          create={Vehicle.Create}
-          list={Vehicle.List}
+          show={Subject.Show}
+          name="Subject"
+          edit={Subject.Edit}
+          create={Subject.Create}
+          list={Subject.List}
           remove={Delete}
         />
       </Admin>

@@ -43,18 +43,16 @@ export default (props) => {
     <Show title={<SubjectTitle />} {...props} >
       <SimpleShowLayout {...props}>
         <DependentField resolve={showIfExists('name')}>
-          <TextField source="name" />
+          <TextField label="Name" source="name" />
         </DependentField>
 
-        <DependentField resolve={showIfNotEmptyRel('groups')} source="groups">
-          <ReferenceManyField sortable={false} label="Groups" reference="StudentsGroup" target="subjects" allowEmpty >
-            <StudentsGroup.Grid />
-          </ReferenceManyField>
-        </DependentField>
+        <ReferenceManyField sortable={false} label="Groups" reference="StudentsGroup" target="subjects" allowEmpty >
+          <StudentsGroup.Grid />
+        </ReferenceManyField>
 
         <DependentField resolve={showIfNotEmptyRel('teacherId')} source="teacherId" >
           <ReferenceField sortable={false} label="Teacher" source="teacherId" reference="Teacher" allowEmpty >
-            <TextField source="id" allowEmpty />
+            <TextField source="lastName" allowEmpty />
           </ReferenceField>
         </DependentField>
 

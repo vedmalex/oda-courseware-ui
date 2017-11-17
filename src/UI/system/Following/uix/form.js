@@ -46,8 +46,8 @@ class Form extends Component {
 
     return (
       <SimpleForm {...props} >
-        <TextInput source="followers" validate={required}  />
-        <TextInput source="followings" validate={required}  />
+        <TextInput label="Followers" source="followers" validate={required}  />
+        <TextInput label="Followings" source="followings" validate={required}  />
 
       </SimpleForm>);
   }

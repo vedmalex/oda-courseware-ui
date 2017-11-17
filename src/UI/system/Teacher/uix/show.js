@@ -43,19 +43,23 @@ export default (props) => {
     <Show title={<TeacherTitle />} {...props} >
       <SimpleShowLayout {...props}>
         <DependentField resolve={showIfExists('firstName')}>
-          <TextField source="firstName" />
+          <TextField label="First name" source="firstName" />
         </DependentField>
         <DependentField resolve={showIfExists('middleName')}>
-          <TextField source="middleName" />
+          <TextField label="Middle name" source="middleName" />
         </DependentField>
         <DependentField resolve={showIfExists('lastName')}>
-          <TextField source="lastName" />
+          <TextField label="Last name" source="lastName" />
         </DependentField>
 
-        <DependentField resolve={showIfNotEmptyRel('subjects')} source="subjects">
-          <ReferenceManyField sortable={false} label="Subjects" reference="Subject" target="teacher" allowEmpty >
-            <Subject.Grid />
-          </ReferenceManyField>
+        <ReferenceManyField sortable={false} label="Subjects" reference="Subject" target="teacher" allowEmpty >
+          <Subject.Grid />
+        </ReferenceManyField>
+
+        <DependentField resolve={showIfNotEmptyRel('userId')} source="userId" >
+          <ReferenceField sortable={false} label="User" source="userId" reference="User" allowEmpty >
+            <TextField source="userName" allowEmpty />
+          </ReferenceField>
         </DependentField>
 
       </SimpleShowLayout>

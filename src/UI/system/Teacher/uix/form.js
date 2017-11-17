@@ -46,15 +46,20 @@ class Form extends Component {
 
     return (
       <SimpleForm {...props} >
-        <TextInput source="firstName" validate={required}  />
-        <TextInput source="middleName" validate={required}  />
-        <TextInput source="lastName" validate={required}  />
+        <TextInput label="First name" source="firstName" validate={required}  />
+        <TextInput label="Middle name" source="middleName" validate={required}  />
+        <TextInput label="Last name" source="lastName" validate={required}  />
 
 
         <Label text="Subjects" />
         <ReferenceArrayInput sortable={false} label="" source="subjectsIds" reference="Subject" allowEmpty >
           <SelectArrayInput options={{ fullWidth: true }} optionText="name" optionValue="id" />
         </ReferenceArrayInput>
+
+        <Label text="User" />
+        <ReferenceInput sortable={false} label="" source="userId" reference="User" allowEmpty  >
+          <AutocompleteInput optionText="userName" />
+        </ReferenceInput>
 
       </SimpleForm>);
   }
