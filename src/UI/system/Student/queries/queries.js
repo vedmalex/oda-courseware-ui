@@ -3,35 +3,11 @@ import gql from 'graphql-tag';
 
 const resultFragment = gql`fragment StudentResult on Student{
   id
-  firstName
-  middleName
-  lastName
-  fullName
-  uin
-  ages
-  dateOfBirth
 
-  profileId: profile @_(get:"id") {
+  personId: person @_(get:"id") {
     id
   }
   groupId: group @_(get:"id") {
-    id
-  }
-  followingsIds: followings @_(get:"edges") {
-    edges @_(map:"node") {
-      node @_(get:"id") {
-        id
-      }
-    }
-  }
-  followersIds: followers @_(get:"edges") {
-    edges @_(map:"node") {
-      node @_(get:"id") {
-        id
-      }
-    }
-  }
-  userId: user @_(get:"id") {
     id
   }
 }
@@ -39,34 +15,10 @@ const resultFragment = gql`fragment StudentResult on Student{
 
 const fullFragment = gql`fragment StudentFull on Student{
     id
-    firstName
-    middleName
-    lastName
-    fullName
-    uin
-    ages
-    dateOfBirth
-    profile{
+    person{
       id
     }
     group{
-      id
-    }
-    followings{
-      edges {
-        node {
-          id
-        }
-      }
-    }
-    followers{
-      edges {
-        node {
-          id
-        }
-      }
-    }
-    user{
       id
     }
   }
@@ -215,7 +167,7 @@ export const updateOfStudent = gql`mutation updateStudent($input: updateStudentI
 //getManyReference
 export const getManyReferenceOfStudent = {
 
-  profile: gql`query Profile_Student($skip: Int, $limit: Int, $orderBy: [StudentSortOrder], $filter: StudentComplexFilter){
+  person: gql`query Person_Id($skip: Int, $limit: Int, $orderBy: [StudentSortOrder], $filter: StudentComplexFilter){
     items: students(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
       pageInfo{
         count
@@ -231,55 +183,6 @@ export const getManyReferenceOfStudent = {
 `,
 
   group: gql`query Group_Id($skip: Int, $limit: Int, $orderBy: [StudentSortOrder], $filter: StudentComplexFilter){
-    items: students(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
-      pageInfo{
-        count
-      }
-      edges {
-        node {
-          ...StudentFull
-        }
-      }
-    }
-  }
-  ${fullFragment}
-`,
-  followings: gql`query Followings_Id($id: ID, $skip: Int, $limit: Int, $orderBy: [StudentSortOrder], $filter: StudentComplexFilter){
-    opposite: student(id:$id){
-      id
-      items: followers(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
-        pageInfo{
-          count
-        }
-        edges {
-          node {
-            ...StudentFull
-          }
-        }
-      }
-    }
-  }
-  ${fullFragment}
-`,
-  followers: gql`query Followers_Id($id: ID, $skip: Int, $limit: Int, $orderBy: [StudentSortOrder], $filter: StudentComplexFilter){
-    opposite: student(id:$id){
-      id
-      items: followings(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
-        pageInfo{
-          count
-        }
-        edges {
-          node {
-            ...StudentFull
-          }
-        }
-      }
-    }
-  }
-  ${fullFragment}
-`,
-
-  user: gql`query User_Id($skip: Int, $limit: Int, $orderBy: [StudentSortOrder], $filter: StudentComplexFilter){
     items: students(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
       pageInfo{
         count
@@ -329,11 +232,8 @@ export const getManyReferenceOfStudentResultRegular = gql`{
 
 export const getManyReferenceOfStudentResult = {
 
-  profile: getManyReferenceOfStudentResultRegular,
+  person: getManyReferenceOfStudentResultRegular,
 
   group: getManyReferenceOfStudentResultRegular,
-  followings: getManyReferenceOfStudentResultOpposite,
-  followers: getManyReferenceOfStudentResultOpposite,
-
-  user: getManyReferenceOfStudentResultRegular,
 };
+

@@ -1,57 +1,61 @@
-import { queries as UserQuery, resource as UserResource } from './User/queries';
-import { queries as StudentQuery, resource as StudentResource } from './Student/queries';
-import { queries as StudentsGroupQuery, resource as StudentsGroupResource } from './StudentsGroup/queries';
-import { queries as StudentProfileQuery, resource as StudentProfileResource } from './StudentProfile/queries';
-import { queries as TeacherQuery, resource as TeacherResource } from './Teacher/queries';
-import { queries as SubjectQuery, resource as SubjectResource } from './Subject/queries';
-import { queries as FollowingQuery, resource as FollowingResource } from './Following/queries';
-import { queries as StudentsGroupSubjectQuery, resource as StudentsGroupSubjectResource } from './StudentsGroupSubject/queries';
+import UserResource from './User/queries';
+import StudentResource from './Student/queries';
+import CuratorResource from './Curator/queries';
+import GroupResource from './Group/queries';
+import PersonResource from './Person/queries';
+import SocialNetworkResource from './SocialNetwork/queries';
+import SocialNetworkTypeResource from './SocialNetworkType/queries';
+import EmailResource from './Email/queries';
+import EmailTypeResource from './EmailType/queries';
+import PhoneResource from './Phone/queries';
+import PhoneTypeResource from './PhoneType/queries';
 
 import UserUIX from './User/uix';
 import StudentUIX from './Student/uix';
-import StudentsGroupUIX from './StudentsGroup/uix';
-import StudentProfileUIX from './StudentProfile/uix';
-import TeacherUIX from './Teacher/uix';
-import SubjectUIX from './Subject/uix';
-import FollowingUIX from './Following/uix';
-import StudentsGroupSubjectUIX from './StudentsGroupSubject/uix';
+import CuratorUIX from './Curator/uix';
+import GroupUIX from './Group/uix';
+import PersonUIX from './Person/uix';
+import SocialNetworkUIX from './SocialNetwork/uix';
+import SocialNetworkTypeUIX from './SocialNetworkType/uix';
+import EmailUIX from './Email/uix';
+import EmailTypeUIX from './EmailType/uix';
+import PhoneUIX from './Phone/uix';
+import PhoneTypeUIX from './PhoneType/uix';
+import { data } from 'oda-aor-rest';
 
 import Admin from './admin';
 
 export { Admin };
 
-// здесь класс как в коннекторах было.
-// использовать через get; чтобы можно было override делать без проблем.
-
-export const queries = {
-  User: UserQuery,
-  Student: StudentQuery,
-  StudentsGroup: StudentsGroupQuery,
-  StudentProfile: StudentProfileQuery,
-  Teacher: TeacherQuery,
-  Subject: SubjectQuery,
-  Following: FollowingQuery,
-  StudentsGroupSubject: StudentsGroupSubjectQuery,
-};
-
-export const resources = ({ queries }) => ({
-  User: UserResource({ resources, queries }),
-  Student: StudentResource({ resources, queries }),
-  StudentsGroup: StudentsGroupResource({ resources, queries }),
-  StudentProfile: StudentProfileResource({ resources, queries }),
-  Teacher: TeacherResource({ resources, queries }),
-  Subject: SubjectResource({ resources, queries }),
-  Following: FollowingResource({ resources, queries }),
-  StudentsGroupSubject: StudentsGroupSubjectResource({ resources, queries }),
-});
+export class Resources extends data.resource.ResourceContainer {
+  constructor(...args){
+    super(...args);
+    this.override([
+      new UserResource(),
+      new StudentResource(),
+      new CuratorResource(),
+      new GroupResource(),
+      new PersonResource(),
+      new SocialNetworkResource(),
+      new SocialNetworkTypeResource(),
+      new EmailResource(),
+      new EmailTypeResource(),
+      new PhoneResource(),
+      new PhoneTypeResource(),
+    ]);
+  }
+}
 
 export const uix = {
   User: UserUIX,
   Student: StudentUIX,
-  StudentsGroup: StudentsGroupUIX,
-  StudentProfile: StudentProfileUIX,
-  Teacher: TeacherUIX,
-  Subject: SubjectUIX,
-  Following: FollowingUIX,
-  StudentsGroupSubject: StudentsGroupSubjectUIX,
+  Curator: CuratorUIX,
+  Group: GroupUIX,
+  Person: PersonUIX,
+  SocialNetwork: SocialNetworkUIX,
+  SocialNetworkType: SocialNetworkTypeUIX,
+  Email: EmailUIX,
+  EmailType: EmailTypeUIX,
+  Phone: PhoneUIX,
+  PhoneType: PhoneTypeUIX,
 };

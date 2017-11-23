@@ -9,6 +9,7 @@ import {
   DateInput,
   NumberInput,
   BooleanInput,
+  LongTextInput,
   required,
 } from "admin-on-rest";
 
@@ -46,144 +47,95 @@ class Form extends Component {
 
     return (
       <SimpleForm {...props} >
-        <TextInput source="name" validate={required} />
-        <TextInput source="birthYear" allowEmpty />
-        <TextInput source="eyeColor" allowEmpty />
-        <TextInput source="gender" allowEmpty />
-        <TextInput source="hairColor" allowEmpty />
-        <NumberInput source="height" allowEmpty />
-        <NumberInput source="mass" allowEmpty />
-        <TextInput source="skinColor" allowEmpty />
-        <DateInput source="created" allowEmpty />
-        <DateInput source="edited" allowEmpty />
-        <TextInput source="owner" allowEmpty />
-        <DateInput source="createdAt" allowEmpty />
-        <DateInput source="updatedAt" allowEmpty />
-        <BooleanInput source="removed" allowEmpty />
+        <TextInput label="Spiritual name" source="spiritualName" validate={required} />
+        <TextInput label="Full name" source="fullName" validate={required} />
+        <DateInput label="Date of birth" source="dateOfBirth" allowEmpty />
+        <LongTextInput label="Special notes" source="specialNotes" allowEmpty />
 
-        <Label text="Homeworld" />
-        <DependentInput resolve={selectorFor('homeworld')} scoped >
-          <ReferenceInput sortable={false} label="Homeworld" source="homeworldId" reference="Planet" allowEmpty  >
-            <AutocompleteInput optionText="name" />
+        <Label text="User" />
+        <DependentInput resolve={selectorFor('user')} scoped >
+          <ReferenceInput sortable={false} label="User" source="userId" reference="User" allowEmpty  >
+            <AutocompleteInput optionText="userName" />
           </ReferenceInput>
         </DependentInput>
         <SelectInput
-          source="homeworldType"
+          source="userType"
           label="Expected to"
           choices={singleRelActions}
           defaultValue={actionType.USE}
         />
 
-        <DependentInput resolve={detailsFor('homeworld')} >
-          <EmbeddedInput label="Homeworld" source="homeworld" addLabel={false}>
-            <TextInput label="Name" source="name" source="name" validate={required} />
-            <NumberInput label="Diameter" source="diameter" source="diameter" allowEmpty />
-            <NumberInput label="RotationPeriod" source="rotationPeriod" source="rotationPeriod" allowEmpty />
-            <NumberInput label="OrbitalPeriod" source="orbitalPeriod" source="orbitalPeriod" allowEmpty />
-            <TextInput label="Gravity" source="gravity" source="gravity" allowEmpty />
-            <NumberInput label="Population" source="population" source="population" allowEmpty />
-            <TextInput label="Climates" source="climates" source="climates" allowEmpty />
-            <TextInput label="Terrains" source="terrains" source="terrains" allowEmpty />
-            <TextInput label="SurfaceWater" source="surfaceWater" source="surfaceWater" allowEmpty />
-            <DateInput label="Created" source="created" source="created" allowEmpty />
-            <DateInput label="Edited" source="edited" source="edited" allowEmpty />
-            <TextInput label="Owner" source="owner" source="owner" allowEmpty />
-            <DateInput label="CreatedAt" source="createdAt" source="createdAt" allowEmpty />
-            <DateInput label="UpdatedAt" source="updatedAt" source="updatedAt" allowEmpty />
-            <BooleanInput label="Removed" source="removed" source="removed" allowEmpty />
+        <DependentInput resolve={detailsFor('user')} >
+          <EmbeddedInput label="User" source="user" addLabel={false}>
+            <TextInput label="User name" source="userName" source="userName" validate={required} />
+            <TextInput label="Password" source="password" source="password" validate={required} />
+            <BooleanInput label="Is admin" source="isAdmin" source="isAdmin" allowEmpty />
+            <BooleanInput label="Is system" source="isSystem" source="isSystem" allowEmpty />
+            <BooleanInput label="Enabled" source="enabled" source="enabled" allowEmpty />
           </EmbeddedInput>
         </DependentInput>
 
 
-        <Label text="Films" />
-        <ReferenceArrayInput sortable={false} label="" source="filmsIds" reference="Film" allowEmpty >
-          <SelectArrayInput options={{ fullWidth: true }} optionText="title" optionValue="id" />
-        </ReferenceArrayInput>
-
-        <Label text="Species" />
-        <DependentInput resolve={selectorFor('species')} scoped >
-          <ReferenceInput sortable={false} label="Species" source="speciesId" reference="Species" allowEmpty  >
-            <AutocompleteInput optionText="name" />
-          </ReferenceInput>
-        </DependentInput>
-        <SelectInput
-          source="speciesType"
-          label="Expected to"
-          choices={singleRelActions}
-          defaultValue={actionType.USE}
-        />
-
-        <DependentInput resolve={detailsFor('species')} >
-          <EmbeddedInput label="Species" source="species" addLabel={false}>
-            <TextInput label="Name" source="name" source="name" validate={required} />
-            <TextInput label="Classification" source="classification" source="classification" allowEmpty />
-            <TextInput label="Designation" source="designation" source="designation" allowEmpty />
-            <NumberInput label="AverageHeight" source="averageHeight" source="averageHeight" allowEmpty />
-            <NumberInput label="AverageLifespan" source="averageLifespan" source="averageLifespan" allowEmpty />
-            <TextInput label="EyeColors" source="eyeColors" source="eyeColors" allowEmpty />
-            <TextInput label="HairColors" source="hairColors" source="hairColors" allowEmpty />
-            <TextInput label="SkinColors" source="skinColors" source="skinColors" allowEmpty />
-            <TextInput label="Language" source="language" source="language" allowEmpty />
-            <DateInput label="Created" source="created" source="created" allowEmpty />
-            <DateInput label="Edited" source="edited" source="edited" allowEmpty />
-            <TextInput label="Owner" source="owner" source="owner" allowEmpty />
-            <DateInput label="CreatedAt" source="createdAt" source="createdAt" allowEmpty />
-            <DateInput label="UpdatedAt" source="updatedAt" source="updatedAt" allowEmpty />
-            <BooleanInput label="Removed" source="removed" source="removed" allowEmpty />
-          </EmbeddedInput>
-        </DependentInput>
-
-
-        <EmbeddedArrayInput sortable={false} label="Starships" source="starshipsValues" allowEmpty >
+        <EmbeddedArrayInput sortable={false} label="Social networks" source="socialNetworksValues" allowEmpty >
           <SelectInput
-            source="starshipsType"
+            source="socialNetworksType"
             label="Expected to"
             choices={manyRelAction}
             defaultValue={actionType.USE}
           />
-          <DependentInput resolve={selectorFor('starships')} scoped >
-            <ReferenceInput sortable={false} label="Starship" source="id" reference="Starship" allowEmpty >
-              <SelectInput optionText="name" />
+          <DependentInput resolve={selectorFor('socialNetworks')} scoped >
+            <ReferenceInput sortable={false} label="SocialNetwork" source="id" reference="SocialNetwork" allowEmpty >
+              <SelectInput optionText="account" />
             </ReferenceInput>
           </DependentInput>
-          <DependentInput resolve={detailsFor('starships')} scoped >
-            <TextInput label="Name" source="name" source="name" validate={required} />
-            <TextInput label="Model" source="model" source="model" allowEmpty />
-            <TextInput label="StarshipClass" source="starshipClass" source="starshipClass" allowEmpty />
-            <TextInput label="Manufacturers" source="manufacturers" source="manufacturers" allowEmpty />
-            <NumberInput label="CostInCredits" source="costInCredits" source="costInCredits" allowEmpty />
-            <NumberInput label="Length" source="length" source="length" allowEmpty />
-            <TextInput label="Crew" source="crew" source="crew" allowEmpty />
-            <TextInput label="Passengers" source="passengers" source="passengers" allowEmpty />
-            <NumberInput label="MaxAtmospheringSpeed" source="maxAtmospheringSpeed" source="maxAtmospheringSpeed" allowEmpty />
-            <NumberInput label="HyperdriveRating" source="hyperdriveRating" source="hyperdriveRating" allowEmpty />
-            <NumberInput label="MGLT" source="mGLT" source="mGLT" allowEmpty />
-            <NumberInput label="CargoCapacity" source="cargoCapacity" source="cargoCapacity" allowEmpty />
-            <TextInput label="Consumables" source="consumables" source="consumables" allowEmpty />
-            <DateInput label="Created" source="created" source="created" allowEmpty />
-            <DateInput label="Edited" source="edited" source="edited" allowEmpty />
-            <TextInput label="Owner" source="owner" source="owner" allowEmpty />
-            <DateInput label="CreatedAt" source="createdAt" source="createdAt" allowEmpty />
-            <DateInput label="UpdatedAt" source="updatedAt" source="updatedAt" allowEmpty />
-            <BooleanInput label="Removed" source="removed" source="removed" allowEmpty />
+          <DependentInput resolve={detailsFor('socialNetworks')} scoped >
+            <TextInput label="Account" source="account" source="account" validate={required} />
+            <TextInput label="Url" source="url" source="url" allowEmpty />
+            <ReferenceInput sortable={false} label="Type" source="type" reference="SocialNetworkType" allowEmpty  >
+              <AutocompleteInput optionText="name" />
+            </ReferenceInput>
           </DependentInput>
         </EmbeddedArrayInput>
 
 
-        <Label text="Vehicles" />
-        <ReferenceArrayInput sortable={false} label="" source="vehiclesIds" reference="Vehicle" allowEmpty >
-          <SelectArrayInput options={{ fullWidth: true }} optionText="name" optionValue="id" />
-        </ReferenceArrayInput>
+        <EmbeddedArrayInput sortable={false} label="Phones" source="phonesValues" allowEmpty >
+          <SelectInput
+            source="phonesType"
+            label="Expected to"
+            choices={manyRelAction}
+            defaultValue={actionType.USE}
+          />
+          <DependentInput resolve={selectorFor('phones')} scoped >
+            <ReferenceInput sortable={false} label="Phone" source="id" reference="Phone" allowEmpty >
+              <SelectInput optionText="phoneNumber" />
+            </ReferenceInput>
+          </DependentInput>
+          <DependentInput resolve={detailsFor('phones')} scoped >
+            <TextInput label="Phone number" source="phoneNumber" source="phoneNumber" validate={required} />
+            <TextInput label="Type" source="type" source="type" allowEmpty />
+            <TextInput label="Person" source="person" source="person" allowEmpty />
+          </DependentInput>
+        </EmbeddedArrayInput>
 
-        <Label text="CreatedBy" />
-        <ReferenceInput sortable={false} label="" source="createdById" reference="User" allowEmpty  >
-          <AutocompleteInput optionText="userName" />
-        </ReferenceInput>
 
-        <Label text="UpdateBy" />
-        <ReferenceInput sortable={false} label="" source="updateById" reference="User" allowEmpty  >
-          <AutocompleteInput optionText="userName" />
-        </ReferenceInput>
+        <EmbeddedArrayInput sortable={false} label="Emails" source="emailsValues" allowEmpty >
+          <SelectInput
+            source="emailsType"
+            label="Expected to"
+            choices={manyRelAction}
+            defaultValue={actionType.USE}
+          />
+          <DependentInput resolve={selectorFor('emails')} scoped >
+            <ReferenceInput sortable={false} label="Email" source="id" reference="Email" allowEmpty >
+              <SelectInput optionText="email" />
+            </ReferenceInput>
+          </DependentInput>
+          <DependentInput resolve={detailsFor('emails')} scoped >
+            <TextInput label="Email" source="email" source="email" validate={required} />
+            <TextInput label="Type" source="type" source="type" allowEmpty />
+            <TextInput label="Person" source="person" source="person" allowEmpty />
+          </DependentInput>
+        </EmbeddedArrayInput>
 
       </SimpleForm>);
   }
@@ -197,24 +149,25 @@ const selector = formValueSelector(formName);
 export default compose(
   connect(
     state => ({
-      homeworld: selector(state, 'homeworld'),
-      homeworldId: selector(state, 'homeworldId'),
-      homeworldType: selector(state, 'homeworldType'),
-      species: selector(state, 'species'),
-      speciesId: selector(state, 'speciesId'),
-      speciesType: selector(state, 'speciesType'),
+      user: selector(state, 'user'),
+      userId: selector(state, 'userId'),
+      userType: selector(state, 'userType'),
     }), {
       initForm: initForm('record-form', {
-        homeworld: {
-          resource: 'Planet',
+        user: {
+          resource: 'User',
           single: true,
         },
-        species: {
-          resource: 'Species',
-          single: true,
+        socialNetworks: {
+          resource: 'SocialNetwork',
+          single: false,
         },
-        starships: {
-          resource: 'Starship',
+        phones: {
+          resource: 'Phone',
+          single: false,
+        },
+        emails: {
+          resource: 'Email',
           single: false,
         },
       }),

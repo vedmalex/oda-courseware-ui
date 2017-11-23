@@ -5,18 +5,18 @@ exports.UserUI = {
       listName: 'userName',
       list: ['enabled', 'isAdmin', 'isSystem'],
       show: ['^password'],
-      embedded: ['asTeacher', 'asStudent']
     },
   }
 }
 
 exports.PersonUI = {
-  name: 'StudentUI',
-  'entities.Student': {
+  name: 'PersonUI',
+  'entities.Person': {
     'metadata.UI': {
       listName: 'fullName',
-      list: ['fullName', 'ages', '^firstName', '^lastName', '^middleName'],
-      embedded: ['profile']
+      list: ['fullName'],
+      edit: ['^asCurator', '^asStudents'],
+      embedded: ['socialNetworks', 'emails', 'phones', 'user'],
     },
   }
 }

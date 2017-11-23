@@ -2,19 +2,6 @@ import React, { Component } from 'react';
 import { client } from 'oda-aor-rest';
 import Loading from 'react-loading-animation'
 import { Admin, Resource, Delete } from 'admin-on-rest';
-import { jsonServerRestClient, fetchUtils } from 'admin-on-rest';
-
-/* const httpClient = (url, options = {}) => {
-  if (!options.headers) {
-    options.headers = new Headers({ Accept: 'application/json' });
-  }
-  // add your own headers here
-  // Access-Control-Expose-Headers:X-Total-Count, Links
-  options.headers.set('Access-Control-Expose-Headers', 'X-Total-Count');
-  return fetchUtils.fetchJson(url, options);
-} */
-
-const simpleREST = jsonServerRestClient('http://localhost:3001'/* , httpClient */);
 
 export default class extends Component {
   constructor(props) {
@@ -22,7 +9,6 @@ export default class extends Component {
     this.state = {
       restClient: null,
       authClient: null,
-      queries: null,
       resources: null,
       uix: null,
     };
@@ -40,10 +26,8 @@ export default class extends Component {
       restClient: client({
         client: nextProps.connection,
         resources: nextProps.resources,
-        queries: nextProps.queries,
       }),
       authClient: nextProps.authClientInit(nextProps.connection),
-      queries: this.props.queries,
       resources: this.props.resources,
       uix: this.props.uix,
     });
@@ -57,12 +41,15 @@ export default class extends Component {
     const {
       User,
       Student,
-      StudentsGroup,
-      StudentProfile,
-      Teacher,
-      Subject,
-      Following,
-      StudentsGroupSubject,
+      Curator,
+      Group,
+      Person,
+      SocialNetwork,
+      SocialNetworkType,
+      Email,
+      EmailType,
+      Phone,
+      PhoneType,
     } = uix;
 
     return (
@@ -87,36 +74,75 @@ export default class extends Component {
           remove={Delete}
         />
         <Resource
-          show={StudentsGroup.Show}
-          name="StudentsGroup"
-          options={{ label: "Students Group" }}
-          edit={StudentsGroup.Edit}
-          create={StudentsGroup.Create}
-          list={StudentsGroup.List}
+          show={Curator.Show}
+          name="Curator"
+          edit={Curator.Edit}
+          create={Curator.Create}
+          list={Curator.List}
           remove={Delete}
         />
         <Resource
-          show={StudentProfile.Show}
-          name="StudentProfile"
-          edit={StudentProfile.Edit}
-          create={StudentProfile.Create}
-          // list={StudentProfile.List}
+          show={Group.Show}
+          name="Group"
+          edit={Group.Edit}
+          create={Group.Create}
+          list={Group.List}
           remove={Delete}
         />
         <Resource
-          show={Teacher.Show}
-          name="Teacher"
-          edit={Teacher.Edit}
-          create={Teacher.Create}
-          list={Teacher.List}
+          show={Person.Show}
+          name="Person"
+          edit={Person.Edit}
+          create={Person.Create}
+          list={Person.List}
           remove={Delete}
         />
         <Resource
-          show={Subject.Show}
-          name="Subject"
-          edit={Subject.Edit}
-          create={Subject.Create}
-          list={Subject.List}
+          show={SocialNetwork.Show}
+          name="SocialNetwork"
+          edit={SocialNetwork.Edit}
+          create={SocialNetwork.Create}
+          list={SocialNetwork.List}
+          remove={Delete}
+        />
+        <Resource
+          show={SocialNetworkType.Show}
+          name="SocialNetworkType"
+          edit={SocialNetworkType.Edit}
+          create={SocialNetworkType.Create}
+          list={SocialNetworkType.List}
+          remove={Delete}
+        />
+        <Resource
+          show={Email.Show}
+          name="Email"
+          edit={Email.Edit}
+          create={Email.Create}
+          list={Email.List}
+          remove={Delete}
+        />
+        <Resource
+          show={EmailType.Show}
+          name="EmailType"
+          edit={EmailType.Edit}
+          create={EmailType.Create}
+          list={EmailType.List}
+          remove={Delete}
+        />
+        <Resource
+          show={Phone.Show}
+          name="Phone"
+          edit={Phone.Edit}
+          create={Phone.Create}
+          list={Phone.List}
+          remove={Delete}
+        />
+        <Resource
+          show={PhoneType.Show}
+          name="PhoneType"
+          edit={PhoneType.Edit}
+          create={PhoneType.Create}
+          list={PhoneType.List}
           remove={Delete}
         />
       </Admin>

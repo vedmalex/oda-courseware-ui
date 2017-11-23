@@ -12,8 +12,6 @@ generator({
   hooks: [
     UserUI,
     PersonUI,
-    TeacherUI,
-    StudentsGroupUI,
   ],
   pack: schema,
   rootDir: path.join(__dirname, 'UI'),

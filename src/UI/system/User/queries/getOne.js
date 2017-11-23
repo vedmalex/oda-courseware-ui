@@ -1,15 +1,7 @@
-import { reshape } from 'oda-lodash';
+import { data } from 'oda-aor-rest';
 
-export default ({ queries, resources }) => ({
-  query: queries.User.GET_ONE,
-  parseResponse: (response) => {
-    const data = reshape(queries.User.GET_ONE_RESULT, response.data);
-    return {
-      data: data.item,
-    };
-  },
-  fetchPolicy: 'network-only',
-  variables: params => ({
-    id: params.id,
-  }),
-});
+export default class extends data.resource.operations.GetOne  {
+  // constructor(options, resource){
+  //   super(options, resource);
+  // }
+}

@@ -9,7 +9,6 @@ export default class extends Component {
     this.state = {
       restClient: null,
       authClient: null,
-      queries: null,
       resources: null,
       uix: null,
     };
@@ -27,10 +26,8 @@ export default class extends Component {
       restClient: client({
         client: nextProps.connection,
         resources: nextProps.resources,
-        queries: nextProps.queries,
       }),
       authClient: nextProps.authClientInit(nextProps.connection),
-      queries: this.props.queries,
       resources: this.props.resources,
       uix: this.props.uix,
     });
@@ -44,12 +41,15 @@ export default class extends Component {
     const {
       User,
       Student,
-      StudentsGroup,
-      StudentProfile,
-      Teacher,
-      Subject,
-      Following,
-      StudentsGroupSubject,
+      Curator,
+      Group,
+      Person,
+      SocialNetwork,
+      SocialNetworkType,
+      Email,
+      EmailType,
+      Phone,
+      PhoneType,
     } = uix;
 
     return (
@@ -74,51 +74,75 @@ export default class extends Component {
           remove={Delete}
         />
         <Resource
-          show={StudentsGroup.Show}
-          name="StudentsGroup"
-          edit={StudentsGroup.Edit}
-          create={StudentsGroup.Create}
-          list={StudentsGroup.List}
+          show={Curator.Show}
+          name="Curator"
+          edit={Curator.Edit}
+          create={Curator.Create}
+          list={Curator.List}
           remove={Delete}
         />
         <Resource
-          show={StudentProfile.Show}
-          name="StudentProfile"
-          edit={StudentProfile.Edit}
-          create={StudentProfile.Create}
-          list={StudentProfile.List}
+          show={Group.Show}
+          name="Group"
+          edit={Group.Edit}
+          create={Group.Create}
+          list={Group.List}
           remove={Delete}
         />
         <Resource
-          show={Teacher.Show}
-          name="Teacher"
-          edit={Teacher.Edit}
-          create={Teacher.Create}
-          list={Teacher.List}
+          show={Person.Show}
+          name="Person"
+          edit={Person.Edit}
+          create={Person.Create}
+          list={Person.List}
           remove={Delete}
         />
         <Resource
-          show={Subject.Show}
-          name="Subject"
-          edit={Subject.Edit}
-          create={Subject.Create}
-          list={Subject.List}
+          show={SocialNetwork.Show}
+          name="SocialNetwork"
+          edit={SocialNetwork.Edit}
+          create={SocialNetwork.Create}
+          list={SocialNetwork.List}
           remove={Delete}
         />
         <Resource
-          show={Following.Show}
-          name="Following"
-          edit={Following.Edit}
-          create={Following.Create}
-          list={Following.List}
+          show={SocialNetworkType.Show}
+          name="SocialNetworkType"
+          edit={SocialNetworkType.Edit}
+          create={SocialNetworkType.Create}
+          list={SocialNetworkType.List}
           remove={Delete}
         />
         <Resource
-          show={StudentsGroupSubject.Show}
-          name="StudentsGroupSubject"
-          edit={StudentsGroupSubject.Edit}
-          create={StudentsGroupSubject.Create}
-          list={StudentsGroupSubject.List}
+          show={Email.Show}
+          name="Email"
+          edit={Email.Edit}
+          create={Email.Create}
+          list={Email.List}
+          remove={Delete}
+        />
+        <Resource
+          show={EmailType.Show}
+          name="EmailType"
+          edit={EmailType.Edit}
+          create={EmailType.Create}
+          list={EmailType.List}
+          remove={Delete}
+        />
+        <Resource
+          show={Phone.Show}
+          name="Phone"
+          edit={Phone.Edit}
+          create={Phone.Create}
+          list={Phone.List}
+          remove={Delete}
+        />
+        <Resource
+          show={PhoneType.Show}
+          name="PhoneType"
+          edit={PhoneType.Edit}
+          create={PhoneType.Create}
+          list={PhoneType.List}
           remove={Delete}
         />
       </Admin>

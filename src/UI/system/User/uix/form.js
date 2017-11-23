@@ -52,50 +52,6 @@ class Form extends Component {
         <BooleanInput label="Is system" source="isSystem" allowEmpty  />
         <BooleanInput label="Enabled" source="enabled" allowEmpty  />
 
-
-        <EmbeddedArrayInput sortable={false} label="As teacher" source="asTeacherValues" allowEmpty >
-          <SelectInput
-            source="asTeacherType"
-            label="Expected to"
-            choices={manyRelAction}
-            defaultValue={actionType.USE}
-          />
-          <DependentInput resolve={selectorFor('asTeacher')} scoped >
-            <ReferenceInput sortable={false} label="Teacher" source="id" reference="Teacher" allowEmpty >
-              <SelectInput optionText="lastName" />
-            </ReferenceInput>
-          </DependentInput>
-          <DependentInput resolve={detailsFor('asTeacher')} scoped >
-            <TextInput label="First name" source="firstName" source="firstName" validate={required} />
-            <TextInput label="Middle name" source="middleName" source="middleName" validate={required} />
-            <TextInput label="Last name" source="lastName" source="lastName" validate={required} />
-          </DependentInput>
-        </EmbeddedArrayInput>
-
-
-        <EmbeddedArrayInput sortable={false} label="As student" source="asStudentValues" allowEmpty >
-          <SelectInput
-            source="asStudentType"
-            label="Expected to"
-            choices={manyRelAction}
-            defaultValue={actionType.USE}
-          />
-          <DependentInput resolve={selectorFor('asStudent')} scoped >
-            <ReferenceInput sortable={false} label="Student" source="id" reference="Student" allowEmpty >
-              <SelectInput optionText="fullName" />
-            </ReferenceInput>
-          </DependentInput>
-          <DependentInput resolve={detailsFor('asStudent')} scoped >
-            <TextInput label="First name" source="firstName" source="firstName" validate={required} />
-            <TextInput label="Middle name" source="middleName" source="middleName" validate={required} />
-            <TextInput label="Last name" source="lastName" source="lastName" validate={required} />
-            <TextInput label="Full name" source="fullName" source="fullName" allowEmpty />
-            <TextInput label="Uin" source="uin" source="uin" validate={required} />
-            <NumberInput label="Ages" source="ages" source="ages" allowEmpty />
-            <DateInput label="Date of birth" source="dateOfBirth" source="dateOfBirth" allowEmpty />
-          </DependentInput>
-        </EmbeddedArrayInput>
-
       </SimpleForm>);
   }
 }
@@ -110,14 +66,6 @@ export default compose(
     state => ({
     }), {
       initForm: initForm('record-form', {
-        asTeacher: {
-          resource: 'Teacher',
-          single: false,
-        },
-        asStudent: {
-          resource: 'Student',
-          single: false,
-        },
       }),
       finalizeForm,
     }),

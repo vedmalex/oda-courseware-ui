@@ -1,17 +1,7 @@
-import { reshape } from 'oda-lodash';
+import { data } from 'oda-aor-rest';
 
-export default ({ queries, resources }) => ({
-  query: queries.User.DELETE,
-  parseResponse: (response) => {
-    const data = reshape(queries.User.DELETE_RESULT, response.data);
-    return { data: data.item };
-  },
-  update: (store, response) => {
-    // remove from cache
-  },
-  variables: params => ({
-    input: {
-      id: params.id,
-    },
-  }),
-});
+export default class extends data.resource.operations.Delete  {
+  // constructor(options, resource){
+  //   super(options, resource);
+  // }
+}

@@ -1,4 +1,4 @@
 import React from "react";
 export default ({ record }) => {
-  return <span>Person {record ? `"${record.name}"` : ""}</span>;
+  return <span>{record ? record.fullName : ""}</span>;
 };

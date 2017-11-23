@@ -1,10 +1,12 @@
-import GET_LIST from './getList';
-import GET_ONE from './getOne';
-import CREATE from './create';
-import UPDATE from './update';
-import DELETE from './delete';
-import GET_MANY from './getMany';
-import GET_MANY_REFERENCE from './getManyReference';
+import GetList from './getList';
+import GetOne from './getOne';
+import Create from './create';
+import Update from './update';
+import Delete from './delete';
+import GetMany from './getMany';
+import GetManyReference from './getManyReference';
+import { data } from 'oda-aor-rest';
+
 import {
   getListOfUser,
   getOneOfUser,
@@ -22,29 +24,48 @@ import {
   getManyReferenceOfUserResult,
 } from './queries';
 
-export const resource = ({ queries, resources }) => ({
-  GET_LIST: GET_LIST({ queries, resources }),
-  GET_ONE: GET_ONE({ queries, resources }),
-  CREATE: CREATE({ queries, resources }),
-  UPDATE: UPDATE({ queries, resources }),
-  DELETE: DELETE({ queries, resources }),
-  GET_MANY: GET_MANY({ queries, resources }),
-  GET_MANY_REFERENCE: GET_MANY_REFERENCE({ queries, resources }),
-});
 
-export const queries = {
-  GET_LIST: getListOfUser,
-  GET_ONE: getOneOfUser,
-  GET_MANY: getManyOfUser,
-  GET_MANY_REFERENCE: getManyReferenceOfUser,
-  CREATE: createOfUser,
-  UPDATE: updateOfUser,
-  DELETE: deleteOfUser,
-  GET_LIST_RESULT: getListOfUserResult,
-  GET_ONE_RESULT: getOneOfUserResult,
-  GET_MANY_RESULT: getManyOfUserResult,
-  GET_MANY_REFERENCE_RESULT: getManyReferenceOfUserResult,
-  CREATE_RESULT: createOfUserResult,
-  UPDATE_RESULT: updateOfUserResult,
-  DELETE_RESULT: deleteOfUserResult,
+export default class extends data.resource.Resource {
+  constructor (options, resourceContainer) {
+    super(options, resourceContainer);
+    this._name = 'User';
+    this._fields = {
+      id: { type: 'string'},
+      userName: { type: 'string'},
+      password: { type: 'string'},
+      isAdmin: { type: 'boolean'},
+      isSystem: { type: 'boolean'},
+      enabled: { type: 'boolean'},
+    };
+    this._query = {
+      GET_LIST: new GetList({
+        query: getListOfUser,
+        resultQuery: getListOfUserResult,
+      }, this),
+      GET_ONE: new GetOne({
+        query: getOneOfUser,
+        resultQuery: getOneOfUserResult,
+      }, this),
+      GET_MANY: new GetMany({
+        query: getManyOfUser,
+        resultQuery: getManyOfUserResult,
+      }, this),
+      GET_MANY_REFERENCE: new GetManyReference({
+        query: getManyReferenceOfUser,
+        resultQuery: getManyReferenceOfUserResult,
+      }, this),
+      CREATE: new Create({
+        query: createOfUser,
+        resultQuery: createOfUserResult,
+      }, this),
+      UPDATE: new Update({
+        query: updateOfUser,
+        resultQuery: updateOfUserResult,
+      }, this),
+      DELETE: new Delete({
+        query: deleteOfUser,
+        resultQuery: deleteOfUserResult,
+      }, this),
+    };
+  }
 };
