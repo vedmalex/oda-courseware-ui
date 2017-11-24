@@ -16,6 +16,6 @@ import {
 
 export default props => (
   <Filter {...props} >
-    <TextInput label="Search" source="q" allowEmpty alwaysOn />
+
   </Filter>
 );

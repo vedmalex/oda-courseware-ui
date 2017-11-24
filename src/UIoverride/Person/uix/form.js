@@ -12,6 +12,7 @@ import {
   LongTextInput,
   required,
 } from "admin-on-rest";
+import RichTextInput from 'aor-rich-text-input';
 
 import { connect } from 'react-redux';
 import { formValueSelector, Field } from 'redux-form';
@@ -50,7 +51,7 @@ class Form extends Component {
         <TextInput label="Spiritual name" source="spiritualName" validate={required} />
         <TextInput label="Full name" source="fullName" validate={required} />
         <DateInput label="Date of birth" source="dateOfBirth" allowEmpty />
-        <LongTextInput label="Special notes" source="specialNotes" allowEmpty />
+        <RichTextInput label="Special notes" source="specialNotes" />
 
         <Label text="User" />
         <DependentInput resolve={selectorFor('user')} scoped >

@@ -1,79 +1,53 @@
-import GetList from './getList';
-import GetOne from './getOne';
-import Create from './create';
-import Update from './update';
-import Delete from './delete';
-import GetMany from './getMany';
-import GetManyReference from './getManyReference';
+import _getList from './getList';
+import _getOne from './getOne';
+import _getMany from './getMany';
+import _getManyReference from './getManyReference';
+import _create from './create';
+import _update from './update';
+import _delete from './delete';
 import { data } from 'oda-aor-rest';
+import { fragments, queries } from './queries';
 
-import {
-  getListOfPhone,
-  getOneOfPhone,
-  getManyOfPhone,
-  deleteOfPhone,
-  createOfPhone,
-  updateOfPhone,
-  getManyReferenceOfPhone,
-  getListOfPhoneResult,
-  getOneOfPhoneResult,
-  getManyOfPhoneResult,
-  deleteOfPhoneResult,
-  createOfPhoneResult,
-  updateOfPhoneResult,
-  getManyReferenceOfPhoneResult,
-} from './queries';
-
+const {
+  GetList,
+  GetOne,
+  Create,
+  Update,
+  Delete,
+  GetMany,
+  GetManyReference,
+} = data.resource.operations
 
 export default class extends data.resource.Resource {
-  constructor (options, resourceContainer) {
-    super(options, resourceContainer);
+  constructor(...args) {
+    super(...args);
+    this._queries = queries;
+    this._fragments = fragments;
     this._name = 'Phone';
     this._fields = {
-      id: { type: 'string'},
-      phoneNumber: { type: 'string'},
+      id: { type: 'string' },
+      phoneNumber: { type: 'string' },
       type: {
-        ref:{
+        ref: {
           ref: 'PhoneType',
-          type:  data.resource.interfaces.refType.BelongsTo,
+          type: data.resource.interfaces.refType.BelongsTo,
         },
       },
       person: {
-        ref:{
+        ref: {
           ref: 'Person',
-          type:  data.resource.interfaces.refType.BelongsTo,
+          type: data.resource.interfaces.refType.BelongsTo,
         },
       },
     };
-    this._query = {
-      GET_LIST: new GetList({
-        query: getListOfPhone,
-        resultQuery: getListOfPhoneResult,
-      }, this),
-      GET_ONE: new GetOne({
-        query: getOneOfPhone,
-        resultQuery: getOneOfPhoneResult,
-      }, this),
-      GET_MANY: new GetMany({
-        query: getManyOfPhone,
-        resultQuery: getManyOfPhoneResult,
-      }, this),
-      GET_MANY_REFERENCE: new GetManyReference({
-        query: getManyReferenceOfPhone,
-        resultQuery: getManyReferenceOfPhoneResult,
-      }, this),
-      CREATE: new Create({
-        query: createOfPhone,
-        resultQuery: createOfPhoneResult,
-      }, this),
-      UPDATE: new Update({
-        query: updateOfPhone,
-        resultQuery: updateOfPhoneResult,
-      }, this),
-      DELETE: new Delete({
-        query: deleteOfPhone,
-        resultQuery: deleteOfPhoneResult,
-      }, this),
+    this._operations = {
+      GET_LIST: new GetList({ overrides: _getList, resource: this }),
+      GET_ONE: new GetOne({ overrides: _getOne, resource: this }),
+      GET_MANY: new GetMany({ overrides: _getMany, resource: this }),
+      GET_MANY_REFERENCE: new GetManyReference({ overrides: _getManyReference, resource: this }),
+      CREATE: new Create({ overrides: _create, resource: this }),
+      UPDATE: new Update({ overrides: _update, resource: this }),
+      DELETE: new Delete({ overrides: _delete, resource: this }),
     };
   }
 };

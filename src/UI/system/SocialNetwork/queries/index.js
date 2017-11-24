@@ -1,80 +1,54 @@
-import GetList from './getList';
-import GetOne from './getOne';
-import Create from './create';
-import Update from './update';
-import Delete from './delete';
-import GetMany from './getMany';
-import GetManyReference from './getManyReference';
+import _getList from './getList';
+import _getOne from './getOne';
+import _getMany from './getMany';
+import _getManyReference from './getManyReference';
+import _create from './create';
+import _update from './update';
+import _delete from './delete';
 import { data } from 'oda-aor-rest';
+import { fragments, queries } from './queries';
 
-import {
-  getListOfSocialNetwork,
-  getOneOfSocialNetwork,
-  getManyOfSocialNetwork,
-  deleteOfSocialNetwork,
-  createOfSocialNetwork,
-  updateOfSocialNetwork,
-  getManyReferenceOfSocialNetwork,
-  getListOfSocialNetworkResult,
-  getOneOfSocialNetworkResult,
-  getManyOfSocialNetworkResult,
-  deleteOfSocialNetworkResult,
-  createOfSocialNetworkResult,
-  updateOfSocialNetworkResult,
-  getManyReferenceOfSocialNetworkResult,
-} from './queries';
-
+const {
+  GetList,
+  GetOne,
+  Create,
+  Update,
+  Delete,
+  GetMany,
+  GetManyReference,
+} = data.resource.operations
 
 export default class extends data.resource.Resource {
-  constructor (options, resourceContainer) {
-    super(options, resourceContainer);
+  constructor(...args) {
+    super(...args);
+    this._queries = queries;
+    this._fragments = fragments;
     this._name = 'SocialNetwork';
     this._fields = {
-      id: { type: 'string'},
-      account: { type: 'string'},
-      url: { type: 'string'},
+      id: { type: 'string' },
+      account: { type: 'string' },
+      url: { type: 'string' },
       type: {
-        ref:{
+        ref: {
           ref: 'SocialNetworkType',
-          type:  data.resource.interfaces.refType.BelongsTo,
+          type: data.resource.interfaces.refType.BelongsTo,
         },
       },
       person: {
-        ref:{
+        ref: {
           ref: 'Person',
-          type:  data.resource.interfaces.refType.BelongsTo,
+          type: data.resource.interfaces.refType.BelongsTo,
         },
       },
     };
-    this._query = {
-      GET_LIST: new GetList({
-        query: getListOfSocialNetwork,
-        resultQuery: getListOfSocialNetworkResult,
-      }, this),
-      GET_ONE: new GetOne({
-        query: getOneOfSocialNetwork,
-        resultQuery: getOneOfSocialNetworkResult,
-      }, this),
-      GET_MANY: new GetMany({
-        query: getManyOfSocialNetwork,
-        resultQuery: getManyOfSocialNetworkResult,
-      }, this),
-      GET_MANY_REFERENCE: new GetManyReference({
-        query: getManyReferenceOfSocialNetwork,
-        resultQuery: getManyReferenceOfSocialNetworkResult,
-      }, this),
-      CREATE: new Create({
-        query: createOfSocialNetwork,
-        resultQuery: createOfSocialNetworkResult,
-      }, this),
-      UPDATE: new Update({
-        query: updateOfSocialNetwork,
-        resultQuery: updateOfSocialNetworkResult,
-      }, this),
-      DELETE: new Delete({
-        query: deleteOfSocialNetwork,
-        resultQuery: deleteOfSocialNetworkResult,
-      }, this),
+    this._operations = {
+      GET_LIST: new GetList({ overrides: _getList, resource: this }),
+      GET_ONE: new GetOne({ overrides: _getOne, resource: this }),
+      GET_MANY: new GetMany({ overrides: _getMany, resource: this }),
+      GET_MANY_REFERENCE: new GetManyReference({ overrides: _getManyReference, resource: this }),
+      CREATE: new Create({ overrides: _create, resource: this }),
+      UPDATE: new Update({ overrides: _update, resource: this }),
+      DELETE: new Delete({ overrides: _delete, resource: this }),
     };
   }
 };

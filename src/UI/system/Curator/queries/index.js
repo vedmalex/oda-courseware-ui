@@ -1,78 +1,52 @@
-import GetList from './getList';
-import GetOne from './getOne';
-import Create from './create';
-import Update from './update';
-import Delete from './delete';
-import GetMany from './getMany';
-import GetManyReference from './getManyReference';
+import _getList from './getList';
+import _getOne from './getOne';
+import _getMany from './getMany';
+import _getManyReference from './getManyReference';
+import _create from './create';
+import _update from './update';
+import _delete from './delete';
 import { data } from 'oda-aor-rest';
+import { fragments, queries } from './queries';
 
-import {
-  getListOfCurator,
-  getOneOfCurator,
-  getManyOfCurator,
-  deleteOfCurator,
-  createOfCurator,
-  updateOfCurator,
-  getManyReferenceOfCurator,
-  getListOfCuratorResult,
-  getOneOfCuratorResult,
-  getManyOfCuratorResult,
-  deleteOfCuratorResult,
-  createOfCuratorResult,
-  updateOfCuratorResult,
-  getManyReferenceOfCuratorResult,
-} from './queries';
-
+const {
+  GetList,
+  GetOne,
+  Create,
+  Update,
+  Delete,
+  GetMany,
+  GetManyReference,
+} = data.resource.operations
 
 export default class extends data.resource.Resource {
-  constructor (options, resourceContainer) {
-    super(options, resourceContainer);
+  constructor(...args) {
+    super(...args);
+    this._queries = queries;
+    this._fragments = fragments;
     this._name = 'Curator';
     this._fields = {
-      id: { type: 'string'},
+      id: { type: 'string' },
       person: {
-        ref:{
+        ref: {
           ref: 'Person',
-          type:  data.resource.interfaces.refType.BelongsTo,
+          type: data.resource.interfaces.refType.BelongsTo,
         },
       },
       groups: {
-        ref:{
+        ref: {
           ref: 'Group',
-          type:  data.resource.interfaces.refType.HasMany,
+          type: data.resource.interfaces.refType.HasMany,
         },
       },
     };
-    this._query = {
-      GET_LIST: new GetList({
-        query: getListOfCurator,
-        resultQuery: getListOfCuratorResult,
-      }, this),
-      GET_ONE: new GetOne({
-        query: getOneOfCurator,
-        resultQuery: getOneOfCuratorResult,
-      }, this),
-      GET_MANY: new GetMany({
-        query: getManyOfCurator,
-        resultQuery: getManyOfCuratorResult,
-      }, this),
-      GET_MANY_REFERENCE: new GetManyReference({
-        query: getManyReferenceOfCurator,
-        resultQuery: getManyReferenceOfCuratorResult,
-      }, this),
-      CREATE: new Create({
-        query: createOfCurator,
-        resultQuery: createOfCuratorResult,
-      }, this),
-      UPDATE: new Update({
-        query: updateOfCurator,
-        resultQuery: updateOfCuratorResult,
-      }, this),
-      DELETE: new Delete({
-        query: deleteOfCurator,
-        resultQuery: deleteOfCuratorResult,
-      }, this),
+    this._operations = {
+      GET_LIST: new GetList({ overrides: _getList, resource: this }),
+      GET_ONE: new GetOne({ overrides: _getOne, resource: this }),
+      GET_MANY: new GetMany({ overrides: _getMany, resource: this }),
+      GET_MANY_REFERENCE: new GetManyReference({ overrides: _getManyReference, resource: this }),
+      CREATE: new Create({ overrides: _create, resource: this }),
+      UPDATE: new Update({ overrides: _update, resource: this }),
+      DELETE: new Delete({ overrides: _delete, resource: this }),
     };
   }
 };

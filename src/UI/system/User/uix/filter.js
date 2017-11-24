@@ -16,6 +16,7 @@ import {
 
 export default props => (
   <Filter {...props} >
+
     <TextInput label="Search" source="q" allowEmpty alwaysOn />
     <NullableBooleanInput label="User name exists" source="userName-exists" />
 
@@ -31,5 +32,6 @@ export default props => (
     <NullableBooleanInput label="Enabled exists" source="enabled-exists" />
 
     <BooleanInput label="Enabled" source="enabled-eq" allowEmpty />
+
   </Filter>
 );

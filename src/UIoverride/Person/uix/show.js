@@ -22,6 +22,8 @@ import {
 import PersonTitle from "./title";
 import { ui } from 'oda-aor-rest';
 
+import { RichTextField } from 'admin-on-rest';
+
 const {
   DependentField,
   EmbeddedField,
@@ -55,7 +57,7 @@ export default (props) => {
           <TextField label="Ages" source="ages" allowEmpty />
         </DependentField>
         <DependentField resolve={showIfExists('specialNotes')}>
-          <TextField label="Special notes" source="specialNotes" allowEmpty />
+          <RichTextField label="Special notes" source="specialNotes" />
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('userId')} source="user" >

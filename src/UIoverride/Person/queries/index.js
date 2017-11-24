@@ -4,7 +4,7 @@ import { data } from 'oda-aor-rest';
 import getList from './getList';
 
 export default {
-  query: {
+  operations: {
     GET_LIST: { ...getList }
   }
 };

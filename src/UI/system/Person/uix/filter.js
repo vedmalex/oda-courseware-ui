@@ -16,6 +16,7 @@ import {
 
 export default props => (
   <Filter {...props} >
+
     <TextInput label="Search" source="q" allowEmpty alwaysOn />
     <NullableBooleanInput label="Spiritual name exists" source="spiritualName-exists" />
 
@@ -27,5 +28,6 @@ export default props => (
     <TextInput label="Full name" source="fullName-imatch" allowEmpty />
     <SelectArrayInput label="Full name in" source="fullName-in" allowEmpty />
     <SelectArrayInput label="Full name not in" source="fullName-nin" allowEmpty />
+
   </Filter>
 );

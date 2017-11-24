@@ -1,195 +1,180 @@
 import gql from 'graphql-tag';
 // fragments
 
-const resultFragment = gql`fragment EmailTypeResult on EmailType{
-  id
-  name
-
-}
-`;
-
-const fullFragment = gql`fragment EmailTypeFull on EmailType{
+export const fragments = {
+  resultFragment: gql`fragment EmailTypeResult on EmailType {
     id
     name
-  }
-`;
 
-// getList
-export const getListOfEmailTypeResult = gql`query getListOfEmailTypeResult {
-  items {
-    total: pageInfo @_(get:"count") {
-      count
-    }
-    data: edges @_(each:{assign:"node"}) {
-      node {
-        ...EmailTypeResult
-      }
-    }
-  }
+  }`,
+  fullFragment: gql`fragment EmailTypeFull on EmailType {
+    id
+    name
+  }`,
 }
-${resultFragment}
-`;
 
-export const getListOfEmailType = gql`query getListOfEmailType($skip: Int, $limit: Int, $orderBy: [EmailTypeSortOrder], $filter: EmailTypeComplexFilter){
-  items: emailTypes(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
-    pageInfo{
-      count
-    }
-    edges {
-      node {
-        ...EmailTypeFull
-      }
-    }
-  }
-}
-${fullFragment}
-`;
-
-//getOne
-export const getOneOfEmailTypeResult = gql`{
-  item {
-    ...EmailTypeResult
-  }
-}
-${resultFragment}
-`;
-
-export const getOneOfEmailType = gql`query EmailType($id: ID){
-  item: emailType(id: $id) {
-    ...EmailTypeFull
-  }
-}
-${fullFragment}
-`;
-
-// getMany
-export const getManyOfEmailTypeResult = gql`{
-  items @_(get:"edges"){
-    edges @_(map: "node")  {
-      node {
-        ...EmailTypeResult
-      }
-    }
-  }
-}
-${resultFragment}
-`;
-
-export const getManyOfEmailType = gql`query EmailTypes($filter: EmailTypeComplexFilter){
-  items: emailTypes(filter: $filter) {
-    edges {
-      node {
-        ...EmailTypeFull
-      }
-    }
-  }
-}
-${fullFragment}
-`;
-
-//delete
-export const deleteOfEmailTypeResult = gql`{
-  item @_(get:"node"){
-    node {
-      ...EmailTypeResult
-    }
-  }
-}
-${resultFragment}
-`;
-
-export const deleteOfEmailType = gql`mutation deleteEmailType ($input : deleteEmailTypeInput!) {
-  item: deleteEmailType (input: $input) {
-    node: emailType {
-      ...EmailTypeFull
-    }
-  }
-}
-${fullFragment}
-`;
-
-//create
-export const createOfEmailTypeResult = gql`{
-  item @_(get: "edge.node") {
-    edge {
-      node {
-        ...EmailTypeResult
-      }
-    }
-  }
-}
-${resultFragment}
-`;
-
-export const createOfEmailType = gql`mutation createEmailType($input: createEmailTypeInput!){
-  item : createEmailType (input : $input) {
-    edge: emailType {
-      node {
-        ...EmailTypeFull
-      }
-    }
-  }
-}
-${fullFragment}
-`;
-
-//update
-export const updateOfEmailTypeResult = gql`{
-  item @_(get:"node"){
-    node {
-      ...EmailTypeResult
-    }
-  }
-}
-${resultFragment}
-`;
-
-export const updateOfEmailType = gql`mutation updateEmailType($input: updateEmailTypeInput!){
-      item : updateEmailType (input : $input) {
-        node: emailType {
-          ...EmailTypeFull
-        }
-      }
-    }
-  ${fullFragment}
-`;
-
-//getManyReference
-export const getManyReferenceOfEmailType = {
-};
-
-export const getManyReferenceOfEmailTypeResultOpposite = gql`{
-  items: opposite @_(get:"items") {
+export const queries = {
+  // getList
+  getListResult: ({ resultFragment }) => gql`query getListOfEmailTypeResult {
     items {
       total: pageInfo @_(get:"count") {
         count
       }
-      data: edges @_(each:{assign:"node"}) {
+      data: edges @_(each: {assign:"node"}) {
         node {
           ...EmailTypeResult
         }
       }
     }
   }
-}
   ${resultFragment}
-`;
-
-export const getManyReferenceOfEmailTypeResultRegular = gql`{
-  items {
-    total: pageInfo @_(get:"count") {
-      count
+  `,
+  getList: ({ fullFragment }) => gql`query getListOfEmailType($skip: Int, $limit: Int, $orderBy: [EmailTypeSortOrder], $filter: EmailTypeComplexFilter) {
+    items: emailTypes(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
+      pageInfo {
+        count
+      }
+      edges {
+        node {
+          ...EmailTypeFull
+        }
+      }
     }
-    data: edges @_(each:{assign:"node"}) {
+  }
+  ${fullFragment}
+  `,
+  //getOne
+  getOneResult: ({ resultFragment }) => gql`{
+    item {
+      ...EmailTypeResult
+    }
+  }
+  ${resultFragment}
+  `,
+  getOne: ({fullFragment}) => gql`query EmailType($id: ID) {
+    item: emailType(id: $id) {
+      ...EmailTypeFull
+    }
+  }
+  ${fullFragment}
+  `,
+  // getMany
+  getManyResult: ({ resultFragment }) => gql`{
+    items @_(get:"edges") {
+      edges @_(map: "node")  {
+        node {
+          ...EmailTypeResult
+        }
+      }
+    }
+  }
+  ${resultFragment}
+  `,
+  getMany: ({ fullFragment }) => gql`query EmailTypes($filter: EmailTypeComplexFilter) {
+    items: emailTypes(filter: $filter) {
+      edges {
+        node {
+          ...EmailTypeFull
+        }
+      }
+    }
+  }
+  ${fullFragment}
+  `,
+  //delete
+  deleteResult: ({ resultFragment }) => gql`{
+    item @_(get:"node") {
       node {
         ...EmailTypeResult
       }
     }
   }
-}
   ${resultFragment}
-`;
-
-export const getManyReferenceOfEmailTypeResult = {
-};
-
+  `,
+  delete: ({ fullFragment }) => gql`mutation deleteEmailType ($input : deleteEmailTypeInput!) {
+    item: deleteEmailType (input: $input) {
+      node: emailType {
+        ...EmailTypeFull
+      }
+    }
+  }
+  ${fullFragment}
+  `,
+  //create
+  createResult: ({ resultFragment }) => gql`{
+    item @_(get: "edge.node") {
+      edge {
+        node {
+          ...EmailTypeResult
+        }
+      }
+    }
+  }
+  ${resultFragment}
+  `,
+  create: ({ fullFragment }) => gql`mutation createEmailType($input: createEmailTypeInput!) {
+    item : createEmailType (input : $input) {
+      edge: emailType {
+        node {
+          ...EmailTypeFull
+        }
+      }
+    }
+  }
+  ${fullFragment}
+  `,
+  //update
+  updateResult: ({ resultFragment }) => gql`{
+    item @_(get:"node") {
+      node {
+        ...EmailTypeResult
+      }
+    }
+  }
+  ${resultFragment}
+  `,
+  update: ({ fullFragment }) => gql`mutation updateEmailType($input: updateEmailTypeInput!) {
+        item : updateEmailType (input : $input) {
+          node: emailType {
+            ...EmailTypeFull
+          }
+        }
+      }
+    ${fullFragment}
+  `,
+  //getManyReference
+  getManyReference: ({ fullFragment }) => ({
+    }),
+  getManyReferenceResultOpposite: ({ resultFragment }) => gql`{
+    items: opposite @_(get:"items") {
+      items {
+        total: pageInfo @_(get:"count") {
+          count
+        }
+        data: edges @_(each: {assign:"node"}) {
+          node {
+            ...EmailTypeResult
+          }
+        }
+      }
+    }
+  }
+    ${resultFragment}
+  `,
+  getManyReferenceResultRegular: ({ resultFragment }) => gql`{
+    items {
+      total: pageInfo @_(get:"count") {
+        count
+      }
+      data: edges @_(each: {assign:"node"}) {
+        node {
+          ...EmailTypeResult
+        }
+      }
+    }
+  }
+    ${resultFragment}
+  `,
+  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite , getManyReferenceResultRegular }) => ({
+  }),
+}

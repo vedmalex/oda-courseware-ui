@@ -1,107 +1,81 @@
-import GetList from './getList';
-import GetOne from './getOne';
-import Create from './create';
-import Update from './update';
-import Delete from './delete';
-import GetMany from './getMany';
-import GetManyReference from './getManyReference';
+import _getList from './getList';
+import _getOne from './getOne';
+import _getMany from './getMany';
+import _getManyReference from './getManyReference';
+import _create from './create';
+import _update from './update';
+import _delete from './delete';
 import { data } from 'oda-aor-rest';
+import { fragments, queries } from './queries';
 
-import {
-  getListOfPerson,
-  getOneOfPerson,
-  getManyOfPerson,
-  deleteOfPerson,
-  createOfPerson,
-  updateOfPerson,
-  getManyReferenceOfPerson,
-  getListOfPersonResult,
-  getOneOfPersonResult,
-  getManyOfPersonResult,
-  deleteOfPersonResult,
-  createOfPersonResult,
-  updateOfPersonResult,
-  getManyReferenceOfPersonResult,
-} from './queries';
-
+const {
+  GetList,
+  GetOne,
+  Create,
+  Update,
+  Delete,
+  GetMany,
+  GetManyReference,
+} = data.resource.operations
 
 export default class extends data.resource.Resource {
-  constructor (options, resourceContainer) {
-    super(options, resourceContainer);
+  constructor(...args) {
+    super(...args);
+    this._queries = queries;
+    this._fragments = fragments;
     this._name = 'Person';
     this._fields = {
-      id: { type: 'string'},
-      spiritualName: { type: 'string'},
-      fullName: { type: 'string'},
-      dateOfBirth: { type: 'date'},
-      ages: { type: 'number'},
-      specialNotes: { type: 'string'},
+      id: { type: 'string' },
+      spiritualName: { type: 'string' },
+      fullName: { type: 'string' },
+      dateOfBirth: { type: 'date' },
+      ages: { type: 'number' },
+      specialNotes: { type: 'string' },
       user: {
-        ref:{
+        ref: {
           ref: 'User',
-          type:  data.resource.interfaces.refType.BelongsTo,
+          type: data.resource.interfaces.refType.BelongsTo,
         },
       },
       socialNetworks: {
-        ref:{
+        ref: {
           ref: 'SocialNetwork',
-          type:  data.resource.interfaces.refType.HasMany,
+          type: data.resource.interfaces.refType.HasMany,
         },
       },
       phones: {
-        ref:{
+        ref: {
           ref: 'Phone',
-          type:  data.resource.interfaces.refType.HasMany,
+          type: data.resource.interfaces.refType.HasMany,
         },
       },
       emails: {
-        ref:{
+        ref: {
           ref: 'Email',
-          type:  data.resource.interfaces.refType.HasMany,
+          type: data.resource.interfaces.refType.HasMany,
         },
       },
       asStudents: {
-        ref:{
+        ref: {
           ref: 'Student',
-          type:  data.resource.interfaces.refType.HasMany,
+          type: data.resource.interfaces.refType.HasMany,
         },
       },
       asCurator: {
-        ref:{
+        ref: {
           ref: 'Curator',
-          type:  data.resource.interfaces.refType.HasOne,
+          type: data.resource.interfaces.refType.HasOne,
         },
       },
     };
-    this._query = {
-      GET_LIST: new GetList({
-        query: getListOfPerson,
-        resultQuery: getListOfPersonResult,
-      }, this),
-      GET_ONE: new GetOne({
-        query: getOneOfPerson,
-        resultQuery: getOneOfPersonResult,
-      }, this),
-      GET_MANY: new GetMany({
-        query: getManyOfPerson,
-        resultQuery: getManyOfPersonResult,
-      }, this),
-      GET_MANY_REFERENCE: new GetManyReference({
-        query: getManyReferenceOfPerson,
-        resultQuery: getManyReferenceOfPersonResult,
-      }, this),
-      CREATE: new Create({
-        query: createOfPerson,
-        resultQuery: createOfPersonResult,
-      }, this),
-      UPDATE: new Update({
-        query: updateOfPerson,
-        resultQuery: updateOfPersonResult,
-      }, this),
-      DELETE: new Delete({
-        query: deleteOfPerson,
-        resultQuery: deleteOfPersonResult,
-      }, this),
+    this._operations = {
+      GET_LIST: new GetList({ overrides: _getList, resource: this }),
+      GET_ONE: new GetOne({ overrides: _getOne, resource: this }),
+      GET_MANY: new GetMany({ overrides: _getMany, resource: this }),
+      GET_MANY_REFERENCE: new GetManyReference({ overrides: _getManyReference, resource: this }),
+      CREATE: new Create({ overrides: _create, resource: this }),
+      UPDATE: new Update({ overrides: _update, resource: this }),
+      DELETE: new Delete({ overrides: _delete, resource: this }),
     };
   }
 };

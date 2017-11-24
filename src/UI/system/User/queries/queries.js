@@ -1,203 +1,188 @@
 import gql from 'graphql-tag';
 // fragments
 
-const resultFragment = gql`fragment UserResult on User{
-  id
-  userName
-  password
-  isAdmin
-  isSystem
-  enabled
-
-}
-`;
-
-const fullFragment = gql`fragment UserFull on User{
+export const fragments = {
+  resultFragment: gql`fragment UserResult on User {
     id
     userName
     password
     isAdmin
     isSystem
     enabled
-  }
-`;
 
-// getList
-export const getListOfUserResult = gql`query getListOfUserResult {
-  items {
-    total: pageInfo @_(get:"count") {
-      count
-    }
-    data: edges @_(each:{assign:"node"}) {
-      node {
-        ...UserResult
-      }
-    }
-  }
+  }`,
+  fullFragment: gql`fragment UserFull on User {
+    id
+    userName
+    password
+    isAdmin
+    isSystem
+    enabled
+  }`,
 }
-${resultFragment}
-`;
 
-export const getListOfUser = gql`query getListOfUser($skip: Int, $limit: Int, $orderBy: [UserSortOrder], $filter: UserComplexFilter){
-  items: users(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
-    pageInfo{
-      count
-    }
-    edges {
-      node {
-        ...UserFull
-      }
-    }
-  }
-}
-${fullFragment}
-`;
-
-//getOne
-export const getOneOfUserResult = gql`{
-  item {
-    ...UserResult
-  }
-}
-${resultFragment}
-`;
-
-export const getOneOfUser = gql`query User($id: ID){
-  item: user(id: $id) {
-    ...UserFull
-  }
-}
-${fullFragment}
-`;
-
-// getMany
-export const getManyOfUserResult = gql`{
-  items @_(get:"edges"){
-    edges @_(map: "node")  {
-      node {
-        ...UserResult
-      }
-    }
-  }
-}
-${resultFragment}
-`;
-
-export const getManyOfUser = gql`query Users($filter: UserComplexFilter){
-  items: users(filter: $filter) {
-    edges {
-      node {
-        ...UserFull
-      }
-    }
-  }
-}
-${fullFragment}
-`;
-
-//delete
-export const deleteOfUserResult = gql`{
-  item @_(get:"node"){
-    node {
-      ...UserResult
-    }
-  }
-}
-${resultFragment}
-`;
-
-export const deleteOfUser = gql`mutation deleteUser ($input : deleteUserInput!) {
-  item: deleteUser (input: $input) {
-    node: user {
-      ...UserFull
-    }
-  }
-}
-${fullFragment}
-`;
-
-//create
-export const createOfUserResult = gql`{
-  item @_(get: "edge.node") {
-    edge {
-      node {
-        ...UserResult
-      }
-    }
-  }
-}
-${resultFragment}
-`;
-
-export const createOfUser = gql`mutation createUser($input: createUserInput!){
-  item : createUser (input : $input) {
-    edge: user {
-      node {
-        ...UserFull
-      }
-    }
-  }
-}
-${fullFragment}
-`;
-
-//update
-export const updateOfUserResult = gql`{
-  item @_(get:"node"){
-    node {
-      ...UserResult
-    }
-  }
-}
-${resultFragment}
-`;
-
-export const updateOfUser = gql`mutation updateUser($input: updateUserInput!){
-      item : updateUser (input : $input) {
-        node: user {
-          ...UserFull
-        }
-      }
-    }
-  ${fullFragment}
-`;
-
-//getManyReference
-export const getManyReferenceOfUser = {
-};
-
-export const getManyReferenceOfUserResultOpposite = gql`{
-  items: opposite @_(get:"items") {
+export const queries = {
+  // getList
+  getListResult: ({ resultFragment }) => gql`query getListOfUserResult {
     items {
       total: pageInfo @_(get:"count") {
         count
       }
-      data: edges @_(each:{assign:"node"}) {
+      data: edges @_(each: {assign:"node"}) {
         node {
           ...UserResult
         }
       }
     }
   }
-}
   ${resultFragment}
-`;
-
-export const getManyReferenceOfUserResultRegular = gql`{
-  items {
-    total: pageInfo @_(get:"count") {
-      count
+  `,
+  getList: ({ fullFragment }) => gql`query getListOfUser($skip: Int, $limit: Int, $orderBy: [UserSortOrder], $filter: UserComplexFilter) {
+    items: users(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
+      pageInfo {
+        count
+      }
+      edges {
+        node {
+          ...UserFull
+        }
+      }
     }
-    data: edges @_(each:{assign:"node"}) {
+  }
+  ${fullFragment}
+  `,
+  //getOne
+  getOneResult: ({ resultFragment }) => gql`{
+    item {
+      ...UserResult
+    }
+  }
+  ${resultFragment}
+  `,
+  getOne: ({fullFragment}) => gql`query User($id: ID) {
+    item: user(id: $id) {
+      ...UserFull
+    }
+  }
+  ${fullFragment}
+  `,
+  // getMany
+  getManyResult: ({ resultFragment }) => gql`{
+    items @_(get:"edges") {
+      edges @_(map: "node")  {
+        node {
+          ...UserResult
+        }
+      }
+    }
+  }
+  ${resultFragment}
+  `,
+  getMany: ({ fullFragment }) => gql`query Users($filter: UserComplexFilter) {
+    items: users(filter: $filter) {
+      edges {
+        node {
+          ...UserFull
+        }
+      }
+    }
+  }
+  ${fullFragment}
+  `,
+  //delete
+  deleteResult: ({ resultFragment }) => gql`{
+    item @_(get:"node") {
       node {
         ...UserResult
       }
     }
   }
-}
   ${resultFragment}
-`;
-
-export const getManyReferenceOfUserResult = {
-};
-
+  `,
+  delete: ({ fullFragment }) => gql`mutation deleteUser ($input : deleteUserInput!) {
+    item: deleteUser (input: $input) {
+      node: user {
+        ...UserFull
+      }
+    }
+  }
+  ${fullFragment}
+  `,
+  //create
+  createResult: ({ resultFragment }) => gql`{
+    item @_(get: "edge.node") {
+      edge {
+        node {
+          ...UserResult
+        }
+      }
+    }
+  }
+  ${resultFragment}
+  `,
+  create: ({ fullFragment }) => gql`mutation createUser($input: createUserInput!) {
+    item : createUser (input : $input) {
+      edge: user {
+        node {
+          ...UserFull
+        }
+      }
+    }
+  }
+  ${fullFragment}
+  `,
+  //update
+  updateResult: ({ resultFragment }) => gql`{
+    item @_(get:"node") {
+      node {
+        ...UserResult
+      }
+    }
+  }
+  ${resultFragment}
+  `,
+  update: ({ fullFragment }) => gql`mutation updateUser($input: updateUserInput!) {
+        item : updateUser (input : $input) {
+          node: user {
+            ...UserFull
+          }
+        }
+      }
+    ${fullFragment}
+  `,
+  //getManyReference
+  getManyReference: ({ fullFragment }) => ({
+    }),
+  getManyReferenceResultOpposite: ({ resultFragment }) => gql`{
+    items: opposite @_(get:"items") {
+      items {
+        total: pageInfo @_(get:"count") {
+          count
+        }
+        data: edges @_(each: {assign:"node"}) {
+          node {
+            ...UserResult
+          }
+        }
+      }
+    }
+  }
+    ${resultFragment}
+  `,
+  getManyReferenceResultRegular: ({ resultFragment }) => gql`{
+    items {
+      total: pageInfo @_(get:"count") {
+        count
+      }
+      data: edges @_(each: {assign:"node"}) {
+        node {
+          ...UserResult
+        }
+      }
+    }
+  }
+    ${resultFragment}
+  `,
+  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite , getManyReferenceResultRegular }) => ({
+  }),
+}
