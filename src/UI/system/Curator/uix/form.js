@@ -48,13 +48,13 @@ class Form extends Component {
       <SimpleForm {...props} >
 
         <Label text="Person" />
-        <ReferenceInput sortable={false} label="" source="personId" reference="Person" allowEmpty  >
+        <ReferenceInput label="" source="personId" reference="Person" allowEmpty  >
           <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 
 
         <Label text="Groups" />
-        <ReferenceArrayInput sortable={false} label="" source="groupsIds" reference="Group" allowEmpty >
+        <ReferenceArrayInput label="" source="groupsIds" reference="Group" allowEmpty >
           <SelectArrayInput options={{ fullWidth: true }} optionText="name" optionValue="id" />
         </ReferenceArrayInput>
 

@@ -15,7 +15,7 @@ export default props => (
   <Datagrid {...props} >
     <TextField sortable={true} source="spiritualName" />
     <TextField sortable={true} source="fullName" />
-    <NumberField sortable={false} source="ages" allowEmpty />
+    <NumberField sortable={true} source="ages" allowEmpty />
 
     <ShowButton />
     <EditButton />

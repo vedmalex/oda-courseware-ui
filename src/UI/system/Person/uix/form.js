@@ -53,7 +53,7 @@ class Form extends Component {
 
         <Label text="User" />
         <DependentInput resolve={selectorFor('user')} scoped >
-          <ReferenceInput sortable={false} label="User" source="userId" reference="User" allowEmpty  >
+          <ReferenceInput label="User" source="userId" reference="User" allowEmpty  >
             <AutocompleteInput optionText="userName" />
           </ReferenceInput>
         </DependentInput>
@@ -75,7 +75,7 @@ class Form extends Component {
         </DependentInput>
 
 
-        <EmbeddedArrayInput sortable={false} label="Social networks" source="socialNetworksValues" allowEmpty >
+        <EmbeddedArrayInput label="Social networks" source="socialNetworksValues" allowEmpty >
           <SelectInput
             source="socialNetworksType"
             label="Expected to"
@@ -83,7 +83,7 @@ class Form extends Component {
             defaultValue={actionType.USE}
           />
           <DependentInput resolve={selectorFor('socialNetworks')} scoped >
-            <ReferenceInput sortable={false} label="SocialNetwork" source="id" reference="SocialNetwork" allowEmpty >
+            <ReferenceInput label="SocialNetwork" source="id" reference="SocialNetwork" allowEmpty >
               <SelectInput optionText="account" />
             </ReferenceInput>
           </DependentInput>
@@ -94,7 +94,7 @@ class Form extends Component {
         </EmbeddedArrayInput>
 
 
-        <EmbeddedArrayInput sortable={false} label="Phones" source="phonesValues" allowEmpty >
+        <EmbeddedArrayInput label="Phones" source="phonesValues" allowEmpty >
           <SelectInput
             source="phonesType"
             label="Expected to"
@@ -102,7 +102,7 @@ class Form extends Component {
             defaultValue={actionType.USE}
           />
           <DependentInput resolve={selectorFor('phones')} scoped >
-            <ReferenceInput sortable={false} label="Phone" source="id" reference="Phone" allowEmpty >
+            <ReferenceInput label="Phone" source="id" reference="Phone" allowEmpty >
               <SelectInput optionText="phoneNumber" />
             </ReferenceInput>
           </DependentInput>
@@ -112,7 +112,7 @@ class Form extends Component {
         </EmbeddedArrayInput>
 
 
-        <EmbeddedArrayInput sortable={false} label="Emails" source="emailsValues" allowEmpty >
+        <EmbeddedArrayInput label="Emails" source="emailsValues" allowEmpty >
           <SelectInput
             source="emailsType"
             label="Expected to"
@@ -120,7 +120,7 @@ class Form extends Component {
             defaultValue={actionType.USE}
           />
           <DependentInput resolve={selectorFor('emails')} scoped >
-            <ReferenceInput sortable={false} label="Email" source="id" reference="Email" allowEmpty >
+            <ReferenceInput label="Email" source="id" reference="Email" allowEmpty >
               <SelectInput optionText="email" />
             </ReferenceInput>
           </DependentInput>

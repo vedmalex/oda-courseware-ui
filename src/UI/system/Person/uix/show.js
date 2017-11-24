@@ -79,7 +79,7 @@ export default (props) => {
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('socialNetworksValues')} source="socialNetworksValues">
-          <EmbeddedArrayField reference="SocialNetwork" target="person" sortable={false} label="Social networks" source="socialNetworksValues" allowEmpty >
+          <EmbeddedArrayField reference="SocialNetwork" target="person" label="Social networks" source="socialNetworksValues" allowEmpty >
             <DependentField resolve={showIfExists('account')} source="account" scoped >
               <TextField source="account" label="Account" />
             </DependentField>
@@ -90,7 +90,7 @@ export default (props) => {
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('phonesValues')} source="phonesValues">
-          <EmbeddedArrayField reference="Phone" target="person" sortable={false} label="Phones" source="phonesValues" allowEmpty >
+          <EmbeddedArrayField reference="Phone" target="person" label="Phones" source="phonesValues" allowEmpty >
             <DependentField resolve={showIfExists('phoneNumber')} source="phoneNumber" scoped >
               <TextField source="phoneNumber" label="Phone number" />
             </DependentField>
@@ -98,19 +98,19 @@ export default (props) => {
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('emailsValues')} source="emailsValues">
-          <EmbeddedArrayField reference="Email" target="person" sortable={false} label="Emails" source="emailsValues" allowEmpty >
+          <EmbeddedArrayField reference="Email" target="person" label="Emails" source="emailsValues" allowEmpty >
             <DependentField resolve={showIfExists('email')} source="email" scoped >
               <TextField source="email" label="Email" />
             </DependentField>
           </EmbeddedArrayField>
         </DependentField>
 
-        <ReferenceManyField sortable={false} label="As students" reference="Student" target="person" allowEmpty >
+        <ReferenceManyField label="As students" reference="Student" target="person" allowEmpty >
           <Student.Grid />
         </ReferenceManyField>
 
         <DependentField resolve={showIfNotEmptyRel('asCuratorId')} source="asCuratorId" >
-          <ReferenceField sortable={false} label="As curator" source="asCuratorId" reference="Curator" allowEmpty linkType="show" >
+          <ReferenceField label="As curator" source="asCuratorId" reference="Curator" allowEmpty linkType="show" >
             <TextField source="id" allowEmpty />
           </ReferenceField>
         </DependentField>

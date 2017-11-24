@@ -50,12 +50,12 @@ class Form extends Component {
         <TextInput label="Url" source="url" allowEmpty  />
 
         <Label text="Type" />
-        <ReferenceInput sortable={false} label="" source="typeId" reference="SocialNetworkType" allowEmpty  >
+        <ReferenceInput label="" source="typeId" reference="SocialNetworkType" allowEmpty  >
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
         <Label text="Person" />
-        <ReferenceInput sortable={false} label="" source="personId" reference="Person" allowEmpty  >
+        <ReferenceInput label="" source="personId" reference="Person" allowEmpty  >
           <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 

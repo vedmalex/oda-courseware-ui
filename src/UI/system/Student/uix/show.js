@@ -41,13 +41,13 @@ export default (props) => {
       <SimpleShowLayout {...props}>
 
         <DependentField resolve={showIfNotEmptyRel('personId')} source="personId" >
-          <ReferenceField sortable={false} label="Person" source="personId" reference="Person" allowEmpty linkType="show" >
+          <ReferenceField label="Person" source="personId" reference="Person" allowEmpty linkType="show" >
             <TextField source="fullName" allowEmpty />
           </ReferenceField>
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('groupId')} source="groupId" >
-          <ReferenceField sortable={false} label="Group" source="groupId" reference="Group" allowEmpty linkType="show" >
+          <ReferenceField label="Group" source="groupId" reference="Group" allowEmpty linkType="show" >
             <TextField source="name" allowEmpty />
           </ReferenceField>
         </DependentField>

@@ -14,7 +14,7 @@ exports.PersonUI = {
   'entities.Person': {
     'metadata.UI': {
       listName: 'fullName',
-      list: ['fullName'],
+      list: ['fullName', 'ages'],
       edit: ['^asCurator', '^asStudents'],
       embedded: ['socialNetworks', 'emails', 'phones', 'user'],
     },

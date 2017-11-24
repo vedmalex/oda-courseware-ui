@@ -47,13 +47,13 @@ export default (props) => {
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('typeId')} source="typeId" >
-          <ReferenceField sortable={false} label="Type" source="typeId" reference="SocialNetworkType" allowEmpty linkType="show" >
+          <ReferenceField label="Type" source="typeId" reference="SocialNetworkType" allowEmpty linkType="show" >
             <TextField source="name" allowEmpty />
           </ReferenceField>
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('personId')} source="personId" >
-          <ReferenceField sortable={false} label="Person" source="personId" reference="Person" allowEmpty linkType="show" >
+          <ReferenceField label="Person" source="personId" reference="Person" allowEmpty linkType="show" >
             <TextField source="fullName" allowEmpty />
           </ReferenceField>
         </DependentField>

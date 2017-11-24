@@ -44,12 +44,12 @@ export default (props) => {
       <SimpleShowLayout {...props}>
 
         <DependentField resolve={showIfNotEmptyRel('personId')} source="personId" >
-          <ReferenceField sortable={false} label="Person" source="personId" reference="Person" allowEmpty linkType="show" >
+          <ReferenceField label="Person" source="personId" reference="Person" allowEmpty linkType="show" >
             <TextField source="fullName" allowEmpty />
           </ReferenceField>
         </DependentField>
 
-        <ReferenceManyField sortable={false} label="Groups" reference="Group" target="curator" allowEmpty >
+        <ReferenceManyField label="Groups" reference="Group" target="curator" allowEmpty >
           <Group.Grid />
         </ReferenceManyField>
 

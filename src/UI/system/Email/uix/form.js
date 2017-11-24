@@ -49,12 +49,12 @@ class Form extends Component {
         <TextInput label="Email" source="email" validate={required}  />
 
         <Label text="Type" />
-        <ReferenceInput sortable={false} label="" source="typeId" reference="EmailType" allowEmpty  >
+        <ReferenceInput label="" source="typeId" reference="EmailType" allowEmpty  >
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
         <Label text="Person" />
-        <ReferenceInput sortable={false} label="" source="personId" reference="Person" allowEmpty  >
+        <ReferenceInput label="" source="personId" reference="Person" allowEmpty  >
           <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 

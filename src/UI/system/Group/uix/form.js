@@ -50,12 +50,12 @@ class Form extends Component {
 
 
         <Label text="Students" />
-        <ReferenceArrayInput sortable={false} label="" source="studentsIds" reference="Student" allowEmpty >
+        <ReferenceArrayInput label="" source="studentsIds" reference="Student" allowEmpty >
           <SelectArrayInput options={{ fullWidth: true }} optionText="id" optionValue="id" />
         </ReferenceArrayInput>
 
         <Label text="Curator" />
-        <ReferenceInput sortable={false} label="" source="curatorId" reference="Curator" allowEmpty  >
+        <ReferenceInput label="" source="curatorId" reference="Curator" allowEmpty  >
           <AutocompleteInput optionText="id" />
         </ReferenceInput>
 

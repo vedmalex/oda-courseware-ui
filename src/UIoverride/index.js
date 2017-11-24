@@ -1,7 +1,8 @@
 import PersonUIX from './Person/uix';
 // import PlanetUIX from './Planet/uix';
 import Admin from './admin';
-import { uix as _uix, Resources } from './../UI/system';
+import { uix as _uix, Resources as ResourcesBase } from './../UI/system';
+import personResource from './Person/queries';
 
 export { Admin };
 // export { uix };
@@ -19,4 +20,12 @@ export const uix = {
   // },
 }
 
-export { Resources }
+
+
+export class Resources extends ResourcesBase {
+  constructor(...args) {
+    super(...args);
+    this.resource('Person').override(personResource);
+  }
+}
+

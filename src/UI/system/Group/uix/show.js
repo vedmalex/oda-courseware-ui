@@ -46,12 +46,12 @@ export default (props) => {
           <TextField label="Name" source="name" />
         </DependentField>
 
-        <ReferenceManyField sortable={false} label="Students" reference="Student" target="group" allowEmpty >
+        <ReferenceManyField label="Students" reference="Student" target="group" allowEmpty >
           <Student.Grid />
         </ReferenceManyField>
 
         <DependentField resolve={showIfNotEmptyRel('curatorId')} source="curatorId" >
-          <ReferenceField sortable={false} label="Curator" source="curatorId" reference="Curator" allowEmpty linkType="show" >
+          <ReferenceField label="Curator" source="curatorId" reference="Curator" allowEmpty linkType="show" >
             <TextField source="id" allowEmpty />
           </ReferenceField>
         </DependentField>
