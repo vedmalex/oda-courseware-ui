@@ -1,4 +1,6 @@
 import React from "react";
-export default ({ record }) => {
-  return <span>Curator {record ? `"${record.id}"` : ""}</span>;
-};
+export default ({ record }) => (
+  <span>
+    Curator {record ? `"${record.id}"` : ""}
+  </span>
+);

@@ -1,15 +1,18 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {
   Create,
 } from "admin-on-rest";
-import SocialNetworkTypeForm from "./form";
-import SocialNetworkTypeTitle from "./title";
 import { ui } from 'oda-aor-rest';
 const actionType = ui.consts.actionType;
 
-export default props => (
-  <Create title={<SocialNetworkTypeTitle />} {...props} >
-    <SocialNetworkTypeForm
+const CreateForm = (props, context) =>{
+  const Form = context.uix.SocialNetworkType.Form;
+  const Title = context.uix.SocialNetworkType.Title;
+
+  return (
+  <Create title={<Title />} {...props} >
+    <Form
       {...props}
       singleRelActions={[
         { id: actionType.CREATE, name: 'Create' },
@@ -26,4 +29,10 @@ export default props => (
       ]}
     />
   </Create >
-);
+)};
+
+CreateForm.contextTypes = {
+  uix: PropTypes.object.isRequired,
+}
+
+export default CreateForm;

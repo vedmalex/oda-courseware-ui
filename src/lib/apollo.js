@@ -1,21 +1,24 @@
-import { ApolloClient, createNetworkInterface } from 'react-apollo';
+import { ApolloClient } from 'apollo-client';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloLink, concat } from 'apollo-link';
+import { BatchHttpLink } from "apollo-link-batch-http";
 
 export default ({ uri }) => {
-  const networkInterface = createNetworkInterface({ uri });
-  networkInterface.use([
-    {
-      applyMiddleware(req, next) {
-        if (!req.options.headers) {
-          req.options.headers = {};  // Create the header object if needed.
-        }
-        // get the authentication token from local storage if it exists
-        const token = localStorage.getItem('authToken');
-        req.options.headers.authorization = token ? `Bearer ${token}` : null;
-        next();
+  const httpLink = new BatchHttpLink({ uri });
+  const authMiddleware = new ApolloLink((operation, forward) => {
+    // add the authorization to the headers
+    const token = localStorage.getItem('authToken');
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : null,
       }
-    }
-  ]);
+    });
+    return forward(operation);
+  })
+
   return new ApolloClient({
-    networkInterface,
+    link: concat(authMiddleware, httpLink),
+    cache: new InMemoryCache()
   });
 }

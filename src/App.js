@@ -1,30 +1,25 @@
 import React, { Component } from 'react';
 
-import authClient from './authClient';
-
+import { ApolloProvider } from 'react-apollo';
 import Dashboard from './Dashboard/'
 
-import apolloClient from './lib/apollo';
-import { Admin } from './UI/system';
-// import { Admin } from './UIoverride';
+// import { Admin } from './UI/system';
+import { Admin } from './UIoverride';
 import { ui } from 'oda-aor-rest';
-
-global.connection = apolloClient({ uri: 'http://localhost:3003/graphql' });
+import AutoFormProvider from './lib/adminAutoFormProvider';
 
 class App extends Component {
   render() {
     return (
-      <Admin
-        customSagas={[ui.sagas.monitorChanges,]}
-        customReducers={{ apollo: global.connection.reducer() }}
-        title="SW-API"
-        uix={this.props.uix}
-        connection={global.connection}
-        resources={this.props.resources}
-        dashboard={Dashboard}
-        authClientInit={authClient}
-      />
+      <AutoFormProvider uix={this.props.uix} resources={this.props.resources} client={this.props.client}>
+        <Admin
+          customSagas={[ui.sagas.monitorChanges,]}
+          title="SW-API"
+          dashboard={Dashboard}
+        />
+      </AutoFormProvider>
     );
+
   }
 }
 

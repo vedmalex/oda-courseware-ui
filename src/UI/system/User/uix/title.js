@@ -1,4 +1,6 @@
 import React from "react";
-export default ({ record }) => {
-  return <span>User {record ? `"${record.userName}"` : ""}</span>;
-};
+export default ({ record }) => (
+  <span>
+    User {record ? `"${record.userName}"` : ""}
+  </span>
+);

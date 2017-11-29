@@ -1,4 +1,6 @@
 import React from "react";
-export default ({ record }) => {
-  return <span>SocialNetwork {record ? `"${record.account}"` : ""}</span>;
-};
+export default ({ record }) => (
+  <span>
+    SocialNetwork {record ? `"${record.account}"` : ""}
+  </span>
+);

@@ -1,4 +1,6 @@
 import React from "react";
-export default ({ record }) => {
-  return <span>EmailType {record ? `"${record.name}"` : ""}</span>;
-};
+export default ({ record }) => (
+  <span>
+    EmailType {record ? `"${record.name}"` : ""}
+  </span>
+);

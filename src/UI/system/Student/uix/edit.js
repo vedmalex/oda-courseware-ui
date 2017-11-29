@@ -1,15 +1,18 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {
   Edit,
 } from "admin-on-rest";
-import StudentForm from "./form";
-import StudentTitle from "./title";
 import { ui } from 'oda-aor-rest';
 const actionType = ui.consts.actionType;
 
-export default props => (
-  <Edit title={<StudentTitle />} {...props}>
-    <StudentForm
+const EditForm = (props, context) => {
+  const Form = context.uix.Student.Form;
+  const Title = context.uix.Student.Title;
+
+  return (
+  <Edit title={<Title />} {...props}>
+    <Form
       {...props}
       singleRelActions={[
         { id: actionType.CREATE, name: 'Create' },
@@ -26,4 +29,10 @@ export default props => (
       ]}
     />
   </Edit >
-);
+)};
+
+EditForm.contextTypes = {
+  uix: PropTypes.object.isRequired,
+}
+
+export default EditForm;

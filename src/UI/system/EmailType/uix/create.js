@@ -1,15 +1,18 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {
   Create,
 } from "admin-on-rest";
-import EmailTypeForm from "./form";
-import EmailTypeTitle from "./title";
 import { ui } from 'oda-aor-rest';
 const actionType = ui.consts.actionType;
 
-export default props => (
-  <Create title={<EmailTypeTitle />} {...props} >
-    <EmailTypeForm
+const CreateForm = (props, context) =>{
+  const Form = context.uix.EmailType.Form;
+  const Title = context.uix.EmailType.Title;
+
+  return (
+  <Create title={<Title />} {...props} >
+    <Form
       {...props}
       singleRelActions={[
         { id: actionType.CREATE, name: 'Create' },
@@ -26,4 +29,10 @@ export default props => (
       ]}
     />
   </Create >
-);
+)};
+
+CreateForm.contextTypes = {
+  uix: PropTypes.object.isRequired,
+}
+
+export default CreateForm;

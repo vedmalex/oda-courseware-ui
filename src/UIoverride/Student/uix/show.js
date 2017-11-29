@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import {
   Datagrid,
   TextField,
@@ -15,7 +14,12 @@ import {
   required,
 } from "admin-on-rest";
 
+import {
+  uix
+} from "./../../";
+
 // import { EmbeddedArrayField } from 'aor-embedded-array';
+import StudentTitle from "./title";
 import { ui } from 'oda-aor-rest';
 
 const {
@@ -31,28 +35,20 @@ const showIfExists = field => root => !!root[field];
 
 const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[field]) && root[field].length > 0);
 
-const ShowView = (props, context) => {
-  const { uix } = context.uix;
-  const Title = uix.SocialNetwork.Title;
+export default (props) => {
   return (
-    <Show title={<Title />} {...props} >
+    <Show title={<StudentTitle />} {...props} >
       <SimpleShowLayout {...props}>
-        <DependentField resolve={showIfExists('account')}>
-          <TextField label="Account" source="account" />
-        </DependentField>
-        <DependentField resolve={showIfExists('url')}>
-          <TextField label="Url" source="url" allowEmpty />
-        </DependentField>
-
-        <DependentField resolve={showIfNotEmptyRel('typeId')} source="typeId" >
-          <ReferenceField label="Type" source="typeId" reference="SocialNetworkType" allowEmpty linkType="show" >
-            <TextField source="name" allowEmpty />
-          </ReferenceField>
-        </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('personId')} source="personId" >
           <ReferenceField label="Person" source="personId" reference="Person" allowEmpty linkType="show" >
             <TextField source="fullName" allowEmpty />
+          </ReferenceField>
+        </DependentField>
+
+        <DependentField resolve={showIfNotEmptyRel('groupId')} source="groupId" >
+          <ReferenceField label="Group" source="groupId" reference="Group" allowEmpty linkType="show" >
+            <TextField source="name" allowEmpty />
           </ReferenceField>
         </DependentField>
 
@@ -61,8 +57,3 @@ const ShowView = (props, context) => {
   );
 };
 
-ShowView.contextTypes = {
-  uix: PropTypes.object.isRequired,
-}
-
-export default ShowView;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {
   Datagrid,
   TextField,
@@ -14,12 +15,7 @@ import {
   required,
 } from "admin-on-rest";
 
-import {
-  uix
-} from "./../../";
-
 // import { EmbeddedArrayField } from 'aor-embedded-array';
-import CuratorTitle from "./title";
 import { ui } from 'oda-aor-rest';
 
 const {
@@ -35,12 +31,14 @@ const showIfExists = field => root => !!root[field];
 
 const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[field]) && root[field].length > 0);
 
-export default (props) => {
+const ShowView = (props, context) => {
+  const { uix } = context.uix;
+  const Title = uix.Curator.Title;
   const {
     Group,
   } = uix;
   return (
-    <Show title={<CuratorTitle />} {...props} >
+    <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
 
         <DependentField resolve={showIfNotEmptyRel('personId')} source="personId" >
@@ -58,3 +56,8 @@ export default (props) => {
   );
 };
 
+ShowView.contextTypes = {
+  uix: PropTypes.object.isRequired,
+}
+
+export default ShowView;

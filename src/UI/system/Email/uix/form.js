@@ -62,7 +62,6 @@ class Form extends Component {
   }
 }
 
-
 const formName = 'record-form';
 const selector = formValueSelector(formName);
 // сделать сразу с переводом...

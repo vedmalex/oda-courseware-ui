@@ -1,4 +1,6 @@
 import React from "react";
-export default ({ record }) => {
-  return <span>Person {record ? `"${record.fullName}"` : ""}</span>;
-};
+export default ({ record }) => (
+  <span>
+    Person {record ? `"${record.fullName}"` : ""}
+  </span>
+);
