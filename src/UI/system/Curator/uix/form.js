@@ -48,7 +48,7 @@ class Form extends Component {
       <SimpleForm {...props} >
 
         <Label text="Person" />
-        <ReferenceInput label="" source="personId" reference="Person" allowEmpty  >
+        <ReferenceInput label="" source="personId" reference="Person" allowEmpty >
           <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 

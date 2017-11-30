@@ -46,16 +46,16 @@ class Form extends Component {
 
     return (
       <SimpleForm {...props} >
-        <TextInput label="Account" source="account" validate={required}  />
-        <TextInput label="Url" source="url" allowEmpty  />
+        <TextInput label="Account" source="account" validate={required} />
+        <TextInput label="Url" source="url" allowEmpty />
 
         <Label text="Type" />
-        <ReferenceInput label="" source="typeId" reference="SocialNetworkType" allowEmpty  >
+        <ReferenceInput label="" source="typeId" reference="SocialNetworkType" allowEmpty >
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
         <Label text="Person" />
-        <ReferenceInput label="" source="personId" reference="Person" allowEmpty  >
+        <ReferenceInput label="" source="personId" reference="Person" allowEmpty >
           <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 

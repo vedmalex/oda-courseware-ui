@@ -1,15 +1,11 @@
-import Title from "./title";
-import Form from "./form";
-import Create from "./create";
-import Show from "./show";
-import Edit from "./edit";
-import Grid from "./grid";
-import List from "./list";
+import loadable from 'loadable-components'
+
+const Title = loadable(() => import('./title'));
+const Form = loadable(() => import('./form'));
+const Grid = loadable(() => import('./grid'));
 
 export default {
-  Create,
-  Edit,
-  Show,
-  List,
+  Form,
   Grid,
+  Title,
 };

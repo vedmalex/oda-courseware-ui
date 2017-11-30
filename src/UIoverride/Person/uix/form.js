@@ -55,7 +55,7 @@ class Form extends Component {
 
         <Label text="User" />
         <DependentInput resolve={selectorFor('user')} scoped >
-          <ReferenceInput label="User" source="userId" reference="User" allowEmpty  >
+          <ReferenceInput label="User" source="userId" reference="User" allowEmpty >
             <AutocompleteInput optionText="userName" />
           </ReferenceInput>
         </DependentInput>

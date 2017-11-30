@@ -32,7 +32,7 @@ const showIfExists = field => root => !!root[field];
 const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[field]) && root[field].length > 0);
 
 const ShowView = (props, context) => {
-  const { uix } = context.uix;
+  const { uix } = context;
   const Title = uix.SocialNetwork.Title;
   return (
     <Show title={<Title />} {...props} >

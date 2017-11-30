@@ -1,11 +1,15 @@
-import Edit from './edit';
-import Show from './show';
-import List from './list';
-import Grid from './grid';
+import loadable from 'loadable-components'
+
+const Filter = loadable(() => import('./filter'));
+const Form = loadable(() => import('./form'));
+const Show = loadable(() => import('./show'));
+const Grid = loadable(() => import('./grid'));
+const Title = loadable(() => import('./title'));
 
 export default {
-  Edit,
+  Filter,
+  Form,
   Show,
-  List,
   Grid,
+  Title,
 };

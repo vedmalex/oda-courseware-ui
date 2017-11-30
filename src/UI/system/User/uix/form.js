@@ -46,11 +46,11 @@ class Form extends Component {
 
     return (
       <SimpleForm {...props} >
-        <TextInput label="User name" source="userName" validate={required}  />
-        <TextInput label="Password" source="password" validate={required}  />
-        <BooleanInput label="Is admin" source="isAdmin" allowEmpty  />
-        <BooleanInput label="Is system" source="isSystem" allowEmpty  />
-        <BooleanInput label="Enabled" source="enabled" allowEmpty  />
+        <TextInput label="User name" source="userName" validate={required} />
+        <TextInput label="Password" source="password" validate={required} />
+        <BooleanInput label="Is admin" source="isAdmin" allowEmpty />
+        <BooleanInput label="Is system" source="isSystem" allowEmpty />
+        <BooleanInput label="Enabled" source="enabled" allowEmpty />
 
       </SimpleForm>);
   }

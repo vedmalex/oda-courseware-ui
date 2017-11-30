@@ -46,14 +46,14 @@ class Form extends Component {
 
     return (
       <SimpleForm {...props} >
-        <TextInput label="Spiritual name" source="spiritualName" validate={required}  />
-        <TextInput label="Full name" source="fullName" validate={required}  />
-        <DateInput label="Date of birth" source="dateOfBirth" allowEmpty  />
-        <TextInput label="Special notes" source="specialNotes" allowEmpty  />
+        <TextInput label="Spiritual name" source="spiritualName" validate={required} />
+        <TextInput label="Full name" source="fullName" validate={required} />
+        <DateInput label="Date of birth" source="dateOfBirth" allowEmpty />
+        <TextInput label="Special notes" source="specialNotes" allowEmpty />
 
         <Label text="User" />
         <DependentInput resolve={selectorFor('user')} scoped >
-          <ReferenceInput label="User" source="userId" reference="User" allowEmpty  >
+          <ReferenceInput label="User" source="userId" reference="User" allowEmpty >
             <AutocompleteInput optionText="userName" />
           </ReferenceInput>
         </DependentInput>
