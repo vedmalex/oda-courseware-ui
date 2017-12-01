@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {
   ReferenceInput,
   SelectInput,
@@ -14,8 +15,14 @@ import {
   Filter,
 } from "admin-on-rest";
 
-export default props => (
+const FilterPanel = (props, {translate}) => (
   <Filter {...props} >
 
   </Filter>
 );
+
+FilterPanel.contextTypes = {
+  translate: PropTypes.func.isRequired,
+}
+
+export default FilterPanel;

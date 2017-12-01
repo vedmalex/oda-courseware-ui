@@ -1,6 +1,14 @@
 import React from "react";
-export default ({ record }) => (
+import PropTypes from 'prop-types';
+
+const Title = ({ record },{translate}) => (
   <span>
-    Phone {record ? `"${record.phoneNumber}"` : ""}
+    {translate('resources.Phone.name', {smart_count : 1})} {record ? `"${record.phoneNumber}"` : ""}
   </span>
 );
+
+Title.contextTypes = {
+  translate: PropTypes.func.isRequired,
+}
+
+export default Title;

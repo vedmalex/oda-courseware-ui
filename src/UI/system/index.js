@@ -21,6 +21,7 @@ import EmailUIX from './Email/uix';
 import EmailTypeUIX from './EmailType/uix';
 import PhoneUIX from './Phone/uix';
 import PhoneTypeUIX from './PhoneType/uix';
+
 import { data } from 'oda-aor-rest';
 
 import Admin from './admin';

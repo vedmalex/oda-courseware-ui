@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from 'prop-types';
+
 import {
   Datagrid,
   TextField,
@@ -11,15 +13,21 @@ import {
   ReferenceField,
 } from "admin-on-rest";
 
-export default props => (
+const Grid = (props, context) => (
   <Datagrid {...props} >
-    <TextField sortable={true} source="userName" />
-    <BooleanField sortable={true} source="isAdmin" allowEmpty />
-    <BooleanField sortable={true} source="isSystem" allowEmpty />
-    <BooleanField sortable={true} source="enabled" allowEmpty />
+    <TextField sortable={true} label="resources.User.fields.userName" source="userName" />
+    <BooleanField sortable={true} label="resources.User.fields.isAdmin" source="isAdmin" allowEmpty />
+    <BooleanField sortable={true} label="resources.User.fields.isSystem" source="isSystem" allowEmpty />
+    <BooleanField sortable={true} label="resources.User.fields.enabled" source="enabled" allowEmpty />
 
     <ShowButton />
     <EditButton />
     <DeleteButton />
   </Datagrid>
 );
+
+Grid.contextTypes = {
+  translate: PropTypes.func.isRequired,
+}
+
+export default Grid;

@@ -34,6 +34,7 @@ const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[
 const ShowView = (props, context) => {
   const { uix } = context;
   const Title = uix.Person.Title;
+  const { translate } = context;
   const {
     Student,
   } = uix;
@@ -41,74 +42,74 @@ const ShowView = (props, context) => {
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
         <DependentField resolve={showIfExists('spiritualName')}>
-          <TextField label="Spiritual name" source="spiritualName" />
+          <TextField label="resources.Person.fields.spiritualName" source="spiritualName" />
         </DependentField>
         <DependentField resolve={showIfExists('fullName')}>
-          <TextField label="Full name" source="fullName" />
+          <TextField label="resources.Person.fields.fullName" source="fullName" />
         </DependentField>
         <DependentField resolve={showIfExists('dateOfBirth')}>
-          <DateField label="Date of birth" source="dateOfBirth" allowEmpty />
+          <DateField label="resources.Person.fields.dateOfBirth" source="dateOfBirth" allowEmpty />
         </DependentField>
         <DependentField resolve={showIfExists('ages')}>
-          <TextField label="Ages" source="ages" allowEmpty />
+          <TextField label="resources.Person.fields.ages" source="ages" allowEmpty />
         </DependentField>
         <DependentField resolve={showIfExists('specialNotes')}>
-          <TextField label="Special notes" source="specialNotes" allowEmpty />
+          <TextField label="resources.Person.fields.specialNotes" source="specialNotes" allowEmpty />
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('userId')} source="user" >
-          <EmbeddedRefField label="User" source="userId" reference="User" target="id">
+          <EmbeddedRefField label="resources.Person.fields.user" source="userId" reference="User" target="id">
             <DependentField resolve={showIfExists('userName')} scoped >
-              <TextField source="userName" label="User name" />
+              <TextField label="resources.User.fields.userName" source="userName"  />
             </DependentField>
             <DependentField resolve={showIfExists('password')} scoped >
-              <TextField source="password" label="Password" />
+              <TextField label="resources.User.fields.password" source="password"  />
             </DependentField>
             <DependentField resolve={showIfExists('isAdmin')} scoped >
-              <BooleanField source="isAdmin" label="Is admin" allowEmpty />
+              <BooleanField label="resources.User.fields.isAdmin" source="isAdmin"  allowEmpty />
             </DependentField>
             <DependentField resolve={showIfExists('isSystem')} scoped >
-              <BooleanField source="isSystem" label="Is system" allowEmpty />
+              <BooleanField label="resources.User.fields.isSystem" source="isSystem"  allowEmpty />
             </DependentField>
             <DependentField resolve={showIfExists('enabled')} scoped >
-              <BooleanField source="enabled" label="Enabled" allowEmpty />
+              <BooleanField label="resources.User.fields.enabled" source="enabled"  allowEmpty />
             </DependentField>
           </EmbeddedRefField>
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('socialNetworksValues')} source="socialNetworksValues">
-          <EmbeddedArrayField reference="SocialNetwork" target="person" label="Social networks" source="socialNetworksValues" allowEmpty >
+          <EmbeddedArrayField reference="SocialNetwork" target="person" label="resources.Person.fields.socialNetworks" source="socialNetworksValues" allowEmpty >
             <DependentField resolve={showIfExists('account')} source="account" scoped >
-              <TextField source="account" label="Account" />
+              <TextField label="resources.SocialNetwork.fields.account" source="account"  />
             </DependentField>
             <DependentField resolve={showIfExists('url')} source="url" scoped >
-              <TextField source="url" label="Url" allowEmpty />
+              <TextField label="resources.SocialNetwork.fields.url" source="url"  allowEmpty />
             </DependentField>
           </EmbeddedArrayField>
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('phonesValues')} source="phonesValues">
-          <EmbeddedArrayField reference="Phone" target="person" label="Phones" source="phonesValues" allowEmpty >
+          <EmbeddedArrayField reference="Phone" target="person" label="resources.Person.fields.phones" source="phonesValues" allowEmpty >
             <DependentField resolve={showIfExists('phoneNumber')} source="phoneNumber" scoped >
-              <TextField source="phoneNumber" label="Phone number" />
+              <TextField label="resources.Phone.fields.phoneNumber" source="phoneNumber"  />
             </DependentField>
           </EmbeddedArrayField>
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('emailsValues')} source="emailsValues">
-          <EmbeddedArrayField reference="Email" target="person" label="Emails" source="emailsValues" allowEmpty >
+          <EmbeddedArrayField reference="Email" target="person" label="resources.Person.fields.emails" source="emailsValues" allowEmpty >
             <DependentField resolve={showIfExists('email')} source="email" scoped >
-              <TextField source="email" label="Email" />
+              <TextField label="resources.Email.fields.email" source="email"  />
             </DependentField>
           </EmbeddedArrayField>
         </DependentField>
 
-        <ReferenceManyField label="As students" reference="Student" target="person" allowEmpty >
+        <ReferenceManyField label="resources.Person.fields.asStudents" reference="Student" target="person" allowEmpty >
           <Student.Grid />
         </ReferenceManyField>
 
         <DependentField resolve={showIfNotEmptyRel('asCuratorId')} source="asCuratorId" >
-          <ReferenceField label="As curator" source="asCuratorId" reference="Curator" allowEmpty linkType="show" >
+          <ReferenceField label="resources.Person.fields.asCurator" source="asCuratorId" reference="Curator" allowEmpty linkType="show" >
             <TextField source="id" allowEmpty />
           </ReferenceField>
         </DependentField>
@@ -120,6 +121,7 @@ const ShowView = (props, context) => {
 
 ShowView.contextTypes = {
   uix: PropTypes.object.isRequired,
+  translate: PropTypes.func.isRequired,
 }
 
 export default ShowView;

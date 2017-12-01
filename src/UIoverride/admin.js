@@ -4,6 +4,49 @@ import { client } from 'oda-aor-rest';
 import Loading from 'react-loading-animation'
 import { Admin, Resource, Delete } from 'admin-on-rest';
 
+import merge from 'lodash/merge';
+import russianMessages from 'aor-language-russian';
+import { englishMessages } from 'admin-on-rest';
+import translationRu from './i18n/ru'
+import translationEn from '../UI/system/i18n';
+
+import menu from './menu';
+
+const messages = {
+  'en': {
+    ...merge(
+      englishMessages,
+      translationEn,
+      {
+        uix: {
+          locale: {
+            language: "Language",
+            en: 'EN',
+            ru: 'RU'
+          },
+          configuration: 'Configuration',
+        }
+      },
+    ),
+  },
+  'ru': {
+    ...merge(
+      russianMessages,
+      translationRu,
+      {
+        uix: {
+          locale: {
+            language: "Язык",
+            en: 'АНГЛ',
+            ru: 'РУС'
+          },
+          configuration: 'Настройки',
+        },
+      }
+    ),
+  }
+};
+
 class OdaClientApp extends Component {
   constructor(props, context) {
     super(props, context);
@@ -36,6 +79,9 @@ class OdaClientApp extends Component {
     return (
       <Admin
         {...this.props}
+        menu={menu}
+        messages={messages}
+        locale="en"
         authClient={authClient}
         restClient={restClient}>
         <Resource
@@ -88,7 +134,7 @@ class OdaClientApp extends Component {
         />
         <Resource
           show={SocialNetworkType.Show}
-          name="SocialNetworkType"
+          name="SocialNetwork Type"
           edit={SocialNetworkType.Edit}
           create={SocialNetworkType.Create}
           list={SocialNetworkType.List}

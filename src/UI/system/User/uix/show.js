@@ -34,20 +34,21 @@ const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[
 const ShowView = (props, context) => {
   const { uix } = context;
   const Title = uix.User.Title;
+  const { translate } = context;
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
         <DependentField resolve={showIfExists('userName')}>
-          <TextField label="User name" source="userName" />
+          <TextField label="resources.User.fields.userName" source="userName" />
         </DependentField>
         <DependentField resolve={showIfExists('isAdmin')}>
-          <BooleanField label="Is admin" source="isAdmin" allowEmpty />
+          <BooleanField label="resources.User.fields.isAdmin" source="isAdmin" allowEmpty />
         </DependentField>
         <DependentField resolve={showIfExists('isSystem')}>
-          <BooleanField label="Is system" source="isSystem" allowEmpty />
+          <BooleanField label="resources.User.fields.isSystem" source="isSystem" allowEmpty />
         </DependentField>
         <DependentField resolve={showIfExists('enabled')}>
-          <BooleanField label="Enabled" source="enabled" allowEmpty />
+          <BooleanField label="resources.User.fields.enabled" source="enabled" allowEmpty />
         </DependentField>
 
       </SimpleShowLayout>
@@ -57,6 +58,7 @@ const ShowView = (props, context) => {
 
 ShowView.contextTypes = {
   uix: PropTypes.object.isRequired,
+  translate: PropTypes.func.isRequired,
 }
 
 export default ShowView;

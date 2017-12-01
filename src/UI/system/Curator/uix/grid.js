@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from 'prop-types';
+
 import {
   Datagrid,
   TextField,
@@ -11,7 +13,7 @@ import {
   ReferenceField,
 } from "admin-on-rest";
 
-export default props => (
+const Grid = (props, context) => (
   <Datagrid {...props} >
 
     <ShowButton />
@@ -19,3 +21,9 @@ export default props => (
     <DeleteButton />
   </Datagrid>
 );
+
+Grid.contextTypes = {
+  translate: PropTypes.func.isRequired,
+}
+
+export default Grid;

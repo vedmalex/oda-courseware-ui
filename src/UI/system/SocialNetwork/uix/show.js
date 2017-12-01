@@ -34,24 +34,25 @@ const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[
 const ShowView = (props, context) => {
   const { uix } = context;
   const Title = uix.SocialNetwork.Title;
+  const { translate } = context;
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
         <DependentField resolve={showIfExists('account')}>
-          <TextField label="Account" source="account" />
+          <TextField label="resources.SocialNetwork.fields.account" source="account" />
         </DependentField>
         <DependentField resolve={showIfExists('url')}>
-          <TextField label="Url" source="url" allowEmpty />
+          <TextField label="resources.SocialNetwork.fields.url" source="url" allowEmpty />
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('typeId')} source="typeId" >
-          <ReferenceField label="Type" source="typeId" reference="SocialNetworkType" allowEmpty linkType="show" >
+          <ReferenceField label="resources.SocialNetwork.fields.type" source="typeId" reference="SocialNetworkType" allowEmpty linkType="show" >
             <TextField source="name" allowEmpty />
           </ReferenceField>
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('personId')} source="personId" >
-          <ReferenceField label="Person" source="personId" reference="Person" allowEmpty linkType="show" >
+          <ReferenceField label="resources.SocialNetwork.fields.person" source="personId" reference="Person" allowEmpty linkType="show" >
             <TextField source="fullName" allowEmpty />
           </ReferenceField>
         </DependentField>
@@ -63,6 +64,7 @@ const ShowView = (props, context) => {
 
 ShowView.contextTypes = {
   uix: PropTypes.object.isRequired,
+  translate: PropTypes.func.isRequired,
 }
 
 export default ShowView;

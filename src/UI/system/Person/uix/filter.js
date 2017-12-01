@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {
   ReferenceInput,
   SelectInput,
@@ -14,20 +15,26 @@ import {
   Filter,
 } from "admin-on-rest";
 
-export default props => (
+const FilterPanel = (props, {translate}) => (
   <Filter {...props} >
 
-    <TextInput label="Search" source="q" allowEmpty alwaysOn />
-    <NullableBooleanInput label="Spiritual name exists" source="spiritualName-exists" />
+    <TextInput label="uix.filter.search" source="q" allowEmpty alwaysOn />
+    <NullableBooleanInput label={translate("uix.filter.exists",{ name: translate('resources.Person.fields.spiritualName')})} source="spiritualName-exists" />
 
-    <TextInput label="Spiritual name" source="spiritualName-imatch" allowEmpty />
-    <SelectArrayInput label="Spiritual name in" source="spiritualName-in" allowEmpty />
-    <SelectArrayInput label="Spiritual name not in" source="spiritualName-nin" allowEmpty />
-    <NullableBooleanInput label="Full name exists" source="fullName-exists" />
+    <TextInput label={translate("uix.filter.exists",{ name: translate('resources.Person.fields.spiritualName')})} source="spiritualName-imatch" allowEmpty />
+    <SelectArrayInput label={translate("uix.filter.in",{ name: translate('resources.Person.fields.spiritualName')})} source="spiritualName-in" allowEmpty />
+    <SelectArrayInput label={translate("uix.filter.nin",{ name: translate('resources.Person.fields.spiritualName')})} source="spiritualName-nin" allowEmpty />
+    <NullableBooleanInput label={translate("uix.filter.exists",{ name: translate('resources.Person.fields.fullName')})} source="fullName-exists" />
 
-    <TextInput label="Full name" source="fullName-imatch" allowEmpty />
-    <SelectArrayInput label="Full name in" source="fullName-in" allowEmpty />
-    <SelectArrayInput label="Full name not in" source="fullName-nin" allowEmpty />
+    <TextInput label={translate("uix.filter.exists",{ name: translate('resources.Person.fields.fullName')})} source="fullName-imatch" allowEmpty />
+    <SelectArrayInput label={translate("uix.filter.in",{ name: translate('resources.Person.fields.fullName')})} source="fullName-in" allowEmpty />
+    <SelectArrayInput label={translate("uix.filter.nin",{ name: translate('resources.Person.fields.fullName')})} source="fullName-nin" allowEmpty />
 
   </Filter>
 );
+
+FilterPanel.contextTypes = {
+  translate: PropTypes.func.isRequired,
+}
+
+export default FilterPanel;

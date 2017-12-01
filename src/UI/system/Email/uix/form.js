@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   ReferenceInput,
   SelectInput,
@@ -43,17 +44,17 @@ class Form extends Component {
     const { props } = this;
     const singleRelActions = props.singleRelActions;
     const manyRelAction = props.manyRelActions;
-
+    const { translate } = this.context;
     return (
       <SimpleForm {...props} >
-        <TextInput label="Email" source="email" validate={required} />
+        <TextInput label="resources.Email.fields.email" source="email"  validate={required} />
 
-        <Label text="Type" />
+        <Label text="resources.Email.fields.type" />
         <ReferenceInput label="" source="typeId" reference="EmailType" allowEmpty >
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
-        <Label text="Person" />
+        <Label text="resources.Email.fields.person" />
         <ReferenceInput label="" source="personId" reference="Person" allowEmpty >
           <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
@@ -64,7 +65,10 @@ class Form extends Component {
 
 const formName = 'record-form';
 const selector = formValueSelector(formName);
-// сделать сразу с переводом...
+
+Form.contextTypes = {
+  translate: PropTypes.func.isRequired,
+}
 
 export default compose(
   connect(

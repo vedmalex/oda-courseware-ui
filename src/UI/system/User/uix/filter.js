@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {
   ReferenceInput,
   SelectInput,
@@ -14,24 +15,30 @@ import {
   Filter,
 } from "admin-on-rest";
 
-export default props => (
+const FilterPanel = (props, {translate}) => (
   <Filter {...props} >
 
-    <TextInput label="Search" source="q" allowEmpty alwaysOn />
-    <NullableBooleanInput label="User name exists" source="userName-exists" />
+    <TextInput label="uix.filter.search" source="q" allowEmpty alwaysOn />
+    <NullableBooleanInput label={translate("uix.filter.exists",{ name: translate('resources.User.fields.userName')})} source="userName-exists" />
 
-    <TextInput label="User name" source="userName-imatch" allowEmpty />
-    <SelectArrayInput label="User name in" source="userName-in" allowEmpty />
-    <SelectArrayInput label="User name not in" source="userName-nin" allowEmpty />
-    <NullableBooleanInput label="Is admin exists" source="isAdmin-exists" />
+    <TextInput label={translate("uix.filter.exists",{ name: translate('resources.User.fields.userName')})} source="userName-imatch" allowEmpty />
+    <SelectArrayInput label={translate("uix.filter.in",{ name: translate('resources.User.fields.userName')})} source="userName-in" allowEmpty />
+    <SelectArrayInput label={translate("uix.filter.nin",{ name: translate('resources.User.fields.userName')})} source="userName-nin" allowEmpty />
+    <NullableBooleanInput label={translate("uix.filter.exists",{ name: translate('resources.User.fields.isAdmin')})} source="isAdmin-exists" />
 
-    <BooleanInput label="Is admin" source="isAdmin-eq" allowEmpty />
-    <NullableBooleanInput label="Is system exists" source="isSystem-exists" />
+    <BooleanInput label={translate("uix.filter.eq",{ name: translate('resources.User.fields.isAdmin')})} source="isAdmin-eq" allowEmpty />
+    <NullableBooleanInput label={translate("uix.filter.exists",{ name: translate('resources.User.fields.isSystem')})} source="isSystem-exists" />
 
-    <BooleanInput label="Is system" source="isSystem-eq" allowEmpty />
-    <NullableBooleanInput label="Enabled exists" source="enabled-exists" />
+    <BooleanInput label={translate("uix.filter.eq",{ name: translate('resources.User.fields.isSystem')})} source="isSystem-eq" allowEmpty />
+    <NullableBooleanInput label={translate("uix.filter.exists",{ name: translate('resources.User.fields.enabled')})} source="enabled-exists" />
 
-    <BooleanInput label="Enabled" source="enabled-eq" allowEmpty />
+    <BooleanInput label={translate("uix.filter.eq",{ name: translate('resources.User.fields.enabled')})} source="enabled-eq" allowEmpty />
 
   </Filter>
 );
+
+FilterPanel.contextTypes = {
+  translate: PropTypes.func.isRequired,
+}
+
+export default FilterPanel;

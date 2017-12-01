@@ -34,6 +34,7 @@ const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[
 const ShowView = (props, context) => {
   const { uix } = context;
   const Title = uix.Curator.Title;
+  const { translate } = context;
   const {
     Group,
   } = uix;
@@ -42,12 +43,12 @@ const ShowView = (props, context) => {
       <SimpleShowLayout {...props}>
 
         <DependentField resolve={showIfNotEmptyRel('personId')} source="personId" >
-          <ReferenceField label="Person" source="personId" reference="Person" allowEmpty linkType="show" >
+          <ReferenceField label="resources.Curator.fields.person" source="personId" reference="Person" allowEmpty linkType="show" >
             <TextField source="fullName" allowEmpty />
           </ReferenceField>
         </DependentField>
 
-        <ReferenceManyField label="Groups" reference="Group" target="curator" allowEmpty >
+        <ReferenceManyField label="resources.Curator.fields.groups" reference="Group" target="curator" allowEmpty >
           <Group.Grid />
         </ReferenceManyField>
 
@@ -58,6 +59,7 @@ const ShowView = (props, context) => {
 
 ShowView.contextTypes = {
   uix: PropTypes.object.isRequired,
+  translate: PropTypes.func.isRequired,
 }
 
 export default ShowView;

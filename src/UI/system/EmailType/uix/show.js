@@ -34,11 +34,12 @@ const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[
 const ShowView = (props, context) => {
   const { uix } = context;
   const Title = uix.EmailType.Title;
+  const { translate } = context;
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
         <DependentField resolve={showIfExists('name')}>
-          <TextField label="Name" source="name" />
+          <TextField label="resources.EmailType.fields.name" source="name" />
         </DependentField>
 
       </SimpleShowLayout>
@@ -48,6 +49,7 @@ const ShowView = (props, context) => {
 
 ShowView.contextTypes = {
   uix: PropTypes.object.isRequired,
+  translate: PropTypes.func.isRequired,
 }
 
 export default ShowView;

@@ -7,6 +7,7 @@ import Dashboard from './Dashboard/'
 import { Admin } from './UIoverride';
 import { ui } from 'oda-aor-rest';
 import AutoFormProvider from './lib/adminAutoFormProvider';
+import customRoutes from './routes';
 
 class App extends Component {
   render() {
@@ -16,10 +17,10 @@ class App extends Component {
           customSagas={[ui.sagas.monitorChanges,]}
           title="SW-API"
           dashboard={Dashboard}
+          customRoutes={customRoutes}
         />
       </AutoFormProvider>
     );
-
   }
 }
 

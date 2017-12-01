@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {
   ReferenceInput,
   SelectInput,
@@ -14,15 +15,21 @@ import {
   Filter,
 } from "admin-on-rest";
 
-export default props => (
+const FilterPanel = (props, {translate}) => (
   <Filter {...props} >
 
-    <TextInput label="Search" source="q" allowEmpty alwaysOn />
-    <NullableBooleanInput label="Name exists" source="name-exists" />
+    <TextInput label="uix.filter.search" source="q" allowEmpty alwaysOn />
+    <NullableBooleanInput label={translate("uix.filter.exists",{ name: translate('resources.PhoneType.fields.name')})} source="name-exists" />
 
-    <TextInput label="Name" source="name-imatch" allowEmpty />
-    <SelectArrayInput label="Name in" source="name-in" allowEmpty />
-    <SelectArrayInput label="Name not in" source="name-nin" allowEmpty />
+    <TextInput label={translate("uix.filter.exists",{ name: translate('resources.PhoneType.fields.name')})} source="name-imatch" allowEmpty />
+    <SelectArrayInput label={translate("uix.filter.in",{ name: translate('resources.PhoneType.fields.name')})} source="name-in" allowEmpty />
+    <SelectArrayInput label={translate("uix.filter.nin",{ name: translate('resources.PhoneType.fields.name')})} source="name-nin" allowEmpty />
 
   </Filter>
 );
+
+FilterPanel.contextTypes = {
+  translate: PropTypes.func.isRequired,
+}
+
+export default FilterPanel;

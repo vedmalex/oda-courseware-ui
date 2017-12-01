@@ -3,6 +3,18 @@ import PropTypes from 'prop-types';
 import { client } from 'oda-aor-rest';
 import Loading from 'react-loading-animation'
 import { Admin, Resource, Delete } from 'admin-on-rest';
+import { englishMessages } from 'admin-on-rest';
+import translation from './i18n';
+import merge from 'lodash/merge';
+
+const messages = {
+    'en': {
+      ...merge(
+          englishMessages,
+          translation
+        ),
+    },
+};
 
 class OdaClientApp extends Component {
   constructor(props, context) {
@@ -36,6 +48,8 @@ class OdaClientApp extends Component {
     return (
       <Admin
         {...this.props}
+        messages={messages}
+        locale="en"
         authClient={authClient}
         restClient={restClient}>
         <Resource

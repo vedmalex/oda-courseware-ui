@@ -9,23 +9,24 @@ const actionType = ui.consts.actionType;
 const EditForm = (props, context) => {
   const Form = context.uix.SocialNetworkType.Form;
   const Title = context.uix.SocialNetworkType.Title;
+  const { translate } = context;
 
   return (
   <Edit title={<Title />} {...props}>
     <Form
       {...props}
       singleRelActions={[
-        { id: actionType.CREATE, name: 'Create' },
-        { id: actionType.UPDATE, name: 'Update Existing' },
-        { id: actionType.CLONE, name: 'Copy Selected' },
-        { id: actionType.USE, name: 'Use Existing' },
-        { id: actionType.UNLINK, name: 'Unlink' },
+        { id: actionType.CREATE, name: translate('uix.actionType.CREATE') },
+        { id: actionType.UPDATE, name: translate('uix.actionType.UPDATE') },
+        { id: actionType.CLONE, name: translate('uix.actionType.CLONE') },
+        { id: actionType.USE, name: translate('uix.actionType.USE') },
+        { id: actionType.UNLINK, name: translate('uix.actionType.UNLINK') },
       ]}
       manyRelActions={[
-        { id: actionType.CREATE, name: 'Create' },
-        { id: actionType.UPDATE, name: 'Update Existing' },
-        { id: actionType.CLONE, name: 'Copy Selected' },
-        { id: actionType.USE, name: 'Use Existing' },
+        { id: actionType.CREATE, name: translate('uix.actionType.CREATE') },
+        { id: actionType.UPDATE, name: translate('uix.actionType.UPDATE') },
+        { id: actionType.CLONE, name: translate('uix.actionType.CLONE') },
+        { id: actionType.USE, name: translate('uix.actionType.USE') },
       ]}
     />
   </Edit >
@@ -33,6 +34,7 @@ const EditForm = (props, context) => {
 
 EditForm.contextTypes = {
   uix: PropTypes.object.isRequired,
+  translate: PropTypes.func.isRequired,
 }
 
 export default EditForm;

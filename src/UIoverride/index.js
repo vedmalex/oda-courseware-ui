@@ -1,7 +1,6 @@
 import PersonUIX from './Person/uix';
 import CuratorUIX from './Curator/uix';
 import StudentUIX from './Student/uix';
-// import PlanetUIX from './Planet/uix';
 import Admin from './admin';
 import { uix as _uix, Resources as ResourcesBase } from './../UI/system';
 import personResource from './Person/queries';
