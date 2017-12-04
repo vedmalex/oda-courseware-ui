@@ -29,13 +29,13 @@ export default class extends data.resource.Resource {
       name: { type: 'string' },
       students: {
         ref: {
-          ref: 'Student',
+          resource: 'Student',
           type: data.resource.interfaces.refType.HasMany,
         },
       },
       curator: {
         ref: {
-          ref: 'Curator',
+          resource: 'Curator',
           type: data.resource.interfaces.refType.BelongsTo,
         },
       },

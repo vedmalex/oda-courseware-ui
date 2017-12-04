@@ -33,37 +33,37 @@ export default class extends data.resource.Resource {
       specialNotes: { type: 'string' },
       user: {
         ref: {
-          ref: 'User',
+          resource: 'User',
           type: data.resource.interfaces.refType.BelongsTo,
         },
       },
       socialNetworks: {
         ref: {
-          ref: 'SocialNetwork',
+          resource: 'SocialNetwork',
           type: data.resource.interfaces.refType.HasMany,
         },
       },
       phones: {
         ref: {
-          ref: 'Phone',
+          resource: 'Phone',
           type: data.resource.interfaces.refType.HasMany,
         },
       },
       emails: {
         ref: {
-          ref: 'Email',
+          resource: 'Email',
           type: data.resource.interfaces.refType.HasMany,
         },
       },
       asStudents: {
         ref: {
-          ref: 'Student',
+          resource: 'Student',
           type: data.resource.interfaces.refType.HasMany,
         },
       },
       asCurator: {
         ref: {
-          ref: 'Curator',
+          resource: 'Curator',
           type: data.resource.interfaces.refType.HasOne,
         },
       },

@@ -29,13 +29,13 @@ export default class extends data.resource.Resource {
       email: { type: 'string' },
       type: {
         ref: {
-          ref: 'EmailType',
+          resource: 'EmailType',
           type: data.resource.interfaces.refType.BelongsTo,
         },
       },
       person: {
         ref: {
-          ref: 'Person',
+          resource: 'Person',
           type: data.resource.interfaces.refType.BelongsTo,
         },
       },

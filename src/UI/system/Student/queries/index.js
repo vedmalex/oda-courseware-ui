@@ -28,13 +28,13 @@ export default class extends data.resource.Resource {
       id: { type: 'string' },
       person: {
         ref: {
-          ref: 'Person',
+          resource: 'Person',
           type: data.resource.interfaces.refType.BelongsTo,
         },
       },
       group: {
         ref: {
-          ref: 'Group',
+          resource: 'Group',
           type: data.resource.interfaces.refType.BelongsTo,
         },
       },

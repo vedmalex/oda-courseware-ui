@@ -30,13 +30,13 @@ export default class extends data.resource.Resource {
       url: { type: 'string' },
       type: {
         ref: {
-          ref: 'SocialNetworkType',
+          resource: 'SocialNetworkType',
           type: data.resource.interfaces.refType.BelongsTo,
         },
       },
       person: {
         ref: {
-          ref: 'Person',
+          resource: 'Person',
           type: data.resource.interfaces.refType.BelongsTo,
         },
       },

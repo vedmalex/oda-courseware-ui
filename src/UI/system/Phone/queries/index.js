@@ -29,13 +29,13 @@ export default class extends data.resource.Resource {
       phoneNumber: { type: 'string' },
       type: {
         ref: {
-          ref: 'PhoneType',
+          resource: 'PhoneType',
           type: data.resource.interfaces.refType.BelongsTo,
         },
       },
       person: {
         ref: {
-          ref: 'Person',
+          resource: 'Person',
           type: data.resource.interfaces.refType.BelongsTo,
         },
       },

@@ -1,15 +1,16 @@
+import React from 'react';
+import ListIcon from 'material-ui/svg-icons/action/view-list';
 
-// Посмотреть иконки ...
-const items = [
-  { name: 'User' },
-  { name: 'Student' },
-  { name: 'Curator' },
-  { name: 'Group' },
-  { name: 'Person' },
-  { name: 'SocialNetwork' },
-  { name: 'SocialNetworkType' },
-  { name: 'Email' },
-  { name: 'EmailType' },
-  { name: 'Phone' },
-  { name: 'PhoneType' },
+export default [
+  { name: 'User', icon: <ListIcon /> },
+  { name: 'Student', icon: <ListIcon /> },
+  { name: 'Curator', icon: <ListIcon /> },
+  { name: 'Group', icon: <ListIcon /> },
+  { name: 'Person', icon: <ListIcon /> },
+  { name: 'SocialNetwork', icon: <ListIcon /> },
+  { name: 'SocialNetworkType', icon: <ListIcon /> },
+  { name: 'Email', icon: <ListIcon /> },
+  { name: 'EmailType', icon: <ListIcon /> },
+  { name: 'Phone', icon: <ListIcon /> },
+  { name: 'PhoneType', icon: <ListIcon /> },
 ];
