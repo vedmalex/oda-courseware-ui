@@ -125,7 +125,7 @@ const ShowView = (props, context) => {
 
         <DependentField resolve={showIfNotEmptyRel('asCuratorId')} source="asCuratorId" >
           <ReferenceField label="As curator" source="asCuratorId" reference="Curator" allowEmpty linkType="show" >
-            <TextField source="id" allowEmpty />
+            <TextField source="fullName" allowEmpty />
           </ReferenceField>
         </DependentField>
 

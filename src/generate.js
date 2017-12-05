@@ -4,8 +4,6 @@ const schema = require('./../../api-new-ui-gen/compiledModel.json');
 const {
   UserUI,
   PersonUI,
-  TeacherUI,
-  StudentsGroupUI,
 } = require('./ui-hooks');
 
 generator({

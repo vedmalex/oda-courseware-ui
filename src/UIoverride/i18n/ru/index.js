@@ -15,8 +15,8 @@ import PhoneTypeTranslate from './PhoneType';
 const messages = {
   uix: {
     "filter": {
-      "search": "Search",
-      "exists": "%{name} exists",
+      "search": "Поиск",
+      "exists": "%{name} существует",
       "eq": "%{name} =",
       "ne": "%{name} !=",
       "lte": "%{name} <=",
@@ -24,16 +24,16 @@ const messages = {
       "lt": "%{name} <",
       "gt": "%{name} >",
       "imatch": "%{name}",
-      "in": "%{name} in",
-      "nin": "%{name} not in",
+      "in": "%{name} в списке",
+      "nin": "%{name} не в списке",
     },
     "actionType": {
-      "CREATE": "Create",
-      "UPDATE": "Update Existing",
-      "CLONE": "Copy Selected",
-      "USE": "Use Existing",
-      "UNLINK": "Unlink",
-      "ExpectedTo": "Expected To"
+      "CREATE": "Создать",
+      "UPDATE": "Обновить текущий",
+      "CLONE": "Скопировать",
+      "USE": "Использовать текущий",
+      "UNLINK": "отсоединить",
+      "ExpectedTo": "Действие"
     }
   }
 }

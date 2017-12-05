@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   ReferenceInput,
   SelectInput,
@@ -9,13 +10,12 @@ import {
   DateInput,
   NumberInput,
   BooleanInput,
-  LongTextInput,
   required,
 } from "admin-on-rest";
 import RichTextInput from 'aor-rich-text-input';
 
 import { connect } from 'react-redux';
-import { formValueSelector, Field } from 'redux-form';
+import { formValueSelector } from 'redux-form';
 import compose from 'recompose/compose';
 import { ui } from 'oda-aor-rest';
 import { EmbeddedArrayInput } from 'aor-embedded-array';
@@ -45,96 +45,98 @@ class Form extends Component {
     const { props } = this;
     const singleRelActions = props.singleRelActions;
     const manyRelAction = props.manyRelActions;
-
+    const { translate } = this.context;
     return (
       <SimpleForm {...props} >
-        <TextInput label="Spiritual name" source="spiritualName" validate={required} />
-        <TextInput label="Full name" source="fullName" validate={required} />
-        <DateInput label="Date of birth" source="dateOfBirth" allowEmpty />
-        <RichTextInput label="Special notes" source="specialNotes" />
+        <TextInput label="resources.Person.fields.spiritualName" source="spiritualName" validate={required} />
+        <TextInput label="resources.Person.fields.fullName" source="fullName" validate={required} />
+        <DateInput label="resources.Person.fields.dateOfBirth" source="dateOfBirth" allowEmpty />
+        <RichTextInput label="resources.Person.fields.specialNotes" source="specialNotes" allowEmpty />
 
-        <Label text="User" />
+        <Label text="resources.Person.fields.user" />
         <DependentInput resolve={selectorFor('user')} scoped >
-          <ReferenceInput label="User" source="userId" reference="User" allowEmpty >
+          <ReferenceInput label="resources.Person.fields.user" source="userId" reference="User" allowEmpty >
             <AutocompleteInput optionText="userName" />
           </ReferenceInput>
         </DependentInput>
         <SelectInput
           source="userType"
-          label="Expected to"
+          label="uix.actionType.ExpectedTo"
           choices={singleRelActions}
           defaultValue={actionType.USE}
         />
 
         <DependentInput resolve={detailsFor('user')} >
-          <EmbeddedInput label="User" source="user" addLabel={false}>
-            <TextInput label="User name" source="userName" source="userName" validate={required} />
-            <TextInput label="Password" source="password" source="password" validate={required} />
-            <BooleanInput label="Is admin" source="isAdmin" source="isAdmin" allowEmpty />
-            <BooleanInput label="Is system" source="isSystem" source="isSystem" allowEmpty />
-            <BooleanInput label="Enabled" source="enabled" source="enabled" allowEmpty />
+          <EmbeddedInput label="resources.Person.fields.user" source="user" addLabel={false}>
+            <TextInput label="resources.User.fields.userName" source="userName" validate={required} />
+            <TextInput label="resources.User.fields.password" source="password" validate={required} />
+            <BooleanInput label="resources.User.fields.isAdmin" source="isAdmin" allowEmpty />
+            <BooleanInput label="resources.User.fields.isSystem" source="isSystem" allowEmpty />
+            <BooleanInput label="resources.User.fields.enabled" source="enabled" allowEmpty />
           </EmbeddedInput>
         </DependentInput>
 
 
-        <EmbeddedArrayInput label="Social networks" source="socialNetworksValues" allowEmpty >
+        <EmbeddedArrayInput label="resources.Person.fields.socialNetworks" source="socialNetworksValues" allowEmpty >
           <SelectInput
             source="socialNetworksType"
-            label="Expected to"
+            label="uix.actionType.ExpectedTo"
             choices={manyRelAction}
             defaultValue={actionType.USE}
           />
           <DependentInput resolve={selectorFor('socialNetworks')} scoped >
-            <ReferenceInput label="SocialNetwork" source="id" reference="SocialNetwork" allowEmpty >
+            <ReferenceInput label={translate("resources.SocialNetwork.name", { smart_count: 1 })} source="id" reference="SocialNetwork" allowEmpty >
               <SelectInput optionText="account" />
             </ReferenceInput>
           </DependentInput>
           <DependentInput resolve={detailsFor('socialNetworks')} scoped >
-            <TextInput label="Account" source="account" source="account" validate={required} />
-            <TextInput label="Url" source="url" source="url" allowEmpty />
-            <ReferenceInput label="Type" source="typeId" reference="SocialNetworkType" allowEmpty  >
+            <TextInput label="resources.SocialNetwork.fields.account" source="account" validate={required} />
+            <TextInput label="resources.SocialNetwork.fields.url" source="url" allowEmpty />
+            <ReferenceInput label="resources.SocialNetwork.fields.type" source="typeId" reference="SocialNetworkType" allowEmpty  >
               <AutocompleteInput optionText="name" />
             </ReferenceInput>
           </DependentInput>
         </EmbeddedArrayInput>
 
 
-        <EmbeddedArrayInput label="Phones" source="phonesValues" allowEmpty >
+        <EmbeddedArrayInput label="resources.Person.fields.phones" source="phonesValues" allowEmpty >
           <SelectInput
             source="phonesType"
-            label="Expected to"
+            label="uix.actionType.ExpectedTo"
             choices={manyRelAction}
             defaultValue={actionType.USE}
           />
           <DependentInput resolve={selectorFor('phones')} scoped >
-            <ReferenceInput label="Phone" source="id" reference="Phone" allowEmpty >
+            <ReferenceInput label={translate("resources.Phone.name", { smart_count: 1 })} source="id" reference="Phone" allowEmpty >
               <SelectInput optionText="phoneNumber" />
             </ReferenceInput>
           </DependentInput>
           <DependentInput resolve={detailsFor('phones')} scoped >
-            <TextInput label="Phone number" source="phoneNumber" source="phoneNumber" validate={required} />
-            <TextInput label="Type" source="type" source="type" allowEmpty />
-            <TextInput label="Person" source="person" source="person" allowEmpty />
+            <TextInput label="resources.Phone.fields.phoneNumber" source="phoneNumber" validate={required} />
+            <ReferenceInput label="resources.Phone.fields.type" source="type" reference="PhoneType" allowEmpty >
+              <AutocompleteInput optionText="name" />
+            </ReferenceInput>
           </DependentInput>
         </EmbeddedArrayInput>
 
 
-        <EmbeddedArrayInput label="Emails" source="emailsValues" allowEmpty >
+        <EmbeddedArrayInput label="resources.Person.fields.emails" source="emailsValues" allowEmpty >
           <SelectInput
             source="emailsType"
-            label="Expected to"
+            label="uix.actionType.ExpectedTo"
             choices={manyRelAction}
             defaultValue={actionType.USE}
           />
           <DependentInput resolve={selectorFor('emails')} scoped >
-            <ReferenceInput label="Email" source="id" reference="Email" allowEmpty >
+            <ReferenceInput label={translate("resources.Email.name", { smart_count: 1 })} source="id" reference="Email" allowEmpty >
               <SelectInput optionText="email" />
             </ReferenceInput>
           </DependentInput>
           <DependentInput resolve={detailsFor('emails')} scoped >
-            <TextInput label="Email" source="email" source="email" validate={required} />
-            <TextInput label="Type" source="type" source="type" allowEmpty />
-            <TextInput label="Person" source="person" source="person" allowEmpty />
+            <TextInput label="resources.Email.fields.email" source="email" validate={required} />
+            <ReferenceInput label="resources.Email.fields.type" source="typeId" reference="EmailType" allowEmpty >
+              <AutocompleteInput optionText="name" />
+            </ReferenceInput>
           </DependentInput>
         </EmbeddedArrayInput>
 
@@ -142,10 +144,12 @@ class Form extends Component {
   }
 }
 
-
 const formName = 'record-form';
 const selector = formValueSelector(formName);
-// сделать сразу с переводом...
+
+Form.contextTypes = {
+  translate: PropTypes.func.isRequired,
+}
 
 export default compose(
   connect(

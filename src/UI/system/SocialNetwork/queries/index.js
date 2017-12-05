@@ -1,54 +1,45 @@
-import _getList from './getList';
-import _getOne from './getOne';
-import _getMany from './getMany';
-import _getManyReference from './getManyReference';
-import _create from './create';
-import _update from './update';
-import _delete from './delete';
 import { data } from 'oda-aor-rest';
 import { fragments, queries } from './queries';
+import set from 'lodash/set';
 
-const {
-  GetList,
-  GetOne,
-  Create,
-  Update,
-  Delete,
-  GetMany,
-  GetManyReference,
-} = data.resource.operations
-
-export default class extends data.resource.Resource {
-  constructor(...args) {
-    super(...args);
-    this._queries = queries;
-    this._fragments = fragments;
-    this._name = 'SocialNetwork';
-    this._fields = {
-      id: { type: 'string' },
-      account: { type: 'string' },
-      url: { type: 'string' },
-      type: {
-        ref: {
-          resource: 'SocialNetworkType',
-          type: data.resource.interfaces.refType.BelongsTo,
-        },
+export default {
+  queries,
+  fragments,
+  name: 'SocialNetwork',
+  fields: {
+    id: { type: 'string' },
+    account: { type: 'string' },
+    url: { type: 'string' },
+    type: {
+      ref: {
+        resource: 'SocialNetworkType',
+        type: data.resource.interfaces.refType.BelongsTo,
       },
-      person: {
-        ref: {
-          resource: 'Person',
-          type: data.resource.interfaces.refType.BelongsTo,
-        },
+    },
+    person: {
+      ref: {
+        resource: 'Person',
+        type: data.resource.interfaces.refType.BelongsTo,
       },
-    };
-    this._operations = {
-      GET_LIST: new GetList({ overrides: _getList, resource: this }),
-      GET_ONE: new GetOne({ overrides: _getOne, resource: this }),
-      GET_MANY: new GetMany({ overrides: _getMany, resource: this }),
-      GET_MANY_REFERENCE: new GetManyReference({ overrides: _getManyReference, resource: this }),
-      CREATE: new Create({ overrides: _create, resource: this }),
-      UPDATE: new Update({ overrides: _update, resource: this }),
-      DELETE: new Delete({ overrides: _delete, resource: this }),
-    };
-  }
+    },
+  },
+  operations: {
+    GET_LIST: {
+      _filterBy: (params) => Object.keys(params.filter).reduce((acc, key) => {
+        if (key === 'ids') {
+          return { ...acc, id: { in: params.filter[key] } };
+        }
+        if (key === 'q') {
+          return { ...acc, account: { imatch: params.filter[key] } };
+        }
+        return set(acc, key.replace('-', '.'), params.filter[key]);
+      }, {}),
+    },
+    // GET_ONE: {},
+    // GET_MANY: {},
+    // GET_MANY_REFERENCE: {},
+    // CREATE: {},
+    // UPDATE: {},
+    // DELETE: {},
+  },
 };

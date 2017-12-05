@@ -81,7 +81,7 @@ class OdaClientApp extends Component {
         {...this.props}
         menu={menu}
         messages={messages}
-        locale="en"
+        locale="ru"
         authClient={authClient}
         restClient={restClient}>
         <Resource
@@ -134,7 +134,7 @@ class OdaClientApp extends Component {
         />
         <Resource
           show={SocialNetworkType.Show}
-          name="SocialNetwork Type"
+          name="SocialNetworkType"
           edit={SocialNetworkType.Edit}
           create={SocialNetworkType.Create}
           list={SocialNetworkType.List}

@@ -47,17 +47,18 @@ class Form extends Component {
     const { translate } = this.context;
     return (
       <SimpleForm {...props} >
+        <TextInput label="resources.Group.fields.name" source="name" validate={required} />
 
-        <Label text="resources.Curator.fields.person" />
-        <ReferenceInput label="" source="personId" reference="Person" allowEmpty >
+
+        <Label text="resources.Group.fields.students" />
+        <ReferenceArrayInput label="" source="studentsIds" reference="Student" allowEmpty >
+          <SelectArrayInput options={{ fullWidth: true }} optionText="personFullName" optionValue="id" />
+        </ReferenceArrayInput>
+
+        <Label text="resources.Group.fields.curator" />
+        <ReferenceInput label="" source="curatorId" reference="Curator" allowEmpty >
           <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
-
-
-        <Label text="resources.Curator.fields.groups" />
-        <ReferenceArrayInput label="" source="groupsIds" reference="Group" allowEmpty >
-          <SelectArrayInput options={{ fullWidth: true }} optionText="name" optionValue="id" />
-        </ReferenceArrayInput>
 
       </SimpleForm>);
   }

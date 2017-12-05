@@ -1,11 +1,13 @@
 import PersonUIX from './Person/uix';
 import CuratorUIX from './Curator/uix';
 import StudentUIX from './Student/uix';
+import GroupUIX from './Group/uix';
 import Admin from './admin';
 import { uix as _uix, Resources as ResourcesBase } from './../UI/system';
 import personResource from './Person/queries';
 import curatorResource from './Curator/queries';
 import studentResource from './Student/queries';
+import groupResource from './Group/queries';
 
 export { Admin };
 // export { uix };
@@ -24,6 +26,10 @@ export const uix = {
   Student: {
     ..._uix.Student,
     ...StudentUIX,
+  },
+  Group: {
+    ..._uix.Group,
+    ...GroupUIX,
   }
 }
 
@@ -33,6 +39,7 @@ export class Resources extends ResourcesBase {
     this.resource('Person').override(personResource);
     this.resource('Curator').override(curatorResource);
     this.resource('Student').override(studentResource);
+    this.resource('Group').override(groupResource);
   }
 }
 

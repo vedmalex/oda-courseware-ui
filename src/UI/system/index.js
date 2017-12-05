@@ -32,17 +32,17 @@ export class Resources extends data.resource.ResourceContainer {
   constructor(...args){
     super(...args);
     this.override([
-      new UserResource(),
-      new StudentResource(),
-      new CuratorResource(),
-      new GroupResource(),
-      new PersonResource(),
-      new SocialNetworkResource(),
-      new SocialNetworkTypeResource(),
-      new EmailResource(),
-      new EmailTypeResource(),
-      new PhoneResource(),
-      new PhoneTypeResource(),
+      UserResource,
+      StudentResource,
+      CuratorResource,
+      GroupResource,
+      PersonResource,
+      SocialNetworkResource,
+      SocialNetworkTypeResource,
+      EmailResource,
+      EmailTypeResource,
+      PhoneResource,
+      PhoneTypeResource,
     ]);
   }
 }
