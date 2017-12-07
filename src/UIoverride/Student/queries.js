@@ -4,6 +4,29 @@ import gql from 'graphql-tag';
 console.log(__filename)
 
 export default {
+  fields: {
+    id: { type: 'string' },
+    present: { type: 'boolean' },
+    specialNotes: { type: 'string' },
+    person: {
+      ref: {
+        resource: 'Person',
+        type: data.resource.interfaces.refType.BelongsTo,
+      },
+    },
+    group: {
+      ref: {
+        resource: 'Group',
+        type: data.resource.interfaces.refType.BelongsTo,
+      },
+    },
+    meetings: {
+      ref: {
+        resource: 'Meeting',
+        type: data.resource.interfaces.refType.BelongsToMany,
+      },
+    },
+  },
   fragments: {
     resultFragment: gql`fragment StudentResult on Student {
       id

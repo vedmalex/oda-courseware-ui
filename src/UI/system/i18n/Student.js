@@ -6,6 +6,7 @@ export default {
         id: 'Id',
         person: 'Person',
         group: 'Group',
+        meetings: 'Meetings',
       },
     },
   },

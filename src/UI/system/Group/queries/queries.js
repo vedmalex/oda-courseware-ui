@@ -226,9 +226,7 @@ export const queries = {
     ${resultFragment}
   `,
   getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite , getManyReferenceResultRegular }) => ({
-  
     students: getManyReferenceResultRegular({ resultFragment }),
-  
     curator: getManyReferenceResultRegular({ resultFragment }),
   }),
 }

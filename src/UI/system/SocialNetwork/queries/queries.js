@@ -220,9 +220,7 @@ export const queries = {
     ${resultFragment}
   `,
   getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite , getManyReferenceResultRegular }) => ({
-  
     type: getManyReferenceResultRegular({ resultFragment }),
-  
     person: getManyReferenceResultRegular({ resultFragment }),
   }),
 }

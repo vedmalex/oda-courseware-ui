@@ -13,4 +13,6 @@ export default [
   { name: 'EmailType', icon: <ListIcon /> },
   { name: 'Phone', icon: <ListIcon /> },
   { name: 'PhoneType', icon: <ListIcon /> },
+  { name: 'Meeting', icon: <ListIcon /> },
+  { name: 'StudentAttendance', icon: <ListIcon /> },
 ];

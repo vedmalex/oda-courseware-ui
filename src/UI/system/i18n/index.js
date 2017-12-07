@@ -11,6 +11,8 @@ import EmailTranslate from './Email';
 import EmailTypeTranslate from './EmailType';
 import PhoneTranslate from './Phone';
 import PhoneTypeTranslate from './PhoneType';
+import MeetingTranslate from './Meeting';
+import StudentAttendanceTranslate from './StudentAttendance';
 
 const messages = {
   uix: {
@@ -52,4 +54,6 @@ export default
     EmailTypeTranslate,
     PhoneTranslate,
     PhoneTypeTranslate,
+    MeetingTranslate,
+    StudentAttendanceTranslate,
   )

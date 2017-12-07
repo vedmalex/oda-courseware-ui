@@ -20,6 +20,12 @@ export default {
         type: data.resource.interfaces.refType.BelongsTo,
       },
     },
+    meetings: {
+      ref: {
+        resource: 'Meeting',
+        type: data.resource.interfaces.refType.BelongsToMany,
+      },
+    },
   },
   operations: {
     GET_LIST: {

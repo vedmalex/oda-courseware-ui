@@ -4,12 +4,14 @@ const schema = require('./../../api-new-ui-gen/compiledModel.json');
 const {
   UserUI,
   PersonUI,
+  MeetingUI,
 } = require('./ui-hooks');
 
 generator({
   hooks: [
     UserUI,
     PersonUI,
+    MeetingUI,
   ],
   pack: schema,
   rootDir: path.join(__dirname, 'UI'),

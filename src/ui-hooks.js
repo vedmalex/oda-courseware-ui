@@ -21,3 +21,13 @@ exports.PersonUI = {
   }
 }
 
+exports.MeetingUI = {
+  name: 'MeetingUI',
+  'entities.Meeting': {
+    'metadata.UI': {
+      listName: 'date',
+      embedded: ['students'],
+    },
+  }
+}
+

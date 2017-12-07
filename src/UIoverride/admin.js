@@ -74,6 +74,8 @@ class OdaClientApp extends Component {
       EmailType,
       Phone,
       PhoneType,
+      Meeting,
+      StudentAttendance,
     } = uix;
 
     return (
@@ -170,6 +172,22 @@ class OdaClientApp extends Component {
           edit={PhoneType.Edit}
           create={PhoneType.Create}
           list={PhoneType.List}
+          remove={Delete}
+        />
+        <Resource
+          show={Meeting.Show}
+          name="Meeting"
+          edit={Meeting.Edit}
+          create={Meeting.Create}
+          list={Meeting.List}
+          remove={Delete}
+        />
+        <Resource
+          show={StudentAttendance.Show}
+          name="StudentAttendance"
+          edit={StudentAttendance.Edit}
+          create={StudentAttendance.Create}
+          list={StudentAttendance.List}
           remove={Delete}
         />
       </Admin>

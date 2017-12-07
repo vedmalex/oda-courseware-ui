@@ -35,6 +35,9 @@ const ShowView = (props, context) => {
   const { uix } = context;
   const Title = uix.Student.Title;
   const { translate } = context;
+  const {
+    Meeting,
+  } = uix;
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
@@ -50,6 +53,10 @@ const ShowView = (props, context) => {
             <TextField source="name" allowEmpty />
           </ReferenceField>
         </DependentField>
+
+        <ReferenceManyField label="resources.Student.fields.meetings" reference="Meeting" target="students" allowEmpty >
+          <Meeting.Grid />
+        </ReferenceManyField>
 
       </SimpleShowLayout>
     </Show>

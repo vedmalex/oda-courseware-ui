@@ -342,17 +342,11 @@ export const queries = {
     ${resultFragment}
   `,
   getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite , getManyReferenceResultRegular }) => ({
-  
     user: getManyReferenceResultRegular({ resultFragment }),
-  
     socialNetworks: getManyReferenceResultRegular({ resultFragment }),
-  
     phones: getManyReferenceResultRegular({ resultFragment }),
-  
     emails: getManyReferenceResultRegular({ resultFragment }),
-  
     asStudents: getManyReferenceResultRegular({ resultFragment }),
-  
     asCurator: getManyReferenceResultRegular({ resultFragment }),
   }),
 }

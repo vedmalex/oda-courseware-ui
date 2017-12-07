@@ -58,6 +58,12 @@ class Form extends Component {
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
+
+        <Label text="resources.Student.fields.meetings" />
+        <ReferenceArrayInput label="" source="meetingsIds" reference="Meeting" allowEmpty >
+          <SelectArrayInput options={{ fullWidth: true }} optionText="date" optionValue="id" />
+        </ReferenceArrayInput>
+
       </SimpleForm>);
   }
 }

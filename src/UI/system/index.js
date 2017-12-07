@@ -9,6 +9,8 @@ import EmailResource from './Email/queries';
 import EmailTypeResource from './EmailType/queries';
 import PhoneResource from './Phone/queries';
 import PhoneTypeResource from './PhoneType/queries';
+import MeetingResource from './Meeting/queries';
+import StudentAttendanceResource from './StudentAttendance/queries';
 
 import UserUIX from './User/uix';
 import StudentUIX from './Student/uix';
@@ -21,6 +23,8 @@ import EmailUIX from './Email/uix';
 import EmailTypeUIX from './EmailType/uix';
 import PhoneUIX from './Phone/uix';
 import PhoneTypeUIX from './PhoneType/uix';
+import MeetingUIX from './Meeting/uix';
+import StudentAttendanceUIX from './StudentAttendance/uix';
 
 import { data } from 'oda-aor-rest';
 
@@ -43,6 +47,8 @@ export class Resources extends data.resource.ResourceContainer {
       EmailTypeResource,
       PhoneResource,
       PhoneTypeResource,
+      MeetingResource,
+      StudentAttendanceResource,
     ]);
   }
 }
@@ -59,4 +65,6 @@ export const uix = {
   EmailType: EmailTypeUIX,
   Phone: PhoneUIX,
   PhoneType: PhoneTypeUIX,
+  Meeting: MeetingUIX,
+  StudentAttendance: StudentAttendanceUIX,
 };

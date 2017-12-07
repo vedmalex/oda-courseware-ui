@@ -11,6 +11,13 @@ export const fragments = {
     groupId: group @_(get:"id") {
       id
     }
+    meetingsIds: meetings @_(get:"edges") {
+      edges @_(map:"node") {
+        node @_(get:"id")  {
+          id
+        }
+      }
+    }
   }`,
   fullFragment: gql`fragment StudentFull on Student {
     id
@@ -19,6 +26,13 @@ export const fragments = {
     }
     group {
       id
+    }
+    meetings {
+      edges {
+        node {
+          id
+        }
+      }
     }
   }`,
 }
@@ -184,6 +198,23 @@ export const queries = {
     }
     ${fullFragment}
   `,
+      meetings: gql`query Meetings_Id($id: ID, $skip: Int, $limit: Int, $orderBy: [StudentSortOrder], $filter: StudentComplexFilter) {
+      opposite: meeting(id:$id) {
+        id
+        items: students(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
+          pageInfo {
+            count
+          }
+          edges {
+            node {
+              ...StudentFull
+            }
+          }
+        }
+      }
+    }
+    ${fullFragment}
+  `,
     }),
   getManyReferenceResultOpposite: ({ resultFragment }) => gql`{
     items: opposite @_(get:"items") {
@@ -216,9 +247,8 @@ export const queries = {
     ${resultFragment}
   `,
   getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite , getManyReferenceResultRegular }) => ({
-  
     person: getManyReferenceResultRegular({ resultFragment }),
-  
     group: getManyReferenceResultRegular({ resultFragment }),
+    meetings: getManyReferenceResultOpposite({ resultFragment }),
   }),
 }

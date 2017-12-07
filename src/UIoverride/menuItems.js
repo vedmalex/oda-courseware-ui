@@ -19,4 +19,6 @@ export default [
   { name: 'SocialNetworkType', icon: <Pages /> },
   { name: 'EmailType', icon: <Mail /> },
   { name: 'PhoneType', icon: <Phone /> },
+  { name: 'Meeting', icon: <ListIcon /> },
+  { name: 'StudentAttendance', icon: <ListIcon /> },
 ];
