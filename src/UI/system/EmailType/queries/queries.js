@@ -51,7 +51,7 @@ export const queries = {
   }
   ${resultFragment}
   `,
-  getOne: ({fullFragment}) => gql`query EmailType($id: ID) {
+  getOne: ({ fullFragment }) => gql`query EmailType($id: ID) {
     item: emailType(id: $id) {
       ...EmailTypeFull
     }
@@ -175,6 +175,6 @@ export const queries = {
   }
     ${resultFragment}
   `,
-  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite , getManyReferenceResultRegular }) => ({
+  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite, getManyReferenceResultRegular }) => ({
   }),
 }

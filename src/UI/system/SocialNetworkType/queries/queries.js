@@ -51,7 +51,7 @@ export const queries = {
   }
   ${resultFragment}
   `,
-  getOne: ({fullFragment}) => gql`query SocialNetworkType($id: ID) {
+  getOne: ({ fullFragment }) => gql`query SocialNetworkType($id: ID) {
     item: socialNetworkType(id: $id) {
       ...SocialNetworkTypeFull
     }
@@ -175,6 +175,6 @@ export const queries = {
   }
     ${resultFragment}
   `,
-  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite , getManyReferenceResultRegular }) => ({
+  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite, getManyReferenceResultRegular }) => ({
   }),
 }

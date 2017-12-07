@@ -69,7 +69,7 @@ export const queries = {
   }
   ${resultFragment}
   `,
-  getOne: ({fullFragment}) => gql`query StudentAttendance($id: ID) {
+  getOne: ({ fullFragment }) => gql`query StudentAttendance($id: ID) {
     item: studentAttendance(id: $id) {
       ...StudentAttendanceFull
     }
@@ -223,7 +223,7 @@ export const queries = {
   }
     ${resultFragment}
   `,
-  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite , getManyReferenceResultRegular }) => ({
+  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite, getManyReferenceResultRegular }) => ({
     meetingLink: getManyReferenceResultRegular({ resultFragment }),
     studentLink: getManyReferenceResultRegular({ resultFragment }),
   }),

@@ -65,7 +65,7 @@ export const queries = {
   }
   ${resultFragment}
   `,
-  getOne: ({fullFragment}) => gql`query SocialNetwork($id: ID) {
+  getOne: ({ fullFragment }) => gql`query SocialNetwork($id: ID) {
     item: socialNetwork(id: $id) {
       ...SocialNetworkFull
     }
@@ -219,7 +219,7 @@ export const queries = {
   }
     ${resultFragment}
   `,
-  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite , getManyReferenceResultRegular }) => ({
+  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite, getManyReferenceResultRegular }) => ({
     type: getManyReferenceResultRegular({ resultFragment }),
     person: getManyReferenceResultRegular({ resultFragment }),
   }),

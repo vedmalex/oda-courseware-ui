@@ -63,7 +63,7 @@ export const queries = {
   }
   ${resultFragment}
   `,
-  getOne: ({fullFragment}) => gql`query Phone($id: ID) {
+  getOne: ({ fullFragment }) => gql`query Phone($id: ID) {
     item: phone(id: $id) {
       ...PhoneFull
     }
@@ -217,7 +217,7 @@ export const queries = {
   }
     ${resultFragment}
   `,
-  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite , getManyReferenceResultRegular }) => ({
+  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite, getManyReferenceResultRegular }) => ({
     type: getManyReferenceResultRegular({ resultFragment }),
     person: getManyReferenceResultRegular({ resultFragment }),
   }),

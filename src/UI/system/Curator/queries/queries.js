@@ -69,7 +69,7 @@ export const queries = {
   }
   ${resultFragment}
   `,
-  getOne: ({fullFragment}) => gql`query Curator($id: ID) {
+  getOne: ({ fullFragment }) => gql`query Curator($id: ID) {
     item: curator(id: $id) {
       ...CuratorFull
     }
@@ -223,7 +223,7 @@ export const queries = {
   }
     ${resultFragment}
   `,
-  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite , getManyReferenceResultRegular }) => ({
+  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite, getManyReferenceResultRegular }) => ({
     person: getManyReferenceResultRegular({ resultFragment }),
     groups: getManyReferenceResultRegular({ resultFragment }),
   }),

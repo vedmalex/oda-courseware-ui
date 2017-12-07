@@ -77,7 +77,7 @@ export const queries = {
   }
   ${resultFragment}
   `,
-  getOne: ({fullFragment}) => gql`query Meeting($id: ID) {
+  getOne: ({ fullFragment }) => gql`query Meeting($id: ID) {
     item: meeting(id: $id) {
       ...MeetingFull
     }
@@ -248,7 +248,7 @@ export const queries = {
   }
     ${resultFragment}
   `,
-  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite , getManyReferenceResultRegular }) => ({
+  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite, getManyReferenceResultRegular }) => ({
     curator: getManyReferenceResultRegular({ resultFragment }),
     group: getManyReferenceResultRegular({ resultFragment }),
     students: getManyReferenceResultOpposite({ resultFragment }),

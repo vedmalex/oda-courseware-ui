@@ -51,7 +51,7 @@ export const queries = {
   }
   ${resultFragment}
   `,
-  getOne: ({fullFragment}) => gql`query PhoneType($id: ID) {
+  getOne: ({ fullFragment }) => gql`query PhoneType($id: ID) {
     item: phoneType(id: $id) {
       ...PhoneTypeFull
     }
@@ -175,6 +175,6 @@ export const queries = {
   }
     ${resultFragment}
   `,
-  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite , getManyReferenceResultRegular }) => ({
+  getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite, getManyReferenceResultRegular }) => ({
   }),
 }
