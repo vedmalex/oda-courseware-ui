@@ -72,8 +72,6 @@ class Form extends Component {
               <SelectInput optionText="id" />
             </ReferenceInput>
           </DependentInput>
-          <DependentInput resolve={detailsFor('students')} scoped >
-          </DependentInput>
         </EmbeddedArrayInput>
 
       </SimpleForm>);
