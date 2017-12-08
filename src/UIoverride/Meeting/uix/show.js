@@ -58,8 +58,8 @@ const ShowView = (props, context) => {
 
         <DependentField resolve={showIfNotEmptyRel('studentsValues')} source="studentsValues">
           <EmbeddedArrayField reference="Student" target="meetings" label="resources.Meeting.fields.students" source="studentsValues" allowEmpty >
-            <ReferenceField label={translate("resources.Student.name", { smart_count: 1})} source="id" reference="Student" allowEmpty linkType="show" >
-              <TextField source="id" />
+            <ReferenceField label={translate("resources.Student.name", { smart_count: 1 })} source="id" reference="Student" allowEmpty linkType="show" >
+              <TextField source="personFullName" allowEmpty />
             </ReferenceField>
             <DependentField resolve={showIfExists('present')} source="present" scoped >
               <BooleanField label="resources.StudentAttendance.fields.present" source="present" />
@@ -69,7 +69,6 @@ const ShowView = (props, context) => {
             </DependentField>
           </EmbeddedArrayField>
         </DependentField>
-
       </SimpleShowLayout>
     </Show>
   );

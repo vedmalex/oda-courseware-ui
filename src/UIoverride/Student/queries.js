@@ -6,12 +6,6 @@ import gql from 'graphql-tag';
 console.log(__filename)
 
 export default {
-  fields: {
-    id: { type: 'string' },
-    // additional field for M:N
-    present: { type: 'boolean' },
-    specialNotes: { type: 'string' },
-  },
   fragments: {
     resultFragment: gql`fragment StudentResult on Student {
       id

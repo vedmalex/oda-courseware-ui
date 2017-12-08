@@ -79,6 +79,9 @@ const ShowView = (props, context) => {
 
         <DependentField resolve={showIfNotEmptyRel('socialNetworksValues')} source="socialNetworksValues">
           <EmbeddedArrayField reference="SocialNetwork" target="person" label="resources.Person.fields.socialNetworks" source="socialNetworksValues" allowEmpty >
+            <ReferenceField label={translate("resources.SocialNetwork.name", { smart_count: 1})} source="id" reference="SocialNetwork" allowEmpty linkType="show" >
+              <TextField source="account" />
+            </ReferenceField>
             <DependentField resolve={showIfExists('account')} source="account" scoped >
               <TextField label="resources.SocialNetwork.fields.account" source="account"  />
             </DependentField>
@@ -90,6 +93,9 @@ const ShowView = (props, context) => {
 
         <DependentField resolve={showIfNotEmptyRel('phonesValues')} source="phonesValues">
           <EmbeddedArrayField reference="Phone" target="person" label="resources.Person.fields.phones" source="phonesValues" allowEmpty >
+            <ReferenceField label={translate("resources.Phone.name", { smart_count: 1})} source="id" reference="Phone" allowEmpty linkType="show" >
+              <TextField source="phoneNumber" />
+            </ReferenceField>
             <DependentField resolve={showIfExists('phoneNumber')} source="phoneNumber" scoped >
               <TextField label="resources.Phone.fields.phoneNumber" source="phoneNumber"  />
             </DependentField>
@@ -98,6 +104,9 @@ const ShowView = (props, context) => {
 
         <DependentField resolve={showIfNotEmptyRel('emailsValues')} source="emailsValues">
           <EmbeddedArrayField reference="Email" target="person" label="resources.Person.fields.emails" source="emailsValues" allowEmpty >
+            <ReferenceField label={translate("resources.Email.name", { smart_count: 1})} source="id" reference="Email" allowEmpty linkType="show" >
+              <TextField source="email" />
+            </ReferenceField>
             <DependentField resolve={showIfExists('email')} source="email" scoped >
               <TextField label="resources.Email.fields.email" source="email"  />
             </DependentField>

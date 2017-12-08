@@ -68,7 +68,7 @@ class Form extends Component {
             choices={manyRelAction}
             defaultValue={actionType.USE}
           />
-          <DependentInput resolve={selectorFor('students')} scoped >
+          <DependentInput resolve={selectorFor('students', true)} scoped >
             <ReferenceInput label={translate("resources.Student.name", { smart_count: 1 })} source="id" reference="Student" allowEmpty >
               <SelectInput optionText="personFullName" />
             </ReferenceInput>

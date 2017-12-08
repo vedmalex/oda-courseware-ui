@@ -1,5 +1,5 @@
+import gql from 'graphql-tag';
 import { data } from 'oda-aor-rest';
-import { fragments, queries } from './queries';
 import set from 'lodash/set';
 
 export default {

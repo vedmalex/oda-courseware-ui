@@ -41,3 +41,6 @@ export default {
     // DELETE: {},
   },
 };
+
+export const extension = [
+];

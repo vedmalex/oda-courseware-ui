@@ -35,6 +35,7 @@ const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[
 const ShowView = (props, context) => {
   const { uix } = context;
   const Title = uix.Person.Title;
+  const { translate } = context;
   const {
     Student,
   } = uix;
@@ -76,6 +77,9 @@ const ShowView = (props, context) => {
 
         <DependentField resolve={showIfNotEmptyRel('socialNetworksValues')} source="socialNetworksValues">
           <EmbeddedArrayField reference="SocialNetwork" target="person" label="Social networks" source="socialNetworksValues" allowEmpty >
+            <ReferenceField label={translate("resources.SocialNetwork.name", { smart_count: 1 })} source="id" reference="SocialNetwork" allowEmpty >
+              <TextField optionText="account" linkType="show" />
+            </ReferenceField>
             <DependentField resolve={showIfExists('account')} source="account" scoped >
               <TextField source="account" label="Account" />
             </DependentField>
@@ -136,6 +140,7 @@ const ShowView = (props, context) => {
 
 ShowView.contextTypes = {
   uix: PropTypes.object.isRequired,
+  translate: PropTypes.func.isRequired,
 }
 
 export default ShowView;

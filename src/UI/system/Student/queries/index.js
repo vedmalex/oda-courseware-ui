@@ -47,3 +47,11 @@ export default {
     // DELETE: {},
   },
 };
+
+export const extension = [
+    {
+      name:'Meeting',
+      fields:{
+      }
+    },
+];

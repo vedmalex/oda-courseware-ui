@@ -72,6 +72,10 @@ class Form extends Component {
               <SelectInput optionText="id" />
             </ReferenceInput>
           </DependentInput>
+          <DependentInput resolve={detailsFor('students', true)} scoped >
+            <BooleanInput label="resources.StudentAttendance.fields.present" source="present" validate={required} />
+            <TextInput label="resources.StudentAttendance.fields.specialNotes" source="specialNotes" allowEmpty />
+          </DependentInput>
         </EmbeddedArrayInput>
 
       </SimpleForm>);

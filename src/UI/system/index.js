@@ -1,16 +1,16 @@
-import UserResource from './User/queries';
-import StudentResource from './Student/queries';
-import CuratorResource from './Curator/queries';
-import GroupResource from './Group/queries';
-import PersonResource from './Person/queries';
-import SocialNetworkResource from './SocialNetwork/queries';
-import SocialNetworkTypeResource from './SocialNetworkType/queries';
-import EmailResource from './Email/queries';
-import EmailTypeResource from './EmailType/queries';
-import PhoneResource from './Phone/queries';
-import PhoneTypeResource from './PhoneType/queries';
-import MeetingResource from './Meeting/queries';
-import StudentAttendanceResource from './StudentAttendance/queries';
+import UserResource, {extension as UserExtension } from './User/queries';
+import StudentResource, {extension as StudentExtension } from './Student/queries';
+import CuratorResource, {extension as CuratorExtension } from './Curator/queries';
+import GroupResource, {extension as GroupExtension } from './Group/queries';
+import PersonResource, {extension as PersonExtension } from './Person/queries';
+import SocialNetworkResource, {extension as SocialNetworkExtension } from './SocialNetwork/queries';
+import SocialNetworkTypeResource, {extension as SocialNetworkTypeExtension } from './SocialNetworkType/queries';
+import EmailResource, {extension as EmailExtension } from './Email/queries';
+import EmailTypeResource, {extension as EmailTypeExtension } from './EmailType/queries';
+import PhoneResource, {extension as PhoneExtension } from './Phone/queries';
+import PhoneTypeResource, {extension as PhoneTypeExtension } from './PhoneType/queries';
+import MeetingResource, {extension as MeetingExtension } from './Meeting/queries';
+import StudentAttendanceResource, {extension as StudentAttendanceExtension } from './StudentAttendance/queries';
 
 import UserUIX from './User/uix';
 import StudentUIX from './Student/uix';
@@ -49,6 +49,19 @@ export class Resources extends data.resource.ResourceContainer {
       PhoneTypeResource,
       MeetingResource,
       StudentAttendanceResource,
+      ...UserExtension,
+      ...StudentExtension,
+      ...CuratorExtension,
+      ...GroupExtension,
+      ...PersonExtension,
+      ...SocialNetworkExtension,
+      ...SocialNetworkTypeExtension,
+      ...EmailExtension,
+      ...EmailTypeExtension,
+      ...PhoneExtension,
+      ...PhoneTypeExtension,
+      ...MeetingExtension,
+      ...StudentAttendanceExtension,
     ]);
   }
 }

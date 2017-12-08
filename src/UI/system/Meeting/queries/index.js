@@ -48,3 +48,13 @@ export default {
     // DELETE: {},
   },
 };
+
+export const extension = [
+    {
+      name:'Student',
+      fields:{
+        present: { type: 'boolean' },
+        specialNotes: { type: 'string' },
+      }
+    },
+];
