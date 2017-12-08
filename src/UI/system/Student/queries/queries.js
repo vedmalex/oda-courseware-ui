@@ -12,7 +12,7 @@ export const fragments = {
       id
     }
     meetingsIds: meetings @_(get:"edges") {
-      edges @_(map:"node") {
+      edges @_(each: {assign:"node"}) {
         node @_(get:"id")  {
           id
         }

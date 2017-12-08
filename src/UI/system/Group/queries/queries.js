@@ -7,7 +7,7 @@ export const fragments = {
     name
 
     studentsIds: students @_(get:"edges") {
-      edges @_(map:"node") {
+      edges @_(each: {assign:"node"}) {
         node @_(get:"id")  {
           id
         }

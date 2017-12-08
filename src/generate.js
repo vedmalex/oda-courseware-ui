@@ -1,6 +1,6 @@
 var path = require('path');
 const { generator } = require('oda-gen-graphql');
-const schema = require('./../../api-new-ui-gen/compiledModel.json');
+const schema = require('./../../api-new-ui-gen/dist/schema').default;
 const {
   UserUI,
   PersonUI,

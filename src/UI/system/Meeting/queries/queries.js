@@ -13,9 +13,11 @@ export const fragments = {
       id
     }
     studentsValues: students @_(get:"edges") {
-      edges @_(map:"node") {
+      edges @_(each: {assign:"node"}) {
         node  {
           id
+          present
+          specialNotes
         }
       }
     }
@@ -31,6 +33,8 @@ export const fragments = {
     }
     students {
       edges {
+        present
+        specialNotes
         node {
           id
         }

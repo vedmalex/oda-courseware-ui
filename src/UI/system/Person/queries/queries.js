@@ -14,28 +14,28 @@ export const fragments = {
       id
     }
     socialNetworksValues: socialNetworks @_(get:"edges") {
-      edges @_(map:"node") {
+      edges @_(each: {assign:"node"}) {
         node  {
           id
         }
       }
     }
     phonesValues: phones @_(get:"edges") {
-      edges @_(map:"node") {
+      edges @_(each: {assign:"node"}) {
         node  {
           id
         }
       }
     }
     emailsValues: emails @_(get:"edges") {
-      edges @_(map:"node") {
+      edges @_(each: {assign:"node"}) {
         node  {
           id
         }
       }
     }
     asStudentsIds: asStudents @_(get:"edges") {
-      edges @_(map:"node") {
+      edges @_(each: {assign:"node"}) {
         node @_(get:"id")  {
           id
         }

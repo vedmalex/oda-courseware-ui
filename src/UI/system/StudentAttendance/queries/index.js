@@ -9,9 +9,9 @@ export default {
   fields: {
     id: { type: 'string' },
     meeting: { type: 'string' },
-    student: { type: 'string' },
     present: { type: 'boolean' },
     specialNotes: { type: 'string' },
+    student: { type: 'string' },
     meetingLink: {
       ref: {
         resource: 'Meeting',
