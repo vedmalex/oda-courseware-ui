@@ -21,7 +21,11 @@ export default {
           return { ...acc, id: { in: params.filter[key] } };
         }
         if (key === 'q') {
-          return { ...acc, userName: { imatch: params.filter[key] } };
+          return { ...acc,
+            or: [
+              { userName: { imatch: params.filter[key] } },
+            ]
+          };
         }
         return set(acc, key.replace('-', '.'), params.filter[key]);
       }, {}),

@@ -17,7 +17,6 @@ import {
 
 const FilterPanel = (props, {translate}) => (
   <Filter {...props} >
-
   </Filter>
 );
 

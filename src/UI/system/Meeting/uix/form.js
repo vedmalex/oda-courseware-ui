@@ -51,7 +51,7 @@ class Form extends Component {
 
         <Label text="resources.Meeting.fields.curator" />
         <ReferenceInput label="" source="curatorId" reference="Curator" allowEmpty >
-          <AutocompleteInput optionText="id" />
+          <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 
         <Label text="resources.Meeting.fields.group" />
@@ -69,7 +69,7 @@ class Form extends Component {
           />
           <DependentInput resolve={selectorFor('students')} scoped >
             <ReferenceInput label={translate("resources.Student.name", { smart_count: 1})} source="id" reference="Student" allowEmpty >
-              <SelectInput optionText="id" />
+              <SelectInput optionText="personFullName" />
             </ReferenceInput>
           </DependentInput>
           <DependentInput resolve={detailsFor('students', true)} scoped >

@@ -17,6 +17,7 @@ import {
 
 const FilterPanel = (props, {translate}) => (
   <Filter {...props} >
+    <TextInput label="uix.filter.search" source="q" allowEmpty alwaysOn />
 
   </Filter>
 );

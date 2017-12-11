@@ -57,7 +57,13 @@ export default {
           return { ...acc, id: { in: params.filter[key] } };
         }
         if (key === 'q') {
-          return { ...acc, fullName: { imatch: params.filter[key] } };
+          return { ...acc,
+            or: [
+              { fullName: { imatch: params.filter[key] } },
+
+              { spiritualName: { imatch: params.filter[key] } },
+            ]
+          };
         }
         return set(acc, key.replace('-', '.'), params.filter[key]);
       }, {}),

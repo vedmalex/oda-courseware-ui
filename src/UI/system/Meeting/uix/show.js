@@ -46,7 +46,7 @@ const ShowView = (props, context) => {
 
         <DependentField resolve={showIfNotEmptyRel('curatorId')} source="curatorId" >
           <ReferenceField label="resources.Meeting.fields.curator" source="curatorId" reference="Curator" allowEmpty linkType="show" >
-            <TextField source="id" allowEmpty />
+            <TextField source="fullName" allowEmpty />
           </ReferenceField>
         </DependentField>
 
@@ -59,7 +59,7 @@ const ShowView = (props, context) => {
         <DependentField resolve={showIfNotEmptyRel('studentsValues')} source="studentsValues">
           <EmbeddedArrayField reference="Student" target="meetings" label="resources.Meeting.fields.students" source="studentsValues" allowEmpty >
             <ReferenceField label={translate("resources.Student.name", { smart_count: 1})} source="id" reference="Student" allowEmpty linkType="show" >
-              <TextField source="id" />
+              <TextField source="personFullName" />
             </ReferenceField>
             <DependentField resolve={showIfExists('present')} source="present" scoped >
               <BooleanField label="resources.StudentAttendance.fields.present" source="present" />

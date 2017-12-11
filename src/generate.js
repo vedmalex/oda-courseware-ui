@@ -5,6 +5,10 @@ const {
   UserUI,
   PersonUI,
   MeetingUI,
+  CuratorUI,
+  StudentUI,
+  EmailUI,
+  StudentAttendanceUI,
 } = require('./ui-hooks');
 
 generator({
@@ -12,6 +16,10 @@ generator({
     UserUI,
     PersonUI,
     MeetingUI,
+    CuratorUI,
+    StudentUI,
+    EmailUI,
+    StudentAttendanceUI,
   ],
   pack: schema,
   rootDir: path.join(__dirname, 'UI'),

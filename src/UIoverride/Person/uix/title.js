@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Title = ({ record }, { translate }) => (
   <span>
-    {record ? `${record.fullName}` : `${record.id}`}
+    {record ? `${record.fullName}` : ``}
   </span>
 );
 

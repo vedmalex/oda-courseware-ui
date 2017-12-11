@@ -52,12 +52,12 @@ class Form extends Component {
 
         <Label text="resources.Group.fields.students" />
         <ReferenceArrayInput label="" source="studentsIds" reference="Student" allowEmpty >
-          <SelectArrayInput options={{ fullWidth: true }} optionText="id" optionValue="id" />
+          <SelectArrayInput options={{ fullWidth: true }} optionText="personFullName" optionValue="id" />
         </ReferenceArrayInput>
 
         <Label text="resources.Group.fields.curator" />
         <ReferenceInput label="" source="curatorId" reference="Curator" allowEmpty >
-          <AutocompleteInput optionText="id" />
+          <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 
       </SimpleForm>);

@@ -15,6 +15,7 @@ import {
 
 const Grid = (props, context) => (
   <Datagrid {...props} >
+    <DateField sortable={true} label="resources.Meeting.fields.date" source="date" allowEmpty />
 
     <ShowButton />
     <EditButton />

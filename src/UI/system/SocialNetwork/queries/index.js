@@ -30,7 +30,11 @@ export default {
           return { ...acc, id: { in: params.filter[key] } };
         }
         if (key === 'q') {
-          return { ...acc, account: { imatch: params.filter[key] } };
+          return { ...acc,
+            or: [
+              { account: { imatch: params.filter[key] } },
+            ]
+          };
         }
         return set(acc, key.replace('-', '.'), params.filter[key]);
       }, {}),

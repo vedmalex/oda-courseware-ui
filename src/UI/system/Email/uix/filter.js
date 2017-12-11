@@ -17,8 +17,8 @@ import {
 
 const FilterPanel = (props, {translate}) => (
   <Filter {...props} >
-
     <TextInput label="uix.filter.search" source="q" allowEmpty alwaysOn />
+
     <NullableBooleanInput label={translate("uix.filter.exists",{ name: translate('resources.Email.fields.email')})} source="email-exists" />
 
     <TextInput label={translate("uix.filter.exists",{ name: translate('resources.Email.fields.email')})} source="email-imatch" allowEmpty />

@@ -51,7 +51,7 @@ const ShowView = (props, context) => {
 
         <DependentField resolve={showIfNotEmptyRel('curatorId')} source="curatorId" >
           <ReferenceField label="resources.Group.fields.curator" source="curatorId" reference="Curator" allowEmpty linkType="show" >
-            <TextField source="id" allowEmpty />
+            <TextField source="fullName" allowEmpty />
           </ReferenceField>
         </DependentField>
 

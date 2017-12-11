@@ -47,10 +47,8 @@ class Form extends Component {
     const { translate } = this.context;
     return (
       <SimpleForm {...props} >
-        <TextInput label="resources.StudentAttendance.fields.meeting" source="meeting"  validate={required} />
         <BooleanInput label="resources.StudentAttendance.fields.present" source="present"  validate={required} />
         <TextInput label="resources.StudentAttendance.fields.specialNotes" source="specialNotes"  allowEmpty />
-        <TextInput label="resources.StudentAttendance.fields.student" source="student"  validate={required} />
 
         <Label text="resources.StudentAttendance.fields.meetingLink" />
         <ReferenceInput label="" source="meetingLinkId" reference="Meeting" allowEmpty >
@@ -59,7 +57,7 @@ class Form extends Component {
 
         <Label text="resources.StudentAttendance.fields.studentLink" />
         <ReferenceInput label="" source="studentLinkId" reference="Student" allowEmpty >
-          <AutocompleteInput optionText="id" />
+          <AutocompleteInput optionText="personFullName" />
         </ReferenceInput>
 
       </SimpleForm>);

@@ -8,6 +8,8 @@ export default {
         student: 'студент',
         present: 'присутствие',
         specialNotes: 'заметки',
+        meetingLink: 'встреча',
+        studentLink: 'студент',
       },
     },
   },

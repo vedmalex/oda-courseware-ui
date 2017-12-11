@@ -17,8 +17,8 @@ import {
 
 const FilterPanel = (props, {translate}) => (
   <Filter {...props} >
-
     <TextInput label="uix.filter.search" source="q" allowEmpty alwaysOn />
+
     <NullableBooleanInput label={translate("uix.filter.exists",{ name: translate('resources.Person.fields.spiritualName')})} source="spiritualName-exists" />
 
     <TextInput label={translate("uix.filter.exists",{ name: translate('resources.Person.fields.spiritualName')})} source="spiritualName-imatch" allowEmpty />
