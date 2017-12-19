@@ -6,6 +6,7 @@ export default {
         id: 'Id',
         person: 'владелец',
         group: 'группа',
+        meetings: 'встречи',
       },
     },
   },

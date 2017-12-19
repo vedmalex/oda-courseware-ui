@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
 
+import translationEn from '../../../UI/system/i18n';
 import UserTranslate from './User';
 import StudentTranslate from './Student';
 import CuratorTranslate from './Curator';
@@ -42,6 +43,7 @@ const messages = {
 
 export default
   merge(
+    translationEn,
     messages,
     UserTranslate,
     StudentTranslate,

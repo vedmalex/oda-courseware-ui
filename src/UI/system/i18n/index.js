@@ -13,6 +13,9 @@ import PhoneTranslate from './Phone';
 import PhoneTypeTranslate from './PhoneType';
 import MeetingTranslate from './Meeting';
 import StudentAttendanceTranslate from './StudentAttendance';
+import CourseTranslate from './Course';
+import SubjectTranslate from './Subject';
+import SubjectCourseTranslate from './SubjectCourse';
 
 const messages = {
   uix: {
@@ -56,4 +59,7 @@ export default
     PhoneTypeTranslate,
     MeetingTranslate,
     StudentAttendanceTranslate,
+    CourseTranslate,
+    SubjectTranslate,
+    SubjectCourseTranslate,
   )

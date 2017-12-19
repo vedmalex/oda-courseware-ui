@@ -6,8 +6,11 @@ export const fragments = {
     id
     name
 
+    courseId: course @_(get:"id") {
+      id
+    }
     studentsIds: students @_(get:"edges") {
-      edges @_(each: {assign:"node"}) {
+      edges @_( map:"node" ) {
         node @_(get:"id")  {
           id
         }
@@ -20,6 +23,9 @@ export const fragments = {
   fullFragment: gql`fragment GroupFull on Group {
     id
     name
+    course {
+      id
+    }
     students {
       edges {
         node {
@@ -165,6 +171,21 @@ export const queries = {
   //getManyReference
   getManyReference: ({ fullFragment }) => ({
   
+    course: gql`query Course_Id($skip: Int, $limit: Int, $orderBy: [GroupSortOrder], $filter: GroupComplexFilter) {
+      items: groups(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
+        pageInfo {
+          count
+        }
+        edges {
+          node {
+            ...GroupFull
+          }
+        }
+      }
+    }
+    ${fullFragment}
+  `,
+  
     students: gql`query Students_Group($skip: Int, $limit: Int, $orderBy: [GroupSortOrder], $filter: GroupComplexFilter) {
       items: groups(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
         pageInfo {
@@ -226,6 +247,7 @@ export const queries = {
     ${resultFragment}
   `,
   getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite, getManyReferenceResultRegular }) => ({
+    course: getManyReferenceResultRegular({ resultFragment }),
     students: getManyReferenceResultRegular({ resultFragment }),
     curator: getManyReferenceResultRegular({ resultFragment }),
   }),

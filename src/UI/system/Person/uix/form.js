@@ -7,11 +7,13 @@ import {
   SelectArrayInput,
   SimpleForm,
   TextInput,
+  LongTextInput,
   DateInput,
   NumberInput,
   BooleanInput,
   required,
 } from "admin-on-rest";
+import RichTextInput from 'aor-rich-text-input';
 
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
@@ -50,7 +52,7 @@ class Form extends Component {
         <TextInput label="resources.Person.fields.spiritualName" source="spiritualName"  validate={required} />
         <TextInput label="resources.Person.fields.fullName" source="fullName"  validate={required} />
         <DateInput label="resources.Person.fields.dateOfBirth" source="dateOfBirth"  allowEmpty />
-        <TextInput label="resources.Person.fields.specialNotes" source="specialNotes"  allowEmpty />
+        <RichTextInput label="resources.Person.fields.specialNotes" source="specialNotes"  allowEmpty />
 
         <Label text="resources.Person.fields.user" />
         <DependentInput resolve={selectorFor('user')} scoped >

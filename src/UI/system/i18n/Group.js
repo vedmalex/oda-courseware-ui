@@ -5,6 +5,7 @@ export default {
       fields: {
         id: 'Id',
         name: 'Name',
+        course: 'Course',
         students: 'Students',
         curator: 'Curator',
       },

@@ -13,10 +13,13 @@ import {
   Show,
   SimpleShowLayout,
   required,
+  RichTextField,
 } from "admin-on-rest";
 
 // import { EmbeddedArrayField } from 'aor-embedded-array';
 import { ui } from 'oda-aor-rest';
+
+const LongTextField = TextField;
 
 const {
   DependentField,
@@ -54,7 +57,7 @@ const ShowView = (props, context) => {
           <TextField label="resources.Person.fields.ages" source="ages" allowEmpty />
         </DependentField>
         <DependentField resolve={showIfExists('specialNotes')}>
-          <TextField label="resources.Person.fields.specialNotes" source="specialNotes" allowEmpty />
+          <RichTextField label="resources.Person.fields.specialNotes" source="specialNotes" allowEmpty />
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('userId')} source="user" >

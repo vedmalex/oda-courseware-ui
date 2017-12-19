@@ -7,11 +7,13 @@ import {
   SelectArrayInput,
   SimpleForm,
   TextInput,
+  LongTextInput,
   DateInput,
   NumberInput,
   BooleanInput,
   required,
 } from "admin-on-rest";
+import RichTextInput from 'aor-rich-text-input';
 
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
@@ -48,6 +50,11 @@ class Form extends Component {
     return (
       <SimpleForm {...props} >
         <TextInput label="resources.Group.fields.name" source="name"  validate={required} />
+
+        <Label text="resources.Group.fields.course" />
+        <ReferenceInput label="" source="courseId" reference="Course" allowEmpty >
+          <AutocompleteInput optionText="name" />
+        </ReferenceInput>
 
 
         <Label text="resources.Group.fields.students" />

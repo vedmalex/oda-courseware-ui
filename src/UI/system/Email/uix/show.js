@@ -13,10 +13,13 @@ import {
   Show,
   SimpleShowLayout,
   required,
+  RichTextField,
 } from "admin-on-rest";
 
 // import { EmbeddedArrayField } from 'aor-embedded-array';
 import { ui } from 'oda-aor-rest';
+
+const LongTextField = TextField;
 
 const {
   DependentField,

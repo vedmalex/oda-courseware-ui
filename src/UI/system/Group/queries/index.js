@@ -9,6 +9,12 @@ export default {
   fields: {
     id: { type: 'string' },
     name: { type: 'string' },
+    course: {
+      ref: {
+        resource: 'Course',
+        type: data.resource.interfaces.refType.BelongsTo,
+      },
+    },
     students: {
       ref: {
         resource: 'Student',
@@ -24,7 +30,7 @@ export default {
   },
   operations: {
     GET_LIST: {
-      _filterBy: (params) => Object.keys(params.filter).reduce((acc, key) => {
+      filterBy: (params) => Object.keys(params.filter).reduce((acc, key) => {
         if (key === 'ids') {
           return { ...acc, id: { in: params.filter[key] } };
         }

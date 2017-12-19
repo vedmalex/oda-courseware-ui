@@ -48,36 +48,11 @@ const messages = {
 };
 
 class OdaClientApp extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      restClient: context.restClient,
-      authClient: context.authClient,
-      uix: context.uix,
-    };
-  }
-
   render() {
-    const { restClient, authClient, uix } = this.state;
+    const { restClient, authClient, uix } = this.context;
     if (!restClient) {
       return <div className="loading-component"><Loading /></div>;
     }
-    const {
-      User,
-      Student,
-      Curator,
-      Group,
-      Person,
-      SocialNetwork,
-      SocialNetworkType,
-      Email,
-      EmailType,
-      Phone,
-      PhoneType,
-      Meeting,
-      StudentAttendance,
-    } = uix;
-
     return (
       <Admin
         {...this.props}
@@ -86,110 +61,17 @@ class OdaClientApp extends Component {
         locale="ru"
         authClient={authClient}
         restClient={restClient}>
-        <Resource
-          show={User.Show}
-          name="User"
-          edit={User.Edit}
-          create={User.Create}
-          list={User.List}
-          remove={Delete}
-        />
-        <Resource
-          show={Student.Show}
-          name="Student"
-          edit={Student.Edit}
-          create={Student.Create}
-          list={Student.List}
-          remove={Delete}
-        />
-        <Resource
-          show={Curator.Show}
-          name="Curator"
-          edit={Curator.Edit}
-          create={Curator.Create}
-          list={Curator.List}
-          remove={Delete}
-        />
-        <Resource
-          show={Group.Show}
-          name="Group"
-          edit={Group.Edit}
-          create={Group.Create}
-          list={Group.List}
-          remove={Delete}
-        />
-        <Resource
-          show={Person.Show}
-          name="Person"
-          edit={Person.Edit}
-          create={Person.Create}
-          list={Person.List}
-          remove={Delete}
-        />
-        <Resource
-          show={SocialNetwork.Show}
-          name="SocialNetwork"
-          edit={SocialNetwork.Edit}
-          create={SocialNetwork.Create}
-          list={SocialNetwork.List}
-          remove={Delete}
-        />
-        <Resource
-          show={SocialNetworkType.Show}
-          name="SocialNetworkType"
-          edit={SocialNetworkType.Edit}
-          create={SocialNetworkType.Create}
-          list={SocialNetworkType.List}
-          remove={Delete}
-        />
-        <Resource
-          show={Email.Show}
-          name="Email"
-          edit={Email.Edit}
-          create={Email.Create}
-          list={Email.List}
-          remove={Delete}
-        />
-        <Resource
-          show={EmailType.Show}
-          name="EmailType"
-          edit={EmailType.Edit}
-          create={EmailType.Create}
-          list={EmailType.List}
-          remove={Delete}
-        />
-        <Resource
-          show={Phone.Show}
-          name="Phone"
-          edit={Phone.Edit}
-          create={Phone.Create}
-          list={Phone.List}
-          remove={Delete}
-        />
-        <Resource
-          show={PhoneType.Show}
-          name="PhoneType"
-          edit={PhoneType.Edit}
-          create={PhoneType.Create}
-          list={PhoneType.List}
-          remove={Delete}
-        />
-        <Resource
-          show={Meeting.Show}
-          name="Meeting"
-          edit={Meeting.Edit}
-          create={Meeting.Create}
-          list={Meeting.List}
-          remove={Delete}
-        />
-        <Resource
-          show={StudentAttendance.Show}
-          name="StudentAttendance"
-          edit={StudentAttendance.Edit}
-          create={StudentAttendance.Create}
-          list={StudentAttendance.List}
-          remove={Delete}
-        />
+        {Object.keys(uix).map(resource =>
+          <Resource
+            key={resource}
+            show={uix[resource].Show}
+            name={resource}
+            edit={uix[resource].Edit}
+            create={uix[resource].Create}
+            list={uix[resource].List}
+            remove={Delete}
+          />
+        )}
       </Admin>
     );
   }

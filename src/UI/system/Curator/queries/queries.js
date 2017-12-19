@@ -9,7 +9,7 @@ export const fragments = {
       id
     }
     groupsIds: groups @_(get:"edges") {
-      edges @_(each: {assign:"node"}) {
+      edges @_( map:"node" ) {
         node @_(get:"id")  {
           id
         }

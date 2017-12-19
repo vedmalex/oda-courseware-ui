@@ -11,6 +11,9 @@ import PhoneResource, {extension as PhoneExtension } from './Phone/queries';
 import PhoneTypeResource, {extension as PhoneTypeExtension } from './PhoneType/queries';
 import MeetingResource, {extension as MeetingExtension } from './Meeting/queries';
 import StudentAttendanceResource, {extension as StudentAttendanceExtension } from './StudentAttendance/queries';
+import CourseResource, {extension as CourseExtension } from './Course/queries';
+import SubjectResource, {extension as SubjectExtension } from './Subject/queries';
+import SubjectCourseResource, {extension as SubjectCourseExtension } from './SubjectCourse/queries';
 
 import UserUIX from './User/uix';
 import StudentUIX from './Student/uix';
@@ -25,6 +28,9 @@ import PhoneUIX from './Phone/uix';
 import PhoneTypeUIX from './PhoneType/uix';
 import MeetingUIX from './Meeting/uix';
 import StudentAttendanceUIX from './StudentAttendance/uix';
+import CourseUIX from './Course/uix';
+import SubjectUIX from './Subject/uix';
+import SubjectCourseUIX from './SubjectCourse/uix';
 
 import { data } from 'oda-aor-rest';
 
@@ -49,6 +55,9 @@ export class Resources extends data.resource.ResourceContainer {
       PhoneTypeResource,
       MeetingResource,
       StudentAttendanceResource,
+      CourseResource,
+      SubjectResource,
+      SubjectCourseResource,
       ...UserExtension,
       ...StudentExtension,
       ...CuratorExtension,
@@ -62,6 +71,9 @@ export class Resources extends data.resource.ResourceContainer {
       ...PhoneTypeExtension,
       ...MeetingExtension,
       ...StudentAttendanceExtension,
+      ...CourseExtension,
+      ...SubjectExtension,
+      ...SubjectCourseExtension,
     ]);
   }
 }
@@ -80,4 +92,7 @@ export const uix = {
   PhoneType: PhoneTypeUIX,
   Meeting: MeetingUIX,
   StudentAttendance: StudentAttendanceUIX,
+  Course: CourseUIX,
+  Subject: SubjectUIX,
+  SubjectCourse: SubjectCourseUIX,
 };

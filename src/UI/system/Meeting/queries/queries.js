@@ -13,7 +13,7 @@ export const fragments = {
       id
     }
     studentsValues: students @_(get:"edges") {
-      edges @_(each: {assign:"node"}) {
+      edges @_( each: {assign:"node"} ) {
         node  {
           id
           present

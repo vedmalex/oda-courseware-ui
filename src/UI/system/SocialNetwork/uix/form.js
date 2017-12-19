@@ -7,11 +7,13 @@ import {
   SelectArrayInput,
   SimpleForm,
   TextInput,
+  LongTextInput,
   DateInput,
   NumberInput,
   BooleanInput,
   required,
 } from "admin-on-rest";
+import RichTextInput from 'aor-rich-text-input';
 
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';

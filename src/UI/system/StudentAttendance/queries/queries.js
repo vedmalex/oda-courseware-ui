@@ -5,9 +5,9 @@ export const fragments = {
   resultFragment: gql`fragment StudentAttendanceResult on StudentAttendance {
     id
     meeting
+    student
     present
     specialNotes
-    student
 
     meetingLinkId: meetingLink @_(get:"id") {
       id
@@ -19,9 +19,9 @@ export const fragments = {
   fullFragment: gql`fragment StudentAttendanceFull on StudentAttendance {
     id
     meeting
+    student
     present
     specialNotes
-    student
     meetingLink {
       id
     }
