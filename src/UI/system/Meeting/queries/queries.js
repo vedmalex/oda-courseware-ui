@@ -14,10 +14,10 @@ export const fragments = {
     }
     studentsValues: students @_(get:"edges") {
       edges @_( each: {assign:"node"} ) {
+        present
+        specialNotes
         node  {
           id
-          present
-          specialNotes
         }
       }
     }

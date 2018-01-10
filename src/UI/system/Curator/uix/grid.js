@@ -15,6 +15,8 @@ import {
 
 const Grid = (props, context) => (
   <Datagrid {...props} >
+    <TextField sortable={false} label="resources.Curator.fields.spiritualName" source="spiritualName" allowEmpty />
+    <TextField sortable={false} label="resources.Curator.fields.fullName" source="fullName" allowEmpty />
 
     <ShowButton />
     <EditButton />

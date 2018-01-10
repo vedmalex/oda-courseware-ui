@@ -36,6 +36,7 @@ exports.CuratorUI = {
   'entities.Curator': {
     'metadata.UI': {
       listName: 'fullName',
+      list: ['spiritualName', 'fullName'],
     },
   }
 }
@@ -66,6 +67,16 @@ exports.StudentAttendanceUI = {
     'metadata.UI': {
       edit: ['^student', '^meeting'],
       show: ['^student', '^meeting'],
+    },
+  }
+}
+
+exports.SubjectCourseUI = {
+  name: 'SubjectCourseUI',
+  'entities.SubjectCourse': {
+    'metadata.UI': {
+      edit: ['^subject', '^course'],
+      show: ['^subject', '^course'],
     },
   }
 }

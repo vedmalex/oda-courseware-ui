@@ -49,8 +49,8 @@ class Form extends Component {
     const { translate } = this.context;
     return (
       <SimpleForm {...props} >
-        <BooleanInput label="resources.StudentAttendance.fields.present" source="present"  validate={required} />
-        <TextInput label="resources.StudentAttendance.fields.specialNotes" source="specialNotes"  allowEmpty />
+        <BooleanInput label="resources.StudentAttendance.fields.present" source="present" validate={required} />
+        <TextInput label="resources.StudentAttendance.fields.specialNotes" source="specialNotes" allowEmpty />
 
         <Label text="resources.StudentAttendance.fields.meetingLink" />
         <ReferenceInput label="" source="meetingLinkId" reference="Meeting" allowEmpty >

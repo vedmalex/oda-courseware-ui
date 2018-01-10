@@ -45,19 +45,7 @@ const ShowView = (props, context) => {
           <BooleanField label="resources.StudentAttendance.fields.present" source="present" />
         </DependentField>
         <DependentField resolve={showIfExists('specialNotes')}>
-          <TextField label="resources.StudentAttendance.fields.specialNotes" source="specialNotes" allowEmpty />
-        </DependentField>
-
-        <DependentField resolve={showIfNotEmptyRel('meetingLinkId')} source="meetingLinkId" >
-          <ReferenceField label="resources.StudentAttendance.fields.meetingLink" source="meetingLinkId" reference="Meeting" allowEmpty linkType="show" >
-            <TextField source="date" allowEmpty />
-          </ReferenceField>
-        </DependentField>
-
-        <DependentField resolve={showIfNotEmptyRel('studentLinkId')} source="studentLinkId" >
-          <ReferenceField label="resources.StudentAttendance.fields.studentLink" source="studentLinkId" reference="Student" allowEmpty linkType="show" >
-            <TextField source="personFullName" allowEmpty />
-          </ReferenceField>
+          <RichTextField label="resources.StudentAttendance.fields.specialNotes" source="specialNotes" allowEmpty />
         </DependentField>
 
       </SimpleShowLayout>

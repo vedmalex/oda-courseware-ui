@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Title = ({ record },{translate}) => (
   <span>
-    {translate('resources.SocialNetwork.name', {smart_count : 1})} {record ? `"${record.account}"` : ""}
+    {translate('resources.SocialNetwork.account', {smart_count : 1})} {record ? `"${record.account}"` : ""}
   </span>
 );
 

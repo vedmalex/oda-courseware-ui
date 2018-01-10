@@ -44,6 +44,12 @@ const ShowView = (props, context) => {
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
+        <DependentField resolve={showIfExists('spiritualName')}>
+          <TextField label="resources.Curator.fields.spiritualName" source="spiritualName" allowEmpty />
+        </DependentField>
+        <DependentField resolve={showIfExists('fullName')}>
+          <TextField label="resources.Curator.fields.fullName" source="fullName" allowEmpty />
+        </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('personId')} source="personId" >
           <ReferenceField label="resources.Curator.fields.person" source="personId" reference="Person" allowEmpty linkType="show" >

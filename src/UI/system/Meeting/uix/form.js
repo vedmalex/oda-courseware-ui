@@ -69,14 +69,14 @@ class Form extends Component {
             choices={manyRelAction}
             defaultValue={actionType.USE}
           />
-          <DependentInput resolve={selectorFor('students')} scoped >
+          <DependentInput resolve={selectorFor('students', true)} scoped >
             <ReferenceInput label={translate("resources.Student.name", { smart_count: 1})} source="id" reference="Student" allowEmpty >
               <SelectInput optionText="personFullName" />
             </ReferenceInput>
           </DependentInput>
-          <DependentInput resolve={detailsFor('students', true)} scoped >
+          <DependentInput resolve={detailsFor('students')} scoped >
             <BooleanInput label="resources.StudentAttendance.fields.present" source="present" validate={required} />
-            <TextInput label="resources.StudentAttendance.fields.specialNotes" source="specialNotes" allowEmpty />
+            <RichTextInput label="resources.StudentAttendance.fields.specialNotes" source="specialNotes" allowEmpty />
           </DependentInput>
         </EmbeddedArrayInput>
 

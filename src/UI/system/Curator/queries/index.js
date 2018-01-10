@@ -8,6 +8,8 @@ export default {
   name: 'Curator',
   fields: {
     id: { type: 'string' },
+    spiritualName: { type: 'string' },
+    fullName: { type: 'string' },
     person: {
       ref: {
         resource: 'Person',

@@ -15,8 +15,6 @@ import {
 
 const Grid = (props, context) => (
   <Datagrid {...props} >
-    <TextField sortable={true} label="resources.StudentAttendance.fields.meeting" source="meeting" />
-    <TextField sortable={true} label="resources.StudentAttendance.fields.student" source="student" />
 
     <ShowButton />
     <EditButton />

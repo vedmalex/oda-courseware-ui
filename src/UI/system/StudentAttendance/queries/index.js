@@ -8,22 +8,10 @@ export default {
   name: 'StudentAttendance',
   fields: {
     id: { type: 'string' },
-    meeting: { type: 'string' },
-    student: { type: 'string' },
     present: { type: 'boolean' },
     specialNotes: { type: 'string' },
-    meetingLink: {
-      ref: {
-        resource: 'Meeting',
-        type: data.resource.interfaces.refType.BelongsTo,
-      },
-    },
-    studentLink: {
-      ref: {
-        resource: 'Student',
-        type: data.resource.interfaces.refType.BelongsTo,
-      },
-    },
+    student: { type: 'string' },
+    meeting: { type: 'string' },
   },
   operations: {
     GET_LIST: {

@@ -4,6 +4,8 @@ import gql from 'graphql-tag';
 export const fragments = {
   resultFragment: gql`fragment CuratorResult on Curator {
     id
+    spiritualName
+    fullName
 
     personId: person @_(get:"id") {
       id
@@ -18,6 +20,8 @@ export const fragments = {
   }`,
   fullFragment: gql`fragment CuratorFull on Curator {
     id
+    spiritualName
+    fullName
     person {
       id
     }

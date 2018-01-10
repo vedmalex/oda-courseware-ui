@@ -68,7 +68,7 @@ const ShowView = (props, context) => {
               <BooleanField label="resources.StudentAttendance.fields.present" source="present" />
             </DependentField>
             <DependentField resolve={showIfExists('specialNotes')} source="specialNotes" scoped >
-              <TextField label="resources.StudentAttendance.fields.specialNotes" source="specialNotes" allowEmpty />
+              <RichTextField label="resources.StudentAttendance.fields.specialNotes" source="specialNotes" allowEmpty />
             </DependentField>
           </EmbeddedArrayField>
         </DependentField>
