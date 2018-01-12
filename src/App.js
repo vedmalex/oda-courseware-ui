@@ -8,11 +8,15 @@ import { Admin } from './UIoverride';
 import { ui } from 'oda-aor-rest';
 import AutoFormProvider from './lib/adminAutoFormProvider';
 import customRoutes from './routes';
+import { Resources, uix } from './UIoverride';
+// import { Resources, uix } from './UI/system';
+import apolloClient from './lib/apollo';
 
+const client = apolloClient({ uri: 'http://localhost:3003/graphql' });
 class App extends Component {
   render() {
     return (
-      <AutoFormProvider uix={this.props.uix} resources={this.props.resources} client={this.props.client}>
+      <AutoFormProvider client={client} resources={new Resources()} uix={uix} >
         <Admin
           customSagas={[ui.sagas.monitorChanges,]}
           title="SW-API"
