@@ -52,12 +52,12 @@ class Form extends Component {
         <DateInput label="resources.Meeting.fields.date" source="date"  allowEmpty />
 
         <Label text="resources.Meeting.fields.curator" />
-        <ReferenceInput label="" source="curatorId" reference="Curator" allowEmpty >
+        <ReferenceInput label="" source="curatorId" reference="system/Curator" allowEmpty >
           <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 
         <Label text="resources.Meeting.fields.group" />
-        <ReferenceInput label="" source="groupId" reference="Group" allowEmpty >
+        <ReferenceInput label="" source="groupId" reference="system/Group" allowEmpty >
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
@@ -70,13 +70,14 @@ class Form extends Component {
             defaultValue={actionType.USE}
           />
           <DependentInput resolve={selectorFor('students', true)} scoped >
-            <ReferenceInput label={translate("resources.Student.name", { smart_count: 1})} source="id" reference="Student" allowEmpty >
+            <ReferenceInput label={translate("resources.Student.name", { smart_count: 1})} source="id" reference="system/Student" allowEmpty >
               <SelectInput optionText="personFullName" />
             </ReferenceInput>
           </DependentInput>
           <DependentInput resolve={detailsFor('students')} scoped >
             <BooleanInput label="resources.StudentAttendance.fields.present" source="present" validate={required} />
             <RichTextInput label="resources.StudentAttendance.fields.specialNotes" source="specialNotes" allowEmpty />
+            <TextInput label="resources.StudentAttendance.fields.superpuper" source="superpuper" allowEmpty />
           </DependentInput>
         </EmbeddedArrayInput>
 

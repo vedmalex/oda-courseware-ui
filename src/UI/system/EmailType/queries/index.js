@@ -5,7 +5,8 @@ import set from 'lodash/set';
 export default {
   queries,
   fragments,
-  name: 'EmailType',
+  name: 'system/EmailType',
+  role: 'system',
   fields: {
     id: { type: 'string' },
     name: { type: 'string' },

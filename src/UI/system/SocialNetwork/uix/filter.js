@@ -21,7 +21,7 @@ const FilterPanel = (props, {translate}) => (
 
     <NullableBooleanInput label={translate("uix.filter.exists",{ name: translate('resources.SocialNetwork.fields.account')})} source="account-exists" />
 
-    <TextInput label={translate("uix.filter.exists",{ name: translate('resources.SocialNetwork.fields.account')})} source="account-imatch" allowEmpty />
+    <TextInput label={translate("uix.filter.imatch",{ name: translate('resources.SocialNetwork.fields.account')})} source="account-imatch" allowEmpty />
     <SelectArrayInput label={translate("uix.filter.in",{ name: translate('resources.SocialNetwork.fields.account')})} source="account-in" allowEmpty />
     <SelectArrayInput label={translate("uix.filter.nin",{ name: translate('resources.SocialNetwork.fields.account')})} source="account-nin" allowEmpty />
 

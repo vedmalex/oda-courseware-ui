@@ -1,6 +1,6 @@
 var path = require('path');
 const { generator } = require('oda-gen-graphql');
-const schema = require('./../../api-new-ui-gen/dist/schema').default;
+const schema = require('./../../oda-courseware-api/dist/schema').default;
 const {
   UserUI,
   PersonUI,
@@ -30,6 +30,6 @@ generator({
     ts: false,
     graphql: false,
     schema: false,
-    packages: ['system'],
+    packages: true, /* ['system'], */
   },
 });

@@ -7,8 +7,7 @@ import { ui } from 'oda-aor-rest';
 const actionType = ui.consts.actionType;
 
 const CreateForm = (props, context) =>{
-  const Form = context.uix.Student.Form;
-  const Title = context.uix.Student.Title;
+  const { Form, Title } = context.uix['system/Student'];
   const { translate } = context;
 
   return (

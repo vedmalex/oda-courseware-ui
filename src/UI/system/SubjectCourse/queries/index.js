@@ -5,7 +5,8 @@ import set from 'lodash/set';
 export default {
   queries,
   fragments,
-  name: 'SubjectCourse',
+  name: 'system/SubjectCourse',
+  role: 'system',
   fields: {
     id: { type: 'string' },
     description: { type: 'string' },
@@ -15,13 +16,13 @@ export default {
     level: { type: 'string' },
     subjectLink: {
       ref: {
-        resource: 'Subject',
+        resource: 'system/Subject',
         type: data.resource.interfaces.refType.BelongsTo,
       },
     },
     courseLink: {
       ref: {
-        resource: 'Course',
+        resource: 'system/Course',
         type: data.resource.interfaces.refType.BelongsTo,
       },
     },

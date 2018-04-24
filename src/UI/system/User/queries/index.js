@@ -5,7 +5,8 @@ import set from 'lodash/set';
 export default {
   queries,
   fragments,
-  name: 'User',
+  name: 'system/User',
+  role: 'system',
   fields: {
     id: { type: 'string' },
     userName: { type: 'string' },

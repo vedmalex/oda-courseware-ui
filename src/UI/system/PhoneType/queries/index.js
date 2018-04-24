@@ -5,7 +5,8 @@ import set from 'lodash/set';
 export default {
   queries,
   fragments,
-  name: 'PhoneType',
+  name: 'system/PhoneType',
+  role: 'system',
   fields: {
     id: { type: 'string' },
     name: { type: 'string' },

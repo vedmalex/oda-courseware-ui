@@ -4,6 +4,7 @@ import * as invariant from 'invariant';
 import { ApolloProvider } from 'react-apollo';
 import authClient from './authClient';
 import { client } from 'oda-aor-rest';
+import { AUTH_GET_PERMISSIONS } from 'admin-on-rest';
 
 export default class AdminAutoFormsProvider extends Component {
   constructor(props, context) {
@@ -11,11 +12,14 @@ export default class AdminAutoFormsProvider extends Component {
     invariant(props.client, 'expected `client` prop initilization');
     invariant(props.uix, 'expected `uix` prop initilization');
     invariant(props.resources, 'expected `resources` prop initilization');
+
+    const auth = authClient(props.client);
     this.state = {
-      authClient: authClient(props.client),
+      authClient: auth,
       restClient: client({
         client: props.client,
-        resources: props.resources
+        resources: props.resources,
+        role: () => auth(AUTH_GET_PERMISSIONS),
       }),
     };
   }

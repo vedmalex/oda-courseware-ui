@@ -8,7 +8,7 @@ import {
   FunctionField,
   BooleanField,
   EditButton,
-  ReferenceManyField,
+  // ReferenceManyField,
   ReferenceField,
   Show,
   SimpleShowLayout,
@@ -28,6 +28,7 @@ const {
   EmbeddedArrayField,
   EmbeddedRefArrayField,
   EmbeddedRefField,
+  ReferenceManyField,
 } = ui.components;
 
 const showIfExists = field => root => !!root[field];
@@ -35,12 +36,10 @@ const showIfExists = field => root => !!root[field];
 const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[field]) && root[field].length > 0);
 
 const ShowView = (props, context) => {
-  const { uix } = context;
-  const Title = uix.Group.Title;
-  const { translate } = context;
-  const {
-    Student,
-  } = uix;
+  const { translate, uix } = context;
+  const { Title } = uix['system/Group'];
+  const Student = uix['system/Student'];
+
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
@@ -49,17 +48,17 @@ const ShowView = (props, context) => {
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('courseId')} source="courseId" >
-          <ReferenceField label="resources.Group.fields.course" source="courseId" reference="Course" allowEmpty linkType="show" >
+          <ReferenceField label="resources.Group.fields.course" source="courseId" reference="system/Course" allowEmpty linkType="show" >
             <TextField source="name" allowEmpty />
           </ReferenceField>
         </DependentField>
 
-        <ReferenceManyField label="resources.Group.fields.students" reference="Student" target="group" allowEmpty >
+        <ReferenceManyField label="resources.Group.fields.students" reference="system/Student" target="group" idKey="id" allowEmpty >
           <Student.Grid />
         </ReferenceManyField>
 
         <DependentField resolve={showIfNotEmptyRel('curatorId')} source="curatorId" >
-          <ReferenceField label="resources.Group.fields.curator" source="curatorId" reference="Curator" allowEmpty linkType="show" >
+          <ReferenceField label="resources.Group.fields.curator" source="curatorId" reference="system/Curator" allowEmpty linkType="show" >
             <TextField source="fullName" allowEmpty />
           </ReferenceField>
         </DependentField>

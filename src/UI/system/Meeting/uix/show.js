@@ -8,7 +8,7 @@ import {
   FunctionField,
   BooleanField,
   EditButton,
-  ReferenceManyField,
+  // ReferenceManyField,
   ReferenceField,
   Show,
   SimpleShowLayout,
@@ -28,6 +28,7 @@ const {
   EmbeddedArrayField,
   EmbeddedRefArrayField,
   EmbeddedRefField,
+  ReferenceManyField,
 } = ui.components;
 
 const showIfExists = field => root => !!root[field];
@@ -35,11 +36,9 @@ const showIfExists = field => root => !!root[field];
 const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[field]) && root[field].length > 0);
 
 const ShowView = (props, context) => {
-  const { uix } = context;
-  const Title = uix.Meeting.Title;
-  const { translate } = context;
-  const {
-  } = uix;
+  const { translate, uix } = context;
+  const { Title } = uix['system/Meeting'];
+
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
@@ -48,20 +47,20 @@ const ShowView = (props, context) => {
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('curatorId')} source="curatorId" >
-          <ReferenceField label="resources.Meeting.fields.curator" source="curatorId" reference="Curator" allowEmpty linkType="show" >
+          <ReferenceField label="resources.Meeting.fields.curator" source="curatorId" reference="system/Curator" allowEmpty linkType="show" >
             <TextField source="fullName" allowEmpty />
           </ReferenceField>
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('groupId')} source="groupId" >
-          <ReferenceField label="resources.Meeting.fields.group" source="groupId" reference="Group" allowEmpty linkType="show" >
+          <ReferenceField label="resources.Meeting.fields.group" source="groupId" reference="system/Group" allowEmpty linkType="show" >
             <TextField source="name" allowEmpty />
           </ReferenceField>
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('studentsValues')} source="studentsValues">
-          <EmbeddedArrayField reference="Student" target="meetings" label="resources.Meeting.fields.students" source="studentsValues" allowEmpty >
-            <ReferenceField label={translate("resources.Student.name", { smart_count: 1})} source="id" reference="Student" allowEmpty linkType="show" >
+          <EmbeddedArrayField reference="system/Student" target="meetings" label="resources.Meeting.fields.students" source="studentsValues" allowEmpty >
+            <ReferenceField label={translate("resources.Student.name", { smart_count: 1})} source="id" reference="system/Student" allowEmpty linkType="show" >
               <TextField source="personFullName" />
             </ReferenceField>
             <DependentField resolve={showIfExists('present')} source="present" scoped >
@@ -69,6 +68,9 @@ const ShowView = (props, context) => {
             </DependentField>
             <DependentField resolve={showIfExists('specialNotes')} source="specialNotes" scoped >
               <RichTextField label="resources.StudentAttendance.fields.specialNotes" source="specialNotes" allowEmpty />
+            </DependentField>
+            <DependentField resolve={showIfExists('superpuper')} source="superpuper" scoped >
+              <TextField label="resources.StudentAttendance.fields.superpuper" source="superpuper" allowEmpty />
             </DependentField>
           </EmbeddedArrayField>
         </DependentField>

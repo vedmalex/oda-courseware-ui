@@ -8,7 +8,7 @@ import {
   FunctionField,
   BooleanField,
   EditButton,
-  ReferenceManyField,
+  // ReferenceManyField,
   ReferenceField,
   Show,
   SimpleShowLayout,
@@ -28,6 +28,7 @@ const {
   EmbeddedArrayField,
   EmbeddedRefArrayField,
   EmbeddedRefField,
+  ReferenceManyField,
 } = ui.components;
 
 const showIfExists = field => root => !!root[field];
@@ -35,12 +36,10 @@ const showIfExists = field => root => !!root[field];
 const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[field]) && root[field].length > 0);
 
 const ShowView = (props, context) => {
-  const { uix } = context;
-  const Title = uix.Person.Title;
-  const { translate } = context;
-  const {
-    Student,
-  } = uix;
+  const { translate, uix } = context;
+  const { Title } = uix['system/Person'];
+  const Student = uix['system/Student'];
+
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
@@ -61,7 +60,7 @@ const ShowView = (props, context) => {
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('userId')} source="user" >
-          <EmbeddedRefField label="resources.Person.fields.user" source="userId" reference="User" target="id">
+          <EmbeddedRefField label="resources.Person.fields.user" source="userId" reference="system/User" target="id">
             <DependentField resolve={showIfExists('userName')} scoped >
               <TextField label="resources.User.fields.userName" source="userName"  />
             </DependentField>
@@ -81,8 +80,8 @@ const ShowView = (props, context) => {
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('socialNetworksValues')} source="socialNetworksValues">
-          <EmbeddedArrayField reference="SocialNetwork" target="person" label="resources.Person.fields.socialNetworks" source="socialNetworksValues" allowEmpty >
-            <ReferenceField label={translate("resources.SocialNetwork.name", { smart_count: 1})} source="id" reference="SocialNetwork" allowEmpty linkType="show" >
+          <EmbeddedArrayField reference="system/SocialNetwork" target="person" label="resources.Person.fields.socialNetworks" source="socialNetworksValues" allowEmpty >
+            <ReferenceField label={translate("resources.SocialNetwork.name", { smart_count: 1})} source="id" reference="system/SocialNetwork" allowEmpty linkType="show" >
               <TextField source="account" />
             </ReferenceField>
             <DependentField resolve={showIfExists('account')} source="account" scoped >
@@ -95,8 +94,8 @@ const ShowView = (props, context) => {
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('phonesValues')} source="phonesValues">
-          <EmbeddedArrayField reference="Phone" target="person" label="resources.Person.fields.phones" source="phonesValues" allowEmpty >
-            <ReferenceField label={translate("resources.Phone.name", { smart_count: 1})} source="id" reference="Phone" allowEmpty linkType="show" >
+          <EmbeddedArrayField reference="system/Phone" target="person" label="resources.Person.fields.phones" source="phonesValues" allowEmpty >
+            <ReferenceField label={translate("resources.Phone.name", { smart_count: 1})} source="id" reference="system/Phone" allowEmpty linkType="show" >
               <TextField source="phoneNumber" />
             </ReferenceField>
             <DependentField resolve={showIfExists('phoneNumber')} source="phoneNumber" scoped >
@@ -106,8 +105,8 @@ const ShowView = (props, context) => {
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('emailsValues')} source="emailsValues">
-          <EmbeddedArrayField reference="Email" target="person" label="resources.Person.fields.emails" source="emailsValues" allowEmpty >
-            <ReferenceField label={translate("resources.Email.name", { smart_count: 1})} source="id" reference="Email" allowEmpty linkType="show" >
+          <EmbeddedArrayField reference="system/Email" target="person" label="resources.Person.fields.emails" source="emailsValues" allowEmpty >
+            <ReferenceField label={translate("resources.Email.name", { smart_count: 1})} source="id" reference="system/Email" allowEmpty linkType="show" >
               <TextField source="email" />
             </ReferenceField>
             <DependentField resolve={showIfExists('email')} source="email" scoped >
@@ -116,12 +115,12 @@ const ShowView = (props, context) => {
           </EmbeddedArrayField>
         </DependentField>
 
-        <ReferenceManyField label="resources.Person.fields.asStudents" reference="Student" target="person" allowEmpty >
+        <ReferenceManyField label="resources.Person.fields.asStudents" reference="system/Student" target="person" idKey="id" allowEmpty >
           <Student.Grid />
         </ReferenceManyField>
 
         <DependentField resolve={showIfNotEmptyRel('asCuratorId')} source="asCuratorId" >
-          <ReferenceField label="resources.Person.fields.asCurator" source="asCuratorId" reference="Curator" allowEmpty linkType="show" >
+          <ReferenceField label="resources.Person.fields.asCurator" source="asCuratorId" reference="system/Curator" allowEmpty linkType="show" >
             <TextField source="fullName" allowEmpty />
           </ReferenceField>
         </DependentField>

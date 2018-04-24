@@ -8,7 +8,7 @@ import {
   FunctionField,
   BooleanField,
   EditButton,
-  ReferenceManyField,
+  // ReferenceManyField,
   ReferenceField,
   Show,
   SimpleShowLayout,
@@ -28,6 +28,7 @@ const {
   EmbeddedArrayField,
   EmbeddedRefArrayField,
   EmbeddedRefField,
+  ReferenceManyField,
 } = ui.components;
 
 const showIfExists = field => root => !!root[field];
@@ -35,9 +36,8 @@ const showIfExists = field => root => !!root[field];
 const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[field]) && root[field].length > 0);
 
 const ShowView = (props, context) => {
-  const { uix } = context;
-  const Title = uix.StudentAttendance.Title;
-  const { translate } = context;
+  const { translate, uix } = context;
+  const { Title } = uix['system/StudentAttendance'];
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
@@ -46,6 +46,21 @@ const ShowView = (props, context) => {
         </DependentField>
         <DependentField resolve={showIfExists('specialNotes')}>
           <RichTextField label="resources.StudentAttendance.fields.specialNotes" source="specialNotes" allowEmpty />
+        </DependentField>
+        <DependentField resolve={showIfExists('superpuper')}>
+          <TextField label="resources.StudentAttendance.fields.superpuper" source="superpuper" allowEmpty />
+        </DependentField>
+
+        <DependentField resolve={showIfNotEmptyRel('meetingLinkId')} source="meetingLinkId" >
+          <ReferenceField label="resources.StudentAttendance.fields.meetingLink" source="meetingLinkId" reference="system/Meeting" allowEmpty linkType="show" >
+            <TextField source="date" allowEmpty />
+          </ReferenceField>
+        </DependentField>
+
+        <DependentField resolve={showIfNotEmptyRel('studentLinkId')} source="studentLinkId" >
+          <ReferenceField label="resources.StudentAttendance.fields.studentLink" source="studentLinkId" reference="system/Student" allowEmpty linkType="show" >
+            <TextField source="personFullName" allowEmpty />
+          </ReferenceField>
         </DependentField>
 
       </SimpleShowLayout>

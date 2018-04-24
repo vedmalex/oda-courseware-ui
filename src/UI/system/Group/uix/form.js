@@ -52,18 +52,18 @@ class Form extends Component {
         <TextInput label="resources.Group.fields.name" source="name"  validate={required} />
 
         <Label text="resources.Group.fields.course" />
-        <ReferenceInput label="" source="courseId" reference="Course" allowEmpty >
+        <ReferenceInput label="" source="courseId" reference="system/Course" allowEmpty >
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
 
         <Label text="resources.Group.fields.students" />
-        <ReferenceArrayInput label="" source="studentsIds" reference="Student" allowEmpty >
+        <ReferenceArrayInput label="" source="studentsIds" reference="system/Student" allowEmpty >
           <SelectArrayInput options={{ fullWidth: true }} optionText="personFullName" optionValue="id" />
         </ReferenceArrayInput>
 
         <Label text="resources.Group.fields.curator" />
-        <ReferenceInput label="" source="curatorId" reference="Curator" allowEmpty >
+        <ReferenceInput label="" source="curatorId" reference="system/Curator" allowEmpty >
           <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 

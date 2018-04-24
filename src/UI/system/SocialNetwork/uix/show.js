@@ -8,7 +8,7 @@ import {
   FunctionField,
   BooleanField,
   EditButton,
-  ReferenceManyField,
+  // ReferenceManyField,
   ReferenceField,
   Show,
   SimpleShowLayout,
@@ -28,6 +28,7 @@ const {
   EmbeddedArrayField,
   EmbeddedRefArrayField,
   EmbeddedRefField,
+  ReferenceManyField,
 } = ui.components;
 
 const showIfExists = field => root => !!root[field];
@@ -35,9 +36,8 @@ const showIfExists = field => root => !!root[field];
 const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[field]) && root[field].length > 0);
 
 const ShowView = (props, context) => {
-  const { uix } = context;
-  const Title = uix.SocialNetwork.Title;
-  const { translate } = context;
+  const { translate, uix } = context;
+  const { Title } = uix['system/SocialNetwork'];
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
@@ -49,13 +49,13 @@ const ShowView = (props, context) => {
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('typeId')} source="typeId" >
-          <ReferenceField label="resources.SocialNetwork.fields.type" source="typeId" reference="SocialNetworkType" allowEmpty linkType="show" >
+          <ReferenceField label="resources.SocialNetwork.fields.type" source="typeId" reference="system/SocialNetworkType" allowEmpty linkType="show" >
             <TextField source="name" allowEmpty />
           </ReferenceField>
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('personId')} source="personId" >
-          <ReferenceField label="resources.SocialNetwork.fields.person" source="personId" reference="Person" allowEmpty linkType="show" >
+          <ReferenceField label="resources.SocialNetwork.fields.person" source="personId" reference="system/Person" allowEmpty linkType="show" >
             <TextField source="fullName" allowEmpty />
           </ReferenceField>
         </DependentField>

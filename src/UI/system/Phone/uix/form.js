@@ -52,12 +52,12 @@ class Form extends Component {
         <TextInput label="resources.Phone.fields.phoneNumber" source="phoneNumber"  validate={required} />
 
         <Label text="resources.Phone.fields.type" />
-        <ReferenceInput label="" source="typeId" reference="PhoneType" allowEmpty >
+        <ReferenceInput label="" source="typeId" reference="system/PhoneType" allowEmpty >
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
         <Label text="resources.Phone.fields.person" />
-        <ReferenceInput label="" source="personId" reference="Person" allowEmpty >
+        <ReferenceInput label="" source="personId" reference="system/Person" allowEmpty >
           <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 

@@ -49,16 +49,17 @@ class Form extends Component {
     const { translate } = this.context;
     return (
       <SimpleForm {...props} >
-        <BooleanInput label="resources.StudentAttendance.fields.present" source="present" validate={required} />
-        <TextInput label="resources.StudentAttendance.fields.specialNotes" source="specialNotes" allowEmpty />
+        <BooleanInput label="resources.StudentAttendance.fields.present" source="present"  validate={required} />
+        <RichTextInput label="resources.StudentAttendance.fields.specialNotes" source="specialNotes"  allowEmpty />
+        <TextInput label="resources.StudentAttendance.fields.superpuper" source="superpuper"  allowEmpty />
 
         <Label text="resources.StudentAttendance.fields.meetingLink" />
-        <ReferenceInput label="" source="meetingLinkId" reference="Meeting" allowEmpty >
+        <ReferenceInput label="" source="meetingLinkId" reference="system/Meeting" allowEmpty >
           <AutocompleteInput optionText="date" />
         </ReferenceInput>
 
         <Label text="resources.StudentAttendance.fields.studentLink" />
-        <ReferenceInput label="" source="studentLinkId" reference="Student" allowEmpty >
+        <ReferenceInput label="" source="studentLinkId" reference="system/Student" allowEmpty >
           <AutocompleteInput optionText="personFullName" />
         </ReferenceInput>
 

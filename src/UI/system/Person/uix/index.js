@@ -10,6 +10,8 @@ const List = loadable(() => import('./list'));
 const Grid = loadable(() => import('./grid'));
 
 export default {
+  name: 'Person',
+  role: 'system',
   Title,
   Filter,
   Form,

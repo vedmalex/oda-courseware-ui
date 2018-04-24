@@ -5,25 +5,26 @@ import set from 'lodash/set';
 export default {
   queries,
   fragments,
-  name: 'Meeting',
+  name: 'system/Meeting',
+  role: 'system',
   fields: {
     id: { type: 'string' },
     date: { type: 'date' },
     curator: {
       ref: {
-        resource: 'Curator',
+        resource: 'system/Curator',
         type: data.resource.interfaces.refType.BelongsTo,
       },
     },
     group: {
       ref: {
-        resource: 'Group',
+        resource: 'system/Group',
         type: data.resource.interfaces.refType.BelongsTo,
       },
     },
     students: {
       ref: {
-        resource: 'Student',
+        resource: 'system/Student',
         type: data.resource.interfaces.refType.BelongsToMany,
       },
     },
@@ -55,10 +56,11 @@ export default {
 
 export const extension = [
     {
-      name:'Student',
+      name:'system/Student',
       fields:{
         present: { type: 'boolean' },
         specialNotes: { type: 'string' },
+        superpuper: { type: 'string' },
       }
     },
 ];

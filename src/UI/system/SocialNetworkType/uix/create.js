@@ -7,8 +7,7 @@ import { ui } from 'oda-aor-rest';
 const actionType = ui.consts.actionType;
 
 const CreateForm = (props, context) =>{
-  const Form = context.uix.SocialNetworkType.Form;
-  const Title = context.uix.SocialNetworkType.Title;
+  const { Form, Title } = context.uix['system/SocialNetworkType'];
   const { translate } = context;
 
   return (

@@ -2,6 +2,7 @@ export default {
   resources: {
     Curator: {
       name: 'Curator |||| Curators',
+      listName: 'Curator |||| Curators',
       fields: {
         id: 'Id',
         spiritualName: 'Spiritual name',

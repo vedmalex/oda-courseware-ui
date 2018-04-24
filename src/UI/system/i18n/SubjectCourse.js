@@ -2,6 +2,7 @@ export default {
   resources: {
     SubjectCourse: {
       name: 'SubjectCourse |||| SubjectCourses',
+      listName: 'SubjectCourse |||| SubjectCourses',
       fields: {
         id: 'Id',
         description: 'Description',

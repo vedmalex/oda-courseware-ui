@@ -8,7 +8,7 @@ import {
   FunctionField,
   BooleanField,
   EditButton,
-  ReferenceManyField,
+  // ReferenceManyField,
   ReferenceField,
   Show,
   SimpleShowLayout,
@@ -28,6 +28,7 @@ const {
   EmbeddedArrayField,
   EmbeddedRefArrayField,
   EmbeddedRefField,
+  ReferenceManyField,
 } = ui.components;
 
 const showIfExists = field => root => !!root[field];
@@ -35,12 +36,10 @@ const showIfExists = field => root => !!root[field];
 const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[field]) && root[field].length > 0);
 
 const ShowView = (props, context) => {
-  const { uix } = context;
-  const Title = uix.Curator.Title;
-  const { translate } = context;
-  const {
-    Group,
-  } = uix;
+  const { translate, uix } = context;
+  const { Title } = uix['system/Curator'];
+  const Group = uix['system/Group'];
+
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
@@ -52,12 +51,12 @@ const ShowView = (props, context) => {
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('personId')} source="personId" >
-          <ReferenceField label="resources.Curator.fields.person" source="personId" reference="Person" allowEmpty linkType="show" >
+          <ReferenceField label="resources.Curator.fields.person" source="personId" reference="system/Person" allowEmpty linkType="show" >
             <TextField source="fullName" allowEmpty />
           </ReferenceField>
         </DependentField>
 
-        <ReferenceManyField label="resources.Curator.fields.groups" reference="Group" target="curator" allowEmpty >
+        <ReferenceManyField label="resources.Curator.fields.groups" reference="system/Group" target="curator" idKey="id" allowEmpty >
           <Group.Grid />
         </ReferenceManyField>
 

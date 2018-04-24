@@ -7,8 +7,7 @@ import { ui } from 'oda-aor-rest';
 const actionType = ui.consts.actionType;
 
 const EditForm = (props, context) => {
-  const Form = context.uix.Email.Form;
-  const Title = context.uix.Email.Title;
+  const { Form, Title } = context.uix['system/Email'];
   const { translate } = context;
 
   return (

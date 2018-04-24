@@ -8,7 +8,7 @@ import {
   FunctionField,
   BooleanField,
   EditButton,
-  ReferenceManyField,
+  // ReferenceManyField,
   ReferenceField,
   Show,
   SimpleShowLayout,
@@ -28,6 +28,7 @@ const {
   EmbeddedArrayField,
   EmbeddedRefArrayField,
   EmbeddedRefField,
+  ReferenceManyField,
 } = ui.components;
 
 const showIfExists = field => root => !!root[field];
@@ -35,9 +36,8 @@ const showIfExists = field => root => !!root[field];
 const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[field]) && root[field].length > 0);
 
 const ShowView = (props, context) => {
-  const { uix } = context;
-  const Title = uix.SubjectCourse.Title;
-  const { translate } = context;
+  const { translate, uix } = context;
+  const { Title } = uix['system/SubjectCourse'];
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
@@ -52,13 +52,13 @@ const ShowView = (props, context) => {
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('subjectLinkId')} source="subjectLinkId" >
-          <ReferenceField label="resources.SubjectCourse.fields.subjectLink" source="subjectLinkId" reference="Subject" allowEmpty linkType="show" >
+          <ReferenceField label="resources.SubjectCourse.fields.subjectLink" source="subjectLinkId" reference="system/Subject" allowEmpty linkType="show" >
             <TextField source="name" allowEmpty />
           </ReferenceField>
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('courseLinkId')} source="courseLinkId" >
-          <ReferenceField label="resources.SubjectCourse.fields.courseLink" source="courseLinkId" reference="Course" allowEmpty linkType="show" >
+          <ReferenceField label="resources.SubjectCourse.fields.courseLink" source="courseLinkId" reference="system/Course" allowEmpty linkType="show" >
             <TextField source="name" allowEmpty />
           </ReferenceField>
         </DependentField>

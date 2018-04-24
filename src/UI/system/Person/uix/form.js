@@ -56,7 +56,7 @@ class Form extends Component {
 
         <Label text="resources.Person.fields.user" />
         <DependentInput resolve={selectorFor('user')} scoped >
-          <ReferenceInput label="resources.Person.fields.user" source="userId" reference="User" allowEmpty >
+          <ReferenceInput label="resources.Person.fields.user" source="userId" reference="system/User" allowEmpty >
             <AutocompleteInput optionText="userName" />
           </ReferenceInput>
         </DependentInput>
@@ -86,7 +86,7 @@ class Form extends Component {
             defaultValue={actionType.USE}
           />
           <DependentInput resolve={selectorFor('socialNetworks')} scoped >
-            <ReferenceInput label={translate("resources.SocialNetwork.name", { smart_count: 1})} source="id" reference="SocialNetwork" allowEmpty >
+            <ReferenceInput label={translate("resources.SocialNetwork.name", { smart_count: 1})} source="id" reference="system/SocialNetwork" allowEmpty >
               <SelectInput optionText="account" />
             </ReferenceInput>
           </DependentInput>
@@ -105,7 +105,7 @@ class Form extends Component {
             defaultValue={actionType.USE}
           />
           <DependentInput resolve={selectorFor('phones')} scoped >
-            <ReferenceInput label={translate("resources.Phone.name", { smart_count: 1})} source="id" reference="Phone" allowEmpty >
+            <ReferenceInput label={translate("resources.Phone.name", { smart_count: 1})} source="id" reference="system/Phone" allowEmpty >
               <SelectInput optionText="phoneNumber" />
             </ReferenceInput>
           </DependentInput>
@@ -123,7 +123,7 @@ class Form extends Component {
             defaultValue={actionType.USE}
           />
           <DependentInput resolve={selectorFor('emails')} scoped >
-            <ReferenceInput label={translate("resources.Email.name", { smart_count: 1})} source="id" reference="Email" allowEmpty >
+            <ReferenceInput label={translate("resources.Email.name", { smart_count: 1})} source="id" reference="system/Email" allowEmpty >
               <SelectInput optionText="email" />
             </ReferenceInput>
           </DependentInput>

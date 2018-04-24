@@ -1,8 +1,7 @@
-import { ApolloClient } from 'apollo-client';
-import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloClient } from 'apollo-client';
 import { ApolloLink, concat } from 'apollo-link';
-import { BatchHttpLink } from "apollo-link-batch-http";
+import { BatchHttpLink } from 'apollo-link-batch-http';
 
 export default ({ uri }) => {
   const httpLink = new BatchHttpLink({ uri });

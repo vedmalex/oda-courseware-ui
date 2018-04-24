@@ -4,18 +4,32 @@ import gql from 'graphql-tag';
 export const fragments = {
   resultFragment: gql`fragment StudentAttendanceResult on StudentAttendance {
     id
+    meeting
+    student
     present
     specialNotes
-    student
-    meeting
+    superpuper
 
+    meetingLinkId: meetingLink @_(get:"id") {
+      id
+    }
+    studentLinkId: studentLink @_(get:"id") {
+      id
+    }
   }`,
   fullFragment: gql`fragment StudentAttendanceFull on StudentAttendance {
     id
+    meeting
+    student
     present
     specialNotes
-    student
-    meeting
+    superpuper
+    meetingLink {
+      id
+    }
+    studentLink {
+      id
+    }
   }`,
 }
 
@@ -150,6 +164,36 @@ export const queries = {
   `,
   //getManyReference
   getManyReference: ({ fullFragment }) => ({
+  
+    meetingLink: gql`query MeetingLink_Id($skip: Int, $limit: Int, $orderBy: [StudentAttendanceSortOrder], $filter: StudentAttendanceComplexFilter) {
+      items: studentAttendances(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
+        pageInfo {
+          count
+        }
+        edges {
+          node {
+            ...StudentAttendanceFull
+          }
+        }
+      }
+    }
+    ${fullFragment}
+  `,
+  
+    studentLink: gql`query StudentLink_Id($skip: Int, $limit: Int, $orderBy: [StudentAttendanceSortOrder], $filter: StudentAttendanceComplexFilter) {
+      items: studentAttendances(skip:$skip, limit: $limit, orderBy: $orderBy, filter: $filter) {
+        pageInfo {
+          count
+        }
+        edges {
+          node {
+            ...StudentAttendanceFull
+          }
+        }
+      }
+    }
+    ${fullFragment}
+  `,
     }),
   getManyReferenceResultOpposite: ({ resultFragment }) => gql`{
     items: opposite @_(get:"items") {
@@ -182,5 +226,7 @@ export const queries = {
     ${resultFragment}
   `,
   getManyReferenceResult: ({ resultFragment }, { getManyReferenceResultOpposite, getManyReferenceResultRegular }) => ({
+    meetingLink: getManyReferenceResultRegular({ resultFragment }),
+    studentLink: getManyReferenceResultRegular({ resultFragment }),
   }),
 }

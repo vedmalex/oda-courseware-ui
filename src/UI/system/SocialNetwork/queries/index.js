@@ -5,20 +5,21 @@ import set from 'lodash/set';
 export default {
   queries,
   fragments,
-  name: 'SocialNetwork',
+  name: 'system/SocialNetwork',
+  role: 'system',
   fields: {
     id: { type: 'string' },
     account: { type: 'string' },
     url: { type: 'string' },
     type: {
       ref: {
-        resource: 'SocialNetworkType',
+        resource: 'system/SocialNetworkType',
         type: data.resource.interfaces.refType.BelongsTo,
       },
     },
     person: {
       ref: {
-        resource: 'Person',
+        resource: 'system/Person',
         type: data.resource.interfaces.refType.BelongsTo,
       },
     },

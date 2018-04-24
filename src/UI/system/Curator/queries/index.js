@@ -5,20 +5,21 @@ import set from 'lodash/set';
 export default {
   queries,
   fragments,
-  name: 'Curator',
+  name: 'system/Curator',
+  role: 'system',
   fields: {
     id: { type: 'string' },
     spiritualName: { type: 'string' },
     fullName: { type: 'string' },
     person: {
       ref: {
-        resource: 'Person',
+        resource: 'system/Person',
         type: data.resource.interfaces.refType.BelongsTo,
       },
     },
     groups: {
       ref: {
-        resource: 'Group',
+        resource: 'system/Group',
         type: data.resource.interfaces.refType.HasMany,
       },
     },

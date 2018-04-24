@@ -5,19 +5,20 @@ import set from 'lodash/set';
 export default {
   queries,
   fragments,
-  name: 'Phone',
+  name: 'system/Phone',
+  role: 'system',
   fields: {
     id: { type: 'string' },
     phoneNumber: { type: 'string' },
     type: {
       ref: {
-        resource: 'PhoneType',
+        resource: 'system/PhoneType',
         type: data.resource.interfaces.refType.BelongsTo,
       },
     },
     person: {
       ref: {
-        resource: 'Person',
+        resource: 'system/Person',
         type: data.resource.interfaces.refType.BelongsTo,
       },
     },

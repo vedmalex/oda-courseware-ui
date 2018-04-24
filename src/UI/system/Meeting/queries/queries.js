@@ -16,6 +16,7 @@ export const fragments = {
       edges @_( each: {assign:"node"} ) {
         present
         specialNotes
+        superpuper
         node  {
           id
         }
@@ -35,6 +36,7 @@ export const fragments = {
       edges {
         present
         specialNotes
+        superpuper
         node {
           id
         }

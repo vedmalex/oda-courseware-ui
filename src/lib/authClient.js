@@ -1,4 +1,4 @@
-import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR, AUTH_CHECK } from 'admin-on-rest';
+import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR, AUTH_CHECK, AUTH_GET_PERMISSIONS } from 'admin-on-rest';
 import decode from './../lib/decode';
 
 import gql from 'graphql-tag';
@@ -6,6 +6,7 @@ import gql from 'graphql-tag';
 const loginQuery = gql`mutation login($username: String!, $password:String!) {
     loginUser(input: {userName: $username, password: $password}) {
       token
+      role
     }
   }
 `;
@@ -23,11 +24,18 @@ export default (apolloClient) => (type, params) => {
       .mutate(apolloQuery)
       .then((res) => {
         localStorage.setItem('authToken', res.data.loginUser.token);
-      })
+        localStorage.setItem('role', res.data.loginUser.role);
+      });
+  }
+
+  if (type === AUTH_GET_PERMISSIONS) {
+    const role = localStorage.getItem('role');
+    return Promise.resolve(role);
   }
   // called when the user clicks on the logout button
   if (type === AUTH_LOGOUT) {
     localStorage.removeItem('authToken');
+    localStorage.setItem('role', 'public');
     return Promise.resolve();
   }
   // called when the API returns an error
@@ -35,6 +43,7 @@ export default (apolloClient) => (type, params) => {
     const { status } = params;
     if (status === 401 || status === 403) {
       localStorage.removeItem('authToken');
+      localStorage.setItem('role', 'public');
       return Promise.reject();
     }
     return Promise.resolve();
@@ -55,6 +64,7 @@ export default (apolloClient) => (type, params) => {
         ? Promise.resolve()
         : Promise.reject();
     } else {
+      localStorage.setItem('role', 'public');
       return Promise.reject();
     }
   } else {

@@ -5,19 +5,20 @@ import set from 'lodash/set';
 export default {
   queries,
   fragments,
-  name: 'Course',
+  name: 'system/Course',
+  role: 'system',
   fields: {
     id: { type: 'string' },
     name: { type: 'string' },
     subjects: {
       ref: {
-        resource: 'Subject',
+        resource: 'system/Subject',
         type: data.resource.interfaces.refType.BelongsToMany,
       },
     },
     groups: {
       ref: {
-        resource: 'Group',
+        resource: 'system/Group',
         type: data.resource.interfaces.refType.HasMany,
       },
     },
@@ -49,7 +50,7 @@ export default {
 
 export const extension = [
     {
-      name:'Subject',
+      name:'system/Subject',
       fields:{
       }
     },

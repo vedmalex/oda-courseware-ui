@@ -5,13 +5,27 @@ import set from 'lodash/set';
 export default {
   queries,
   fragments,
-  name: 'StudentAttendance',
+  name: 'system/StudentAttendance',
+  role: 'system',
   fields: {
     id: { type: 'string' },
+    meeting: { type: 'string' },
+    student: { type: 'string' },
     present: { type: 'boolean' },
     specialNotes: { type: 'string' },
-    student: { type: 'string' },
-    meeting: { type: 'string' },
+    superpuper: { type: 'string' },
+    meetingLink: {
+      ref: {
+        resource: 'system/Meeting',
+        type: data.resource.interfaces.refType.BelongsTo,
+      },
+    },
+    studentLink: {
+      ref: {
+        resource: 'system/Student',
+        type: data.resource.interfaces.refType.BelongsTo,
+      },
+    },
   },
   operations: {
     GET_LIST: {

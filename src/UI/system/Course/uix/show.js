@@ -8,7 +8,7 @@ import {
   FunctionField,
   BooleanField,
   EditButton,
-  ReferenceManyField,
+  // ReferenceManyField,
   ReferenceField,
   Show,
   SimpleShowLayout,
@@ -28,6 +28,7 @@ const {
   EmbeddedArrayField,
   EmbeddedRefArrayField,
   EmbeddedRefField,
+  ReferenceManyField,
 } = ui.components;
 
 const showIfExists = field => root => !!root[field];
@@ -35,13 +36,11 @@ const showIfExists = field => root => !!root[field];
 const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[field]) && root[field].length > 0);
 
 const ShowView = (props, context) => {
-  const { uix } = context;
-  const Title = uix.Course.Title;
-  const { translate } = context;
-  const {
-    Subject,
-    Group,
-  } = uix;
+  const { translate, uix } = context;
+  const { Title } = uix['system/Course'];
+  const Subject = uix['system/Subject'];
+  const Group = uix['system/Group'];
+
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
@@ -49,11 +48,11 @@ const ShowView = (props, context) => {
           <TextField label="resources.Course.fields.name" source="name" />
         </DependentField>
 
-        <ReferenceManyField label="resources.Course.fields.subjects" reference="Subject" target="course" allowEmpty >
+        <ReferenceManyField label="resources.Course.fields.subjects" reference="system/Subject" target="course" idKey="id" allowEmpty >
           <Subject.Grid />
         </ReferenceManyField>
 
-        <ReferenceManyField label="resources.Course.fields.groups" reference="Group" target="course" allowEmpty >
+        <ReferenceManyField label="resources.Course.fields.groups" reference="system/Group" target="course" idKey="id" allowEmpty >
           <Group.Grid />
         </ReferenceManyField>
 

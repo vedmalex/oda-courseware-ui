@@ -53,12 +53,12 @@ class Form extends Component {
         <TextInput label="resources.SocialNetwork.fields.url" source="url"  allowEmpty />
 
         <Label text="resources.SocialNetwork.fields.type" />
-        <ReferenceInput label="" source="typeId" reference="SocialNetworkType" allowEmpty >
+        <ReferenceInput label="" source="typeId" reference="system/SocialNetworkType" allowEmpty >
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
         <Label text="resources.SocialNetwork.fields.person" />
-        <ReferenceInput label="" source="personId" reference="Person" allowEmpty >
+        <ReferenceInput label="" source="personId" reference="system/Person" allowEmpty >
           <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 

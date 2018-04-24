@@ -53,13 +53,13 @@ class Form extends Component {
 
 
         <Label text="resources.Course.fields.subjects" />
-        <ReferenceArrayInput label="" source="subjectsIds" reference="Subject" allowEmpty >
+        <ReferenceArrayInput label="" source="subjectsIds" reference="system/Subject" allowEmpty >
           <SelectArrayInput options={{ fullWidth: true }} optionText="name" optionValue="id" />
         </ReferenceArrayInput>
 
 
         <Label text="resources.Course.fields.groups" />
-        <ReferenceArrayInput label="" source="groupsIds" reference="Group" allowEmpty >
+        <ReferenceArrayInput label="" source="groupsIds" reference="system/Group" allowEmpty >
           <SelectArrayInput options={{ fullWidth: true }} optionText="name" optionValue="id" />
         </ReferenceArrayInput>
 

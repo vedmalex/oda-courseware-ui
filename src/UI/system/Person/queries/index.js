@@ -5,7 +5,8 @@ import set from 'lodash/set';
 export default {
   queries,
   fragments,
-  name: 'Person',
+  name: 'system/Person',
+  role: 'system',
   fields: {
     id: { type: 'string' },
     spiritualName: { type: 'string' },
@@ -15,37 +16,37 @@ export default {
     specialNotes: { type: 'string' },
     user: {
       ref: {
-        resource: 'User',
+        resource: 'system/User',
         type: data.resource.interfaces.refType.BelongsTo,
       },
     },
     socialNetworks: {
       ref: {
-        resource: 'SocialNetwork',
+        resource: 'system/SocialNetwork',
         type: data.resource.interfaces.refType.HasMany,
       },
     },
     phones: {
       ref: {
-        resource: 'Phone',
+        resource: 'system/Phone',
         type: data.resource.interfaces.refType.HasMany,
       },
     },
     emails: {
       ref: {
-        resource: 'Email',
+        resource: 'system/Email',
         type: data.resource.interfaces.refType.HasMany,
       },
     },
     asStudents: {
       ref: {
-        resource: 'Student',
+        resource: 'system/Student',
         type: data.resource.interfaces.refType.HasMany,
       },
     },
     asCurator: {
       ref: {
-        resource: 'Curator',
+        resource: 'system/Curator',
         type: data.resource.interfaces.refType.HasOne,
       },
     },

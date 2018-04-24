@@ -2,6 +2,7 @@ export default {
   resources: {
     Person: {
       name: 'Person |||| People',
+      listName: 'Person |||| People',
       fields: {
         id: 'Id',
         spiritualName: 'Spiritual name',

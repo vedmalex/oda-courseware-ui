@@ -2,6 +2,7 @@ export default {
   resources: {
     SocialNetwork: {
       name: 'SocialNetwork |||| SocialNetworks',
+      listName: 'SocialNetwork |||| SocialNetworks',
       fields: {
         id: 'Id',
         account: 'Account',

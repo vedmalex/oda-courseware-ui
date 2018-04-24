@@ -8,7 +8,7 @@ import {
   FunctionField,
   BooleanField,
   EditButton,
-  ReferenceManyField,
+  // ReferenceManyField,
   ReferenceField,
   Show,
   SimpleShowLayout,
@@ -28,6 +28,7 @@ const {
   EmbeddedArrayField,
   EmbeddedRefArrayField,
   EmbeddedRefField,
+  ReferenceManyField,
 } = ui.components;
 
 const showIfExists = field => root => !!root[field];
@@ -35,29 +36,27 @@ const showIfExists = field => root => !!root[field];
 const showIfNotEmptyRel = field => root => !!root[field] || (Array.isArray(root[field]) && root[field].length > 0);
 
 const ShowView = (props, context) => {
-  const { uix } = context;
-  const Title = uix.Student.Title;
-  const { translate } = context;
-  const {
-    Meeting,
-  } = uix;
+  const { translate, uix } = context;
+  const { Title } = uix['system/Student'];
+  const Meeting = uix['system/Meeting'];
+
   return (
     <Show title={<Title />} {...props} >
       <SimpleShowLayout {...props}>
 
         <DependentField resolve={showIfNotEmptyRel('personId')} source="personId" >
-          <ReferenceField label="resources.Student.fields.person" source="personId" reference="Person" allowEmpty linkType="show" >
+          <ReferenceField label="resources.Student.fields.person" source="personId" reference="system/Person" allowEmpty linkType="show" >
             <TextField source="fullName" allowEmpty />
           </ReferenceField>
         </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('groupId')} source="groupId" >
-          <ReferenceField label="resources.Student.fields.group" source="groupId" reference="Group" allowEmpty linkType="show" >
+          <ReferenceField label="resources.Student.fields.group" source="groupId" reference="system/Group" allowEmpty linkType="show" >
             <TextField source="name" allowEmpty />
           </ReferenceField>
         </DependentField>
 
-        <ReferenceManyField label="resources.Student.fields.meetings" reference="Meeting" target="students" allowEmpty >
+        <ReferenceManyField label="resources.Student.fields.meetings" reference="system/Meeting" target="students" idKey="id" allowEmpty >
           <Meeting.Grid />
         </ReferenceManyField>
 

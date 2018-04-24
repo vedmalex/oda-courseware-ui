@@ -5,19 +5,20 @@ import set from 'lodash/set';
 export default {
   queries,
   fragments,
-  name: 'Email',
+  name: 'system/Email',
+  role: 'system',
   fields: {
     id: { type: 'string' },
     email: { type: 'string' },
     type: {
       ref: {
-        resource: 'EmailType',
+        resource: 'system/EmailType',
         type: data.resource.interfaces.refType.BelongsTo,
       },
     },
     person: {
       ref: {
-        resource: 'Person',
+        resource: 'system/Person',
         type: data.resource.interfaces.refType.BelongsTo,
       },
     },

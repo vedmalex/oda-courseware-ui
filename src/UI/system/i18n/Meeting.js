@@ -2,6 +2,7 @@ export default {
   resources: {
     Meeting: {
       name: 'Meeting |||| Meetings',
+      listName: 'Meeting |||| Meetings',
       fields: {
         id: 'Id',
         date: 'Date',
