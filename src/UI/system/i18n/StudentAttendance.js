@@ -9,7 +9,6 @@ export default {
         student: 'Student',
         present: 'Present',
         specialNotes: 'Special notes',
-        superpuper: 'Superpuper',
         meetingLink: 'Meeting link',
         studentLink: 'Student link',
       },

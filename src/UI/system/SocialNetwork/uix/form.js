@@ -52,13 +52,11 @@ class Form extends Component {
         <TextInput label="resources.SocialNetwork.fields.account" source="account"  validate={required} />
         <TextInput label="resources.SocialNetwork.fields.url" source="url"  allowEmpty />
 
-        <Label text="resources.SocialNetwork.fields.type" />
-        <ReferenceInput label="" source="typeId" reference="system/SocialNetworkType" allowEmpty >
+        <ReferenceInput label="resources.SocialNetwork.fields.type" source="typeId" reference="system/SocialNetworkType" allowEmpty >
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
-        <Label text="resources.SocialNetwork.fields.person" />
-        <ReferenceInput label="" source="personId" reference="system/Person" allowEmpty >
+        <ReferenceInput label="resources.SocialNetwork.fields.person" source="personId" reference="system/Person" allowEmpty >
           <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 

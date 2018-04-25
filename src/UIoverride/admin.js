@@ -58,11 +58,12 @@ class OdaClientApp extends Component {
         {...this.props}
         menu={menu}
         messages={messages}
-        locale="ru"
+        locale="en"
         authClient={authClient}
         restClient={restClient}>
-        {Object.keys(uix).map(resource =>
-          <Resource
+        {role => Object.keys(uix)
+          .filter(resource => uix[resource].role === role)
+          .map(resource => <Resource
             key={resource}
             show={uix[resource].Show}
             name={resource}
@@ -70,8 +71,9 @@ class OdaClientApp extends Component {
             create={uix[resource].Create}
             list={uix[resource].List}
             remove={Delete}
+            options={{ label: `resources.${uix[resource].name}.name` }}
           />
-        )}
+          )}
       </Admin>
     );
   }

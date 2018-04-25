@@ -1,14 +1,15 @@
 export default {
   resources: {
     User: {
-      name: 'Пользователь |||| Пользователи',
+      name: 'User |||| Users',
+      listName: 'User |||| Users',
       fields: {
         id: 'Id',
-        userName: 'пользователь',
-        password: 'пароль',
-        isAdmin: 'администратор?',
-        isSystem: 'системный пользователь?',
-        enabled: 'разрешен вход?',
+        userName: 'User name',
+        password: 'Password',
+        isAdmin: 'Is admin',
+        isSystem: 'Is system',
+        enabled: 'Enabled',
       },
     },
   },

@@ -1,10 +1,11 @@
 export default {
   resources: {
     EmailType: {
-      name: 'Тип электронного почтового ящика |||| Список типов электронного ящика',
+      name: 'EmailType |||| EmailTypes',
+      listName: 'EmailType |||| EmailTypes',
       fields: {
         id: 'Id',
-        name: 'тип',
+        name: 'Name',
       },
     },
   },

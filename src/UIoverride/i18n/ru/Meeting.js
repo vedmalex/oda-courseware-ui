@@ -1,13 +1,14 @@
 export default {
   resources: {
     Meeting: {
-      name: 'Встреча |||| Встречи',
+      name: 'Meeting |||| Meetings',
+      listName: 'Meeting |||| Meetings',
       fields: {
         id: 'Id',
-        date: 'Дата',
-        curator: 'куратор',
-        group: 'группа',
-        students: 'студенты',
+        date: 'Date',
+        curator: 'Curator',
+        group: 'Group',
+        students: 'Students',
       },
     },
   },

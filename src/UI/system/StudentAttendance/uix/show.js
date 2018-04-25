@@ -47,9 +47,6 @@ const ShowView = (props, context) => {
         <DependentField resolve={showIfExists('specialNotes')}>
           <RichTextField label="resources.StudentAttendance.fields.specialNotes" source="specialNotes" allowEmpty />
         </DependentField>
-        <DependentField resolve={showIfExists('superpuper')}>
-          <TextField label="resources.StudentAttendance.fields.superpuper" source="superpuper" allowEmpty />
-        </DependentField>
 
         <DependentField resolve={showIfNotEmptyRel('meetingLinkId')} source="meetingLinkId" >
           <ReferenceField label="resources.StudentAttendance.fields.meetingLink" source="meetingLinkId" reference="system/Meeting" allowEmpty linkType="show" >

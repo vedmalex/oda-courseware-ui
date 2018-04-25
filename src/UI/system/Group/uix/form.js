@@ -51,19 +51,16 @@ class Form extends Component {
       <SimpleForm {...props} >
         <TextInput label="resources.Group.fields.name" source="name"  validate={required} />
 
-        <Label text="resources.Group.fields.course" />
-        <ReferenceInput label="" source="courseId" reference="system/Course" allowEmpty >
+        <ReferenceInput label="resources.Group.fields.course" source="courseId" reference="system/Course" allowEmpty >
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
 
-        <Label text="resources.Group.fields.students" />
-        <ReferenceArrayInput label="" source="studentsIds" reference="system/Student" allowEmpty >
+        <ReferenceArrayInput label="resources.Group.fields.students" source="#w{f.field}Ids" reference="system/Student" allowEmpty >
           <SelectArrayInput options={{ fullWidth: true }} optionText="personFullName" optionValue="id" />
         </ReferenceArrayInput>
 
-        <Label text="resources.Group.fields.curator" />
-        <ReferenceInput label="" source="curatorId" reference="system/Curator" allowEmpty >
+        <ReferenceInput label="resources.Group.fields.curator" source="curatorId" reference="system/Curator" allowEmpty >
           <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 

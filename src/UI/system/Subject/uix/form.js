@@ -52,8 +52,7 @@ class Form extends Component {
         <TextInput label="resources.Subject.fields.name" source="name"  validate={required} />
 
 
-        <Label text="resources.Subject.fields.course" />
-        <ReferenceArrayInput label="" source="courseIds" reference="system/Course" allowEmpty >
+        <ReferenceArrayInput label="resources.Subject.fields.course" source="#w{f.field}Ids" reference="system/Course" allowEmpty >
           <SelectArrayInput options={{ fullWidth: true }} optionText="name" optionValue="id" />
         </ReferenceArrayInput>
 

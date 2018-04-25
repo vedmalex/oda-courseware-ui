@@ -1,10 +1,11 @@
 export default {
   resources: {
     SocialNetworkType: {
-      name: 'Тип социальной сети |||| Список типов социальных сетей',
+      name: 'SocialNetworkType |||| SocialNetworkTypes',
+      listName: 'SocialNetworkType |||| SocialNetworkTypes',
       fields: {
         id: 'Id',
-        name: 'название',
+        name: 'Name',
       },
     },
   },

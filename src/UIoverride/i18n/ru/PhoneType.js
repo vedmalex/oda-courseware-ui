@@ -1,10 +1,11 @@
 export default {
   resources: {
     PhoneType: {
-      name: 'Тип № телефона |||| Список Типов номеров телефонов',
+      name: 'PhoneType |||| PhoneTypes',
+      listName: 'PhoneType |||| PhoneTypes',
       fields: {
         id: 'Id',
-        name: 'тип',
+        name: 'Name',
       },
     },
   },

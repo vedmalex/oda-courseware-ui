@@ -25,7 +25,7 @@ const Menu = ({ onMenuTap, translate, logout }) => (
         <MenuItemLink
           key={item}
           to={`/${item}`}
-          primaryText={translate(`resources.${item}.name`, { smart_count: 2 })}
+          primaryText={translate(`resources.${items[item].name}.name`, { smart_count: 2 })}
           leftIcon={items[item].icon || <ListIcon />}
           onClick={onMenuTap}
         />

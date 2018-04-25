@@ -1,12 +1,13 @@
 export default {
   resources: {
     Student: {
-      name: 'Студент |||| Студенты',
+      name: 'Student |||| Students',
+      listName: 'Student |||| Students',
       fields: {
         id: 'Id',
-        person: 'владелец',
-        group: 'группа',
-        meetings: 'встречи',
+        person: 'Person',
+        group: 'Group',
+        meetings: 'Meetings',
       },
     },
   },

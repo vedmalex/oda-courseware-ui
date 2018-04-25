@@ -8,7 +8,6 @@ export const fragments = {
     student
     present
     specialNotes
-    superpuper
 
     meetingLinkId: meetingLink @_(get:"id") {
       id
@@ -23,7 +22,6 @@ export const fragments = {
     student
     present
     specialNotes
-    superpuper
     meetingLink {
       id
     }

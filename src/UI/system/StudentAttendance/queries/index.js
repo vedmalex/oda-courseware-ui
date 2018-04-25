@@ -13,7 +13,6 @@ export default {
     student: { type: 'string' },
     present: { type: 'boolean' },
     specialNotes: { type: 'string' },
-    superpuper: { type: 'string' },
     meetingLink: {
       ref: {
         resource: 'system/Meeting',

@@ -24,6 +24,13 @@ export default {
       groupId: group @_(get:"id") {
         id
       }
+      meetingsIds: meetings @_(get:"edges") {
+      edges @_( map:"node" ) {
+        node @_(get:"id")  {
+          id
+        }
+      }
+    }
     }`,
     fullFragment: gql`fragment StudentFull on Student {
     id
@@ -35,6 +42,13 @@ export default {
     group {
       id
       name
+    }
+    meetings {
+      edges {
+        node {
+          id
+        }
+      }
     }
   }`,
   }

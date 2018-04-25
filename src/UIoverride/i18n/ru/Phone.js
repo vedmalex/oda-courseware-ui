@@ -1,12 +1,13 @@
 export default {
   resources: {
     Phone: {
-      name: 'Номер телефона |||| список номеров телефонов',
+      name: 'Phone |||| Phones',
+      listName: 'Phone |||| Phones',
       fields: {
         id: 'Id',
-        phoneNumber: '№ телефона',
-        type: 'Тип',
-        person: 'Владелец',
+        phoneNumber: 'Phone number',
+        type: 'Type',
+        person: 'Person',
       },
     },
   },

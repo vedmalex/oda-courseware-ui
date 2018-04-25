@@ -53,13 +53,11 @@ class Form extends Component {
         <NumberInput label="resources.SubjectCourse.fields.hours" source="hours"  allowEmpty />
         <LongTextInput label="resources.SubjectCourse.fields.level" source="level"  allowEmpty />
 
-        <Label text="resources.SubjectCourse.fields.subjectLink" />
-        <ReferenceInput label="" source="subjectLinkId" reference="system/Subject" allowEmpty >
+        <ReferenceInput label="resources.SubjectCourse.fields.subjectLink" source="subjectLinkId" reference="system/Subject" allowEmpty >
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
-        <Label text="resources.SubjectCourse.fields.courseLink" />
-        <ReferenceInput label="" source="courseLinkId" reference="system/Course" allowEmpty >
+        <ReferenceInput label="resources.SubjectCourse.fields.courseLink" source="courseLinkId" reference="system/Course" allowEmpty >
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
 

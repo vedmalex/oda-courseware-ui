@@ -1,13 +1,14 @@
 export default {
   resources: {
     SocialNetwork: {
-      name: 'Профиль социальной сети |||| Профили социальных сетей',
+      name: 'SocialNetwork |||| SocialNetworks',
+      listName: 'SocialNetwork |||| SocialNetworks',
       fields: {
         id: 'Id',
-        account: 'учетная запись',
-        url: 'интернет адрес',
-        type: 'тип',
-        person: 'владелец',
+        account: 'Account',
+        url: 'Url',
+        type: 'Type',
+        person: 'Person',
       },
     },
   },

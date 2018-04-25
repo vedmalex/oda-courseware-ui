@@ -1,6 +1,5 @@
 import merge from 'lodash/merge';
 
-import translationEn from '../../../UI/system/i18n';
 import UserTranslate from './User';
 import StudentTranslate from './Student';
 import CuratorTranslate from './Curator';
@@ -12,14 +11,17 @@ import EmailTranslate from './Email';
 import EmailTypeTranslate from './EmailType';
 import PhoneTranslate from './Phone';
 import PhoneTypeTranslate from './PhoneType';
-import Meeting from './Meeting';
-import StudentAttendance from './StudentAttendance';
+import MeetingTranslate from './Meeting';
+import StudentAttendanceTranslate from './StudentAttendance';
+import CourseTranslate from './Course';
+import SubjectTranslate from './Subject';
+import SubjectCourseTranslate from './SubjectCourse';
 
 const messages = {
   uix: {
     "filter": {
-      "search": "Поиск",
-      "exists": "%{name} существует",
+      "search": "Search",
+      "exists": "%{name} exists",
       "eq": "%{name} =",
       "ne": "%{name} !=",
       "lte": "%{name} <=",
@@ -27,23 +29,22 @@ const messages = {
       "lt": "%{name} <",
       "gt": "%{name} >",
       "imatch": "%{name}",
-      "in": "%{name} в списке",
-      "nin": "%{name} не в списке",
+      "in": "%{name} in",
+      "nin": "%{name} not in",
     },
     "actionType": {
-      "CREATE": "Создать",
-      "UPDATE": "Обновить текущий",
-      "CLONE": "Скопировать",
-      "USE": "Использовать текущий",
-      "UNLINK": "отсоединить",
-      "ExpectedTo": "Действие"
+      "CREATE": "Create",
+      "UPDATE": "Update Existing",
+      "CLONE": "Copy Selected",
+      "USE": "Use Existing",
+      "UNLINK": "Unlink",
+      "ExpectedTo": "Expected To"
     }
   }
 }
 
 export default
   merge(
-    translationEn,
     messages,
     UserTranslate,
     StudentTranslate,
@@ -56,6 +57,9 @@ export default
     EmailTypeTranslate,
     PhoneTranslate,
     PhoneTypeTranslate,
-    Meeting,
-    StudentAttendance
+    MeetingTranslate,
+    StudentAttendanceTranslate,
+    CourseTranslate,
+    SubjectTranslate,
+    SubjectCourseTranslate,
   )

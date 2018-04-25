@@ -4,8 +4,8 @@ import { ApolloProvider } from 'react-apollo';
 import Dashboard from './Dashboard/'
 import merge from 'lodash/merge';
 
-// import { Admin } from './UI/system';
-import { Admin } from './UIoverride';
+import { Admin } from './UI/system';
+//import { Admin } from './UIoverride';
 import { ui } from 'oda-aor-rest';
 import AutoFormProvider from './lib/adminAutoFormProvider';
 import customRoutes from './routes';

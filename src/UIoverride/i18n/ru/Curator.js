@@ -1,11 +1,14 @@
 export default {
   resources: {
     Curator: {
-      name: 'Куратор |||| Кураторы',
+      name: 'Curator |||| Curators',
+      listName: 'Curator |||| Curators',
       fields: {
         id: 'Id',
-        person: 'Куратор',
-        groups: 'Группы',
+        spiritualName: 'Spiritual name',
+        fullName: 'Full name',
+        person: 'Person',
+        groups: 'Groups',
       },
     },
   },

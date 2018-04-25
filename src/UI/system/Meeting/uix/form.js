@@ -51,13 +51,11 @@ class Form extends Component {
       <SimpleForm {...props} >
         <DateInput label="resources.Meeting.fields.date" source="date"  allowEmpty />
 
-        <Label text="resources.Meeting.fields.curator" />
-        <ReferenceInput label="" source="curatorId" reference="system/Curator" allowEmpty >
+        <ReferenceInput label="resources.Meeting.fields.curator" source="curatorId" reference="system/Curator" allowEmpty >
           <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 
-        <Label text="resources.Meeting.fields.group" />
-        <ReferenceInput label="" source="groupId" reference="system/Group" allowEmpty >
+        <ReferenceInput label="resources.Meeting.fields.group" source="groupId" reference="system/Group" allowEmpty >
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
@@ -77,7 +75,6 @@ class Form extends Component {
           <DependentInput resolve={detailsFor('students')} scoped >
             <BooleanInput label="resources.StudentAttendance.fields.present" source="present" validate={required} />
             <RichTextInput label="resources.StudentAttendance.fields.specialNotes" source="specialNotes" allowEmpty />
-            <TextInput label="resources.StudentAttendance.fields.superpuper" source="superpuper" allowEmpty />
           </DependentInput>
         </EmbeddedArrayInput>
 

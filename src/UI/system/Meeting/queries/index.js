@@ -60,7 +60,6 @@ export const extension = [
       fields:{
         present: { type: 'boolean' },
         specialNotes: { type: 'string' },
-        superpuper: { type: 'string' },
       }
     },
 ];

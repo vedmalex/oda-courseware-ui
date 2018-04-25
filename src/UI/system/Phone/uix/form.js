@@ -51,13 +51,11 @@ class Form extends Component {
       <SimpleForm {...props} >
         <TextInput label="resources.Phone.fields.phoneNumber" source="phoneNumber"  validate={required} />
 
-        <Label text="resources.Phone.fields.type" />
-        <ReferenceInput label="" source="typeId" reference="system/PhoneType" allowEmpty >
+        <ReferenceInput label="resources.Phone.fields.type" source="typeId" reference="system/PhoneType" allowEmpty >
           <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
-        <Label text="resources.Phone.fields.person" />
-        <ReferenceInput label="" source="personId" reference="system/Person" allowEmpty >
+        <ReferenceInput label="resources.Phone.fields.person" source="personId" reference="system/Person" allowEmpty >
           <AutocompleteInput optionText="fullName" />
         </ReferenceInput>
 

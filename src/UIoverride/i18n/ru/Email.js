@@ -1,12 +1,13 @@
 export default {
   resources: {
     Email: {
-      name: 'Адрес электронной почты |||| Адресы электронной почты',
+      name: 'Email |||| Emails',
+      listName: 'Email |||| Emails',
       fields: {
         id: 'Id',
-        email: 'адрес',
-        type: 'тип',
-        person: 'Владелец',
+        email: 'Email',
+        type: 'Type',
+        person: 'Person',
       },
     },
   },

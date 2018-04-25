@@ -1,15 +1,17 @@
 export default {
   resources: {
     StudentAttendance: {
-      name: 'Посещаемость |||| Посещаемость',
+      name: 'StudentAttendance |||| StudentAttendances',
+      listName: 'StudentAttendance |||| StudentAttendances',
       fields: {
         id: 'Id',
-        meeting: 'встреча',
-        student: 'студент',
-        present: 'присутствие',
-        specialNotes: 'заметки',
-        meetingLink: 'встреча',
-        studentLink: 'студент',
+        meeting: 'Meeting',
+        student: 'Student',
+        present: 'Present',
+        specialNotes: 'Special notes',
+        superpuper: 'Superpuper',
+        meetingLink: 'Meeting link',
+        studentLink: 'Student link',
       },
     },
   },
